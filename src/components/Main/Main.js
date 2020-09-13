@@ -1,5 +1,6 @@
 import React from 'react';
 import Titlepage from './../Titlepage/Titlepage';
+import Income from './../Contents/Income/Income';
 import './Main.css';
 
 class Main extends React.Component {
@@ -8,6 +9,7 @@ class Main extends React.Component {
             <React.Fragment>
                <div className="main">
                    <Titlepage income="ثبت درآمد"/>
+                   <Income />
                 </div>
             </React.Fragment>
         )
