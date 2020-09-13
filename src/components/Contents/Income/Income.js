@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import { HandleChange } from './../../../share/Utility';
 
 import './Income.css';
@@ -9,6 +10,23 @@ class Income extends React.Component {
        numInput: "",
        dateInput: ""
     }
+
+    componentDidMount() {
+       axios({    
+        method: 'POST',
+        url: 'https://192.168.22.48/ipfm/frontend/web/index.php/expenditures/create',
+        body:{
+           amount:1
+        },
+        headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Content-Type': 'multipart/form-data'
+        }
+       }).then(res => console.log(res)
+       ).then(err => console.log(err)) 
+    }
+
+
 
     send = () => {
         console.log(this.state.selectInput , this.state.numInput, this.state.dateInput)
