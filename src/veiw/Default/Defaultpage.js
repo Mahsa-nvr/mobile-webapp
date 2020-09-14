@@ -3,6 +3,7 @@ import './Default.css'
 //components
 import Header from './../../components/Header/Header';
 import Maincards from './../../components/Maincards/Maincards';
+import Defaultchart from '../../components/Defaultchart/Defaultchart';
 
 
 class Deafultpage extends React.Component {
@@ -10,8 +11,8 @@ class Deafultpage extends React.Component {
         return (
             <div className="defaultt">
                 <Header />
-                <Maincards />
-                
+                <Maincards /> 
+                <Defaultchart />            
             </div>
         )
     }

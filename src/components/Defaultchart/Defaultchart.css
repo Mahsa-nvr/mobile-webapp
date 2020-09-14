@@ -1,0 +1,17 @@
+.default_chart {
+    margin: 10px auto;
+    width: 90%;
+    border-radius: 2%;
+    background-color: white;
+    height: 30%;
+}
+
+.content_chart {
+    align-items: center;
+}
+
+.content_text {
+    text-align: center;
+    font-size: 14px;
+    color: gray
+}
