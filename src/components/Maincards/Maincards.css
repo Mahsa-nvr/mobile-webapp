@@ -1,0 +1,25 @@
+.maincards {
+    margin: 20px auto;
+    width: 80%;
+    border-radius: 2%;
+    background-color: white;
+}
+
+.col_part {
+    margin: 2% 2% auto;
+    padding: 10px;
+    text-align: center;
+}
+
+.card_part {
+    text-align: center;
+}
+
+.text_card {
+    font-size: 14px;
+    color: #1dd1a1;
+}
+.status_card {
+    font-size: 12px;
+    color: #8395a7;
+}

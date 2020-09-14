@@ -1,12 +1,16 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css'; 
 import './App.css';
-import Setincome from './veiw/Setincome';
+
+//components
+// import Setincome from './veiw/Setincome/Setincome';
+import Defaultpage from './veiw/Default/Defaultpage';
 
 function App() {
   return (
     <div className = "app">
-       <Setincome />
+       {/* <Setincome /> */}
+       <Defaultpage />
     </div>
   );
 }
