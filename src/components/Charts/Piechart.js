@@ -2,7 +2,30 @@ import React, { Component } from 'react';
 import { Pie } from 'react-chartjs-2';
 
 const data = {
-	// labels: ['Red', 'Green', 'Yellow'],
+	labels: ['Red', 'Green', 'Yellow'],
+	// options: {
+	// 	maintainAspectRatio: false,
+	// 	legend:{
+	// 		display: false
+	// 	},
+	// 	scales: {
+	// 		yAxes: [{
+				
+	// 			gridLines:{
+	// 				zeroLineColor: '#fff',
+	// 				color: '#fff',
+	// 				drawBorder: false
+	// 			}
+	// 		}],
+	// 		xAxes:[{
+	// 			gridLines:{
+	// 				display: false,
+	// 				tickMarkLength: 8
+	// 			},
+				
+	// 		}]
+	// 	}
+	// },
 	datasets: [
 		{
 			data: [300, 50, 100],
@@ -13,8 +36,9 @@ const data = {
 };
 
 const legendOpts = {
-	display: true,
-	position: 'bottom',
+	
+	display: false,
+	position: 'right',
 	fullWidth: true,
 	reverse: false,
 	labels: {
@@ -56,7 +80,7 @@ class Piechart extends Component {
 				<div>
 					<button onClick={this.applyLegendSettings}>Apply legend settings</button>
 				</div> */}
-				<Pie  data={data} height={120}  legend={this.state.legend} redraw />
+				<Pie data={data}  legend={this.state.legend} redraw />
 			</div>
            
 		);

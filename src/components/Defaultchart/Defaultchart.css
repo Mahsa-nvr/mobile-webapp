@@ -3,15 +3,24 @@
     width: 90%;
     border-radius: 2%;
     background-color: white;
-    height: 30%;
+    height: auto;
 }
 
-.content_chart {
-    align-items: center;
+.col_chart {
+    margin-top: 5%;
+    /* padding: 20px; */
+    /* text-align: center;  */
+    
 }
 
 .content_text {
     text-align: center;
     font-size: 14px;
-    color: gray
+    color: gray;
+    /* bottom: 0; */
+    margin-top: 20%;
 }
+
+/* .chartjs-size-monitor {
+    background-color:blue
+} */
