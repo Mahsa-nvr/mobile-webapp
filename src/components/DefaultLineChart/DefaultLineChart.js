@@ -18,19 +18,20 @@ class DefaultLineChart extends React.Component {
             <div className="default_line_chart">
                   <div className="row">
                      
-                     <div className="col-6 col_chart_line">
+                     <div className="col col_chart_line">
                             <div style={styles}>
                              <Linechart  options={{ maintainAspectRatio: false }}/>
                              </div>
                              <div className="content_text">روند درآمدها</div>
                      </div>
-                    
-                     <div className="col-6 col_chart_line">    
-                           <div style={styles}>
-                             <Linechart  options={{ maintainAspectRatio: false }} />
-                             </div>
-                             <div className="content_text"> روند مخارج</div>
-                     </div>
+                    {/* <div className="row">
+                        <div>
+                            tgt
+                        </div>
+                        <div>
+                            frfrf
+                        </div>
+                    </div> */}
                      
                  </div>
             </div>

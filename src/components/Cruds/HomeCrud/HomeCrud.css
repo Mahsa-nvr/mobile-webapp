@@ -1,0 +1,21 @@
+.home_crud {
+    margin: 10px auto;
+    width: 90%;
+    border-radius: 2%;
+    height: auto;
+}
+
+.default_btn{
+    width: 45%;
+}
+.first{
+    float: right;
+    background-color:#1dd1a1;
+    border-color:#1dd1a1;
+    font-size: 80%;
+}
+.second {
+    background-color:#2980b9;
+    border-color: #2980b9;
+    font-size: 80%;
+}

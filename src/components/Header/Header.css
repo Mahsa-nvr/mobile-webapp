@@ -1,7 +1,25 @@
 .header {
     width: 100%;
-    background-color: #808e9b;
-    color: white;
-    text-align: center;
-    height: 7%;
+    background-color: white; 
+  
+}
+
+.profile_icon {
+    align-items: right;
+    margin: 2% 0;
+    width: 12%;
+    display: inline-block;
+    float :right;
+}
+.profile_text {
+    display: inline-block;
+    float: right;
+    margin: 3% 3%;
+    font-size: 70%;
+    color: #8395a7;
+}
+
+.profile_logo {
+margin-left:  5%;
+padding-top: 1%;
 }

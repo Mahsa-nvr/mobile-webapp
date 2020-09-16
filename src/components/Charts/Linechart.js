@@ -53,7 +53,7 @@ class Linechart extends Component {
 	render() {
 		return (
 			<div className="flex flex-col items-center w-full max-w-md">
-				<Line id="linechart1" height={"200%"}  data={data}  />
+				<Line  height={"120%"}  data={data}  />
 			</div>
 		);
 	}
