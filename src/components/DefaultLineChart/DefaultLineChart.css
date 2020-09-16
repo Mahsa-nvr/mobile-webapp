@@ -1,0 +1,26 @@
+.default_line_chart {
+    margin: 20px auto;
+    width: 90%;
+    border-radius: 2%;
+    background-color: white;
+    height: auto;
+}
+
+.col_chart_line {
+    margin-top: 5%;
+    /* padding: 20px; */
+    /* text-align: center;  */
+    
+}
+
+.content_text {
+    text-align: center;
+    font-size: 14px;
+    color: gray;
+    /* bottom: 0; */
+    /* margin-top: 20%; */
+}
+
+/* .chartjs-size-monitor {
+    background-color:blue
+} */
