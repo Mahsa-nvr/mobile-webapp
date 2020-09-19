@@ -1,5 +1,6 @@
 .default_line_chart {
-    margin: 20px auto;
+    margin: 20px  auto;
+    margin-bottom:0;
     width: 90%;
     border-radius: 2%;
     background-color: white;
@@ -24,3 +25,26 @@
 /* .chartjs-size-monitor {
     background-color:blue
 } */
+.col_part {
+    color: gray;
+}
+
+.col_point1 {
+    width: 15px;
+    height: 15px;
+    background-color:#00a8ff;
+    display: inline-block;
+    border-radius: 50%;
+    margin-left: 3%;
+    font-size: 14px;
+}
+
+.col_point2 {
+    width: 15px;
+    height: 15px;
+    background-color:#ff6b6b;
+    display: inline-block;
+    border-radius: 50%;
+    margin-left: 3%;
+    font-size: 14px;
+}

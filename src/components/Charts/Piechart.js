@@ -18,7 +18,7 @@ class Piechart extends Component {
 	state = {
 		legend: legendOpts,
         data : {
-			labels: ['Red', 'Green', 'Yellow'],
+			labels: this.props.labels,
 			datasets: [
 				{
 					data: this.props.data,

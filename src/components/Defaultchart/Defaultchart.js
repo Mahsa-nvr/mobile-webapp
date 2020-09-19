@@ -10,7 +10,9 @@ class Defaultchart extends React.Component {
 
     state = {
         data1 : [50,20,60],
-        data2 : [100,10,40]
+        data2 : [100,10,40],
+        labels1: ["he","jj","oo"],
+        labels2: ["uu","lpp","qq"]
     }
 
     componentDidMount() {
@@ -40,14 +42,14 @@ class Defaultchart extends React.Component {
                      
                     <div className="col-6 col_chart">
                            <div style={styles}>
-                            <Piechart data={this.state.data1}  options={{ maintainAspectRatio: false }}/>
+                            <Piechart data={this.state.data1} labels={this.state.labels1} options={{ maintainAspectRatio: false }}/>
                             </div>
                             <div className="content_text">تفکیک درآمدها</div>
                     </div>
                    
                     <div className="col-6 col_chart">    
                           <div style={styles}>
-                            <Piechart data={this.state.data2} options={{ maintainAspectRatio: false }} />
+                            <Piechart data={this.state.data2} labels={this.state.labels2} options={{ maintainAspectRatio: false }} />
                             </div>
                             <div className="content_text"> تفکیک مخارج</div>
                     </div>

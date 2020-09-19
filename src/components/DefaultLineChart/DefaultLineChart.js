@@ -13,6 +13,8 @@ class DefaultLineChart extends React.Component {
             padding: "0",
             align: "center",
             height: "50%",
+            // eslint-disable-next-line no-dupe-keys
+            padding: "3%"
          }
         return(
             <div className="default_line_chart">
@@ -22,18 +24,21 @@ class DefaultLineChart extends React.Component {
                             <div style={styles}>
                              <Linechart  options={{ maintainAspectRatio: false }}/>
                              </div>
-                             <div className="content_text">روند درآمدها</div>
+                            
                      </div>
-                    {/* <div className="row">
-                        <div>
-                            tgt
+                     </div>
+                    <div className="row">
+                        <div className="col col_part">
+                        <div className="col_point1" ></div>
+                            روند درآمدها
                         </div>
-                        <div>
-                            frfrf
+                        <div className="col col_part">
+                        <div className="col_point2" ></div>
+                            روند مخارج
                         </div>
-                    </div> */}
+                    </div>
                      
-                 </div>
+                
             </div>
         )
     }
