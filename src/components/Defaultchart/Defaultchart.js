@@ -11,7 +11,7 @@ class Defaultchart extends React.Component {
     state = {
         data1 : [50,20,60],
         data2 : [100,10,40],
-        labels1: ["he","jj","oo"],
+        labels1: [],
         labels2: ["uu","lpp","qq"]
     }
 
@@ -23,13 +23,21 @@ class Defaultchart extends React.Component {
             }
         }).then(response => {
             console.log(response.data.data)
-        }).then(err => {
+            // console.log(response.data.data[2].name)
+            const incomeLabel = response.data.data
+        
+            this.setState({
+                ...this.state,
+                labels1 : incomeLabel
+            })
+        }).catch(err => {
             console.log(err )
         })
     }
-
+ 
   
     render() {
+       
         const styles = {
            width: "100%",
            padding: "0",

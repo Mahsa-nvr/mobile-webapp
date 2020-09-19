@@ -14,7 +14,13 @@ const legendOpts = {
 	}
 };
 
+// const Piechart=props =>{
+//     console.log(props)
+// 	return <div></div>
+// }
+
 class Piechart extends Component {
+	
 	state = {
 		legend: legendOpts,
         data : {
@@ -27,25 +33,35 @@ class Piechart extends Component {
 				}
 			]
 		},
-		testarr: []
+	}
+
+	// eslint-disable-next-line no-useless-constructor
+	constructor(props) {
+	super(props);
+	console.log('lllllllllll',this.props)
+	}
+
+	componentDidMount() {
+	
 	}
 
 
-	applyLegendSettings() {
-		const { value } = this.legendOptsInput;
+	// applyLegendSettings() {
+	// 	const { value } = this.legendOptsInput;
 
-		try {
-			const opts = JSON.parse(value);
-			this.setState({
-				legend: opts
-			});
-		} catch (e) {
-			alert(e.message);
-			throw Error(e);
-		}
-	}
+	// 	try {
+	// 		const opts = JSON.parse(value);
+	// 		this.setState({
+	// 			legend: opts
+	// 		});
+	// 	} catch (e) {
+	// 		alert(e.message);
+	// 		throw Error(e);
+	// 	}
+	// }
 
 	render() {
+		// console.log('helllooooo', this.props.labels)
 		return (
 			<div className="flex flex-col items-center w-full max-w-md">
 				<Pie data={this.state.data}  legend={this.state.legend} redraw />
@@ -55,4 +71,4 @@ class Piechart extends Component {
 	}
 }
 
-export default Piechart;
+ export default Piechart;
