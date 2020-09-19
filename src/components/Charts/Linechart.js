@@ -51,9 +51,10 @@ const data = {
 
 class Linechart extends Component {
 	render() {
+	
 		return (
 			<div className="flex flex-col items-center w-full max-w-md">
-				<Line  height={"120%"}  data={data}  />
+				<Line  height={120}  data={data}  />
 			</div>
 		);
 	}

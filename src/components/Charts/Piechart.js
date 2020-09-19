@@ -1,39 +1,7 @@
 import React, { Component } from 'react';
 import { Pie } from 'react-chartjs-2';
 
-const data = {
-	labels: ['Red', 'Green', 'Yellow'],
-	// options: {
-	// 	maintainAspectRatio: false,
-	// 	legend:{
-	// 		display: false
-	// 	},
-	// 	scales: {
-	// 		yAxes: [{
-				
-	// 			gridLines:{
-	// 				zeroLineColor: '#fff',
-	// 				color: '#fff',
-	// 				drawBorder: false
-	// 			}
-	// 		}],
-	// 		xAxes:[{
-	// 			gridLines:{
-	// 				display: false,
-	// 				tickMarkLength: 8
-	// 			},
-				
-	// 		}]
-	// 	}
-	// },
-	datasets: [
-		{
-			data: [300, 50, 100],
-			backgroundColor: ['#ff6b6b', '#006266', '#2980b9'],
-			hoverBackgroundColor: ['#ff6b6b', '#006266', '#2980b9']
-		}
-	]
-};
+
 
 const legendOpts = {
 	
@@ -48,8 +16,20 @@ const legendOpts = {
 
 class Piechart extends Component {
 	state = {
-		legend: legendOpts
-	};
+		legend: legendOpts,
+        data : {
+			labels: ['Red', 'Green', 'Yellow'],
+			datasets: [
+				{
+					data: this.props.data,
+					backgroundColor: ['#ff6b6b', '#006266', '#2980b9','red'],
+					hoverBackgroundColor: ['#ff6b6b', '#006266', '#2980b9']
+				}
+			]
+		},
+		testarr: []
+	}
+
 
 	applyLegendSettings() {
 		const { value } = this.legendOptsInput;
@@ -68,19 +48,7 @@ class Piechart extends Component {
 	render() {
 		return (
 			<div className="flex flex-col items-center w-full max-w-md">
-				{/* <h2>Legend Options Example</h2>
-				<textarea
-					cols="40"
-					rows="15"
-					ref={input => {
-						this.legendOptsInput = input;
-					}}
-					defaultValue={JSON.stringify(this.state.legend, null, 2)}
-				/>
-				<div>
-					<button onClick={this.applyLegendSettings}>Apply legend settings</button>
-				</div> */}
-				<Pie data={data}  legend={this.state.legend} redraw />
+				<Pie data={this.state.data}  legend={this.state.legend} redraw />
 			</div>
            
 		);
