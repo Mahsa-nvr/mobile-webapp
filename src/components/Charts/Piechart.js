@@ -24,7 +24,7 @@ class Piechart extends Component {
 	state = {
 		legend: legendOpts,
         data : {
-			labels: this.props.labels,
+			labels: [],
 			datasets: [
 				{
 					data: this.props.data,
@@ -36,15 +36,13 @@ class Piechart extends Component {
 	}
 
 	// eslint-disable-next-line no-useless-constructor
-	constructor(props) {
-	super(props);
-	console.log('lllllllllll',this.props)
-	}
-
-	componentDidMount() {
 	
+	static getDerivedStateFromProps(props, state) {
+		console.log('getdrived  props',props)
+		console.log('getdrived',state.data.labels)
+		
 	}
-
+	
 
 	// applyLegendSettings() {
 	// 	const { value } = this.legendOptsInput;
@@ -61,10 +59,12 @@ class Piechart extends Component {
 	// }
 
 	render() {
-		// console.log('helllooooo', this.props.labels)
+
+		
+		
 		return (
 			<div className="flex flex-col items-center w-full max-w-md">
-				<Pie data={this.state.data}  legend={this.state.legend} redraw />
+				<Pie data={this.state.data} labels={this.state.labels1} legend={this.state.legend} redraw />
 			</div>
            
 		);
