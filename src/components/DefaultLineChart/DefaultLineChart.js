@@ -1,13 +1,53 @@
 import React from 'react';
 import './DefaultLineChart.css';
+import axios from 'axios';
 
 //components
 import Linechart from '../Charts/Linechart';
+import { lineData } from './../../share/ChartData';
 
 
 class DefaultLineChart extends React.Component { 
+   state = {
+       incomeLineChartData: [],
+       spendLineChartData: [],
+       lineChartLabels: []
+   }
+
+componentDidMount() {
+    axios.get('http://192.168.22.48/ipfm/frontend/web/index.php/report/index', {
+        params: {
+            user_id : 1
+        },
+    }).then(response => {
+      
+      let totalSpend = response.data.expenditures;
+      let totalIncome =  response.data.income;
+
+      console.log(totalSpend,totalIncome)
+
+      // eslint-disable-next-line array-callback-return
+      totalSpend.map(data => {
+          this.setState({
+            spendLineChartData : [...this.state.spendLineChartData, data.sum],
+            lineChartLabels: [...this.state.lineChartLabels, data.name]
+          })
+      })
+
+      // eslint-disable-next-line array-callback-return
+      totalIncome.map(data => {
+          this.setState({
+            incomeLineChartData : [...this.state.incomeLineChartData , data.sum] 
+          })
+      })
+
+    }).catch(err => {
+        console.log(err)
+    })
+}
 
     render() {
+        const { incomeLineChartData , spendLineChartData, lineChartLabels} = this.state
         const styles = {
             width: "100%",
             padding: "0",
@@ -22,12 +62,14 @@ class DefaultLineChart extends React.Component {
                      
                      <div className="col col_chart_line">
                             <div style={styles}>
-                             <Linechart  options={{ maintainAspectRatio: false }}/>
+                             <Linechart
+                             data={lineData(incomeLineChartData, spendLineChartData, lineChartLabels)}
+                             options={{ maintainAspectRatio: false }}/>
                              </div>
                             
                      </div>
                      </div>
-                    <div className="row">
+                    {/* <div className="row">
                         <div className="col col_part">
                         <div className="col_point1" ></div>
                             روند درآمدها
@@ -36,7 +78,7 @@ class DefaultLineChart extends React.Component {
                         <div className="col_point2" ></div>
                             روند مخارج
                         </div>
-                    </div>
+                    </div> */}
                      
                 
             </div>

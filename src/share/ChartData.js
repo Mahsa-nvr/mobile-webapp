@@ -1,11 +1,10 @@
 export const pieData = (data , label)=> {
-    console.log([...data])
     return {
         labels:[...label],
         datasets: [
             {
                 data: [...data],
-                backgroundColor: ['#ff6b6b', '#006266', '#2980b9'],
+                backgroundColor: ['#ff6b6b', '#006266', '#2980b9','#55efc4', '#fa983a', '#6D214F'],
                 hoverBackgroundColor: ['#ff6b6b', '#006266', '#2980b9']
             }
         ]
@@ -33,4 +32,56 @@ export const optionsPieChart = (content) => {
           position: "bottom"
         }
       };
+}
+
+
+export const lineData = ( incomeData, spendData , label ) => {
+    return {
+    labels: [...label],
+	datasets: [
+		{
+			label: 'روند مخارج',
+			fill: false,
+			lineTension: 0.1,
+			backgroundColor: 'rgba(75,192,192,0.4)',
+			borderColor: '#00a8ff',
+			borderCapStyle: 'butt',
+			borderDash: [],
+			borderDashOffset: 0.0,
+			borderJoinStyle: 'miter',
+			pointBorderColor: 'rgba(75,192,192,1)',
+			pointBackgroundColor: '#fff',
+			pointBorderWidth: 1,
+			pointHoverRadius: 5,
+			pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+			pointHoverBorderColor: 'rgba(220,220,220,1)',
+			pointHoverBorderWidth: 2,
+			pointRadius: 1,
+			pointHitRadius: 10,
+			data:[...spendData],		
+		},
+		{
+			label: 'روند درآمدها',
+			fill: false,
+			lineTension: 0.1,
+			backgroundColor: 'rgba(75,192,192,0.4)',
+			borderColor: '#ff6b6b',
+			borderCapStyle: 'butt',
+			borderDash: [],
+			borderDashOffset: 0.0,
+			borderJoinStyle: 'miter',
+			pointBorderColor: '#ff6b6b',
+			pointBackgroundColor: '#fff',
+			pointBorderWidth: 1,
+			pointHoverRadius: 5,
+			pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+			pointHoverBorderColor: 'rgba(220,220,220,1)',
+			pointHoverBorderWidth: 2,
+			pointRadius: 1,
+			pointHitRadius: 10,
+			data:[...incomeData],		
+        }
+    
+    ]
+  }
 }
