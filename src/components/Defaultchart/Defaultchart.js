@@ -4,15 +4,15 @@ import './Defaultchart.css';
 
 //components
 import Piechart from '../Charts/Piechart';
-
+import { pieData } from './../../share/ChartData'
 
 class Defaultchart extends React.Component {
 
     state = {
-        data1 : [50],
-        data2 : [100,10,40],
-        labels1: [],
-        labels2: ["uu","lpp","qq"]
+        incomeData : [],
+        spendData : [100,10,40],
+        incomeLabel: [],
+        spendLabel: ["uu","lpp","qq"]
     }
 
     componentDidMount() {
@@ -22,12 +22,15 @@ class Defaultchart extends React.Component {
                 user_id : 1
             },
         }).then(response => {
-            console.log(response)
-            // console.log(response.data.data[2].name)
-           
+            console.log(response.data.data)
+           let  totalData = response.data.data;
+          // eslint-disable-next-line array-callback-return
+          totalData.map(data => {
             this.setState({
-              labels1: response.data.data[2].name
+                incomeData: [...this.state.incomeData, data.amount],
+                incomeLabel: [...this.state.incomeLabel , data.name]
             })
+          })
         }).catch(err => {
             console.log(err)
         })
@@ -35,30 +38,36 @@ class Defaultchart extends React.Component {
  
   
     render() {
-       console.log('labels1 in default chart',this.state.labels1)
         const styles = {
            width: "100%",
            padding: "0",
            align: "center",
-           height: "50%",
+           height: "100%", 
         }
+        // console.log(this.state.incomeLabel)
         return(
             <div className="default_chart">
                 <div className="row">
                      
                     <div className="col-6 col_chart">
                            <div style={styles}>
-                               { console.log('labels1 in default chart again',this.state.labels1)}
-                            <Piechart data={this.state.data1} labels={this.state.labels1} options={{ maintainAspectRatio: false }}/>
+                              
+                            <Piechart data={  pieData(this.state.incomeData, this.state.incomeLabel)}
+                                      options={{ maintainAspectRatio: false }}
+                                      title="تفکیک درآمدها"
+                                      />
                             </div>
-                            <div className="content_text">تفکیک درآمدها</div>
+                            {/* <div className="content_text">تفکیک درآمدها</div> */}
                     </div>
                    
                     <div className="col-6 col_chart">    
                           <div style={styles}>
-                            {/* <Piechart data={this.state.data2} labels={this.state.labels2} options={{ maintainAspectRatio: false }} /> */}
+                            {/* <Piechart  data={pieData(this.state.spendData, this.state.spendLabel)}
+                                       options={{ maintainAspectRatio: false }}
+                                       title="تفکیک مخارج "
+                             /> */}
                             </div>
-                            <div className="content_text"> تفکیک مخارج</div>
+                            {/* <div className="content_text"> تفکیک مخارج</div> */}
                     </div>
                     
                 </div>
