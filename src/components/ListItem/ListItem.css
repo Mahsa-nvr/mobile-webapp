@@ -1,0 +1,28 @@
+.income_list {
+    margin: 20px ;
+    width: 90%;
+    border-radius: 2%;
+    background-color: white;
+}
+.income_list_group {
+    padding-right: 0;
+}
+.header {
+    color:#07b0c3;
+    font-size: 12px;
+}
+.list_btn {
+    color: #07b0c3;
+    background-color:white;
+    border: 1px solid  #07b0c3;
+    font-weight: bold;
+    padding: 0 0.3% 0.0% 0.3%;
+}
+.list_btn:hover {
+    background-color:white;
+    color: #07b0c3;
+    border: 1px solid  #07b0c3;
+}
+.base_list_btn {
+    float: left;
+}

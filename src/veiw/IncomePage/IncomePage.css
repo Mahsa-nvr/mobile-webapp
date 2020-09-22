@@ -2,6 +2,7 @@
     height: 100vh;
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 .income_list {
@@ -9,9 +10,12 @@
     width: 90%;
     border-radius: 2%;
     background-color: white;
+    
 }
 .income_list_group {
     padding-right: 0;
+   
+    
 }
 .income_list_group_item {
   text-align: right;
