@@ -4,13 +4,15 @@ import './App.css';
 
 //components
 // import Setincome from './veiw/Setincome/Setincome';
-import Defaultpage from './veiw/Default/Defaultpage';
+// import Defaultpage from './veiw/Default/Defaultpage';
+import IncomePage from './veiw/IncomePage/IncomePage';
 
 function App() {
   return (
     <div className = "app">
        {/* <Setincome /> */}
-       <Defaultpage />
+       {/* <Defaultpage /> */}
+       <IncomePage />
     </div>
   );
 }

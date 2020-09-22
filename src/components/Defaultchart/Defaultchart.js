@@ -19,7 +19,8 @@ class Defaultchart extends React.Component {
         
         axios.get('http://192.168.22.48/ipfm/frontend/web/index.php/income/index', {
             params: {
-                user_id : 1
+                user_id : 1,
+                type: 1
             },
         }).then(response => {
             // console.log('//get data in default home page for income pie chart', response)
