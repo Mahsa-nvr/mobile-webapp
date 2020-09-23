@@ -23,7 +23,7 @@ class Defaultchart extends React.Component {
                 type: 1
             },
         }).then(response => {
-            // console.log('//get data in default home page for income pie chart', response)
+            console.log('//get data in default home page for income pie chart', response)
            let  totalData = response.data.data;
           // eslint-disable-next-line array-callback-return
           totalData.map(data => {
