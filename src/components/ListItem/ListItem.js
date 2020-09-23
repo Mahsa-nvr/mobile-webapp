@@ -1,9 +1,11 @@
+/* eslint-disable array-callback-return */
 import React from 'react';
+import axios from 'axios';
 import {  ListGroupItem, Button , Row, Col, Form, FormGroup, Label, Input} from 'reactstrap';
 
 
 import bankAccount from './../../assets/icons/secondIcons/bankAccount.png'
-
+import {API} from './../../Services/Config';
 //css
 import './ListItem.css'
 
@@ -12,21 +14,39 @@ class ListItem extends React.Component {
     constructor(props) {
         super(props);    
         this.state = {
-          show : true,
-          listtest : ["melk","banking", "money"]
+          show : false,
+          listtest : ["melk","banking", "money"],
+          totalIncome: []
         };  
       }
+
+      componentDidMount() {
+          axios.get(`${API}income/index`, {
+            params: {
+                user_id : 1,
+                type: 1
+            }
+          }
+      ).then(res => {
+          this.setState({ 
+            totalIncome : res.data.data  
+        })
+      }).catch(err => {
+          console.log(err)
+      })}
+
+
 
       btnClick = () => {
           this.setState({ show: !this.state.show });
       }
 
-    render() {
+    render() {   
         return (
 
             <div >          
                     <ListGroupItem className="income_list_group_item header">
-                        <img src={bankAccount} alt=""/> حساب های بانکی  
+                        <img src={bankAccount} alt=""/> {this.props.mainTitle}
                         <div className="base_list_btn">
                           <Button onClick={this.btnClick} className="list_btn">+</Button>
                         </div>
@@ -66,8 +86,10 @@ class ListItem extends React.Component {
                              
                        </div>: null}
 
-                    {this.state.listtest.map(li => {            
-                      return   <ListGroupItem key={li} className="income_list_group_item">{li}</ListGroupItem>                   
+                
+                    {this.state.totalIncome.map(li => {
+                        if(li.category_name === this.props.mainTitle)            
+                      return <ListGroupItem key={li.id} className="income_list_group_item">{li.name}</ListGroupItem>                   
                     })}
 
             </div>
