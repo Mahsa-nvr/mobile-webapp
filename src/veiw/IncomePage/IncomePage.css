@@ -37,8 +37,9 @@
 }
 
 .title_whole {
+    padding:0;
     font-size: 80%;
-    color: #b2bec3
+    color:#7B8788;
 }
 
 .title_amount {

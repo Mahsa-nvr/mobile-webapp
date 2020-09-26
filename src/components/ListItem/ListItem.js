@@ -1,23 +1,30 @@
 /* eslint-disable array-callback-return */
 import React from 'react';
 import axios from 'axios';
+import { HandleChange , handlePriceChange } from './../../share/Utility';
 import {  ListGroupItem, Button , Row, Col, Form, FormGroup, Label, Input} from 'reactstrap';
-
+import { DatePicker } from "jalali-react-datepicker";
 
 import bankAccount from './../../assets/icons/secondIcons/bankAccount.png'
 import {API} from './../../Services/Config';
 //css
-import './ListItem.css'
+import './ListItem.css';
+
+//components
+import MainDatePicker from './../../share/MainDatePicker';
 
 class ListItem extends React.Component {
 
     constructor(props) {
         super(props);    
         this.state = {
+          inputName: "",
+          inputAmount: "",
+          inputDate: "",
           show : false,
           listtest : ["melk","banking", "money"],
           totalIncome: []
-        };  
+        };
       }
 
       componentDidMount() {
@@ -41,9 +48,15 @@ class ListItem extends React.Component {
           this.setState({ show: !this.state.show });
       }
 
+      btnnn = (x) => {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      }
+
+     
+      
+
     render() {   
         return (
-
             <div >          
                     <ListGroupItem className="income_list_group_item header">
                         <img src={bankAccount} alt=""/> {this.props.mainTitle}
@@ -59,7 +72,7 @@ class ListItem extends React.Component {
                                        <Form>
                                           <FormGroup className="form_base_part">
                                             <Label for="">نام</Label>
-                                            <Input type="text" bsSize="sm" name="categoryName" id="categoryName"  />
+                                            <Input type="text" bsSize="sm" name="inputName" value={this.state.inputName} onChange={(e) => HandleChange.call(this, e)}  />
                                           </FormGroup>
                                         </Form>
                                    </Col>
@@ -67,7 +80,7 @@ class ListItem extends React.Component {
                                         <Form>
                                           <FormGroup className="form_base_part">
                                             <Label for="">قیمت</Label>
-                                            <Input type="number" bsSize="sm" name="price" id="price"  />
+                                            <Input type="text" bsSize="sm" name="inputAmount" value={this.state.inputAmount}  onChange={(e) => handlePriceChange.call(this, e)}/>
                                           </FormGroup>
                                         </Form>
                                    </Col>
@@ -75,9 +88,11 @@ class ListItem extends React.Component {
                                <Row>
                                    <Col>
                                         <Form>
-                                          <FormGroup className="form_base_part">
+                                          <FormGroup >
                                             <Label for="">تاریخ</Label>
-                                            <Input type="date" bsSize="sm" name="date" id="date"  />
+                                            <DatePicker />
+                                            {/* <MainDatePicker /> */}
+                                            {/* <Input type="date" bsSize="sm" name="date" id="date"  /> */}
                                           </FormGroup>
                                         </Form>
                                    </Col>
@@ -89,7 +104,10 @@ class ListItem extends React.Component {
                 
                     {this.state.totalIncome.map(li => {
                         if(li.category_name === this.props.mainTitle)            
-                      return <ListGroupItem key={li.id} className="income_list_group_item">{li.name}</ListGroupItem>                   
+                      return <ListGroupItem key={li.id} className="income_list_part">
+                        {li.name}
+                        <span className="income_list_part_amount">{li.amount}</span>
+                        </ListGroupItem>                   
                     })}
 
             </div>
