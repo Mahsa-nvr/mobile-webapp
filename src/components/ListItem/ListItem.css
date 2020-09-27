@@ -52,3 +52,7 @@
 .income_list_part_amount {
     float: left;
 }
+
+.date_picker {
+    background-color:red;
+}

@@ -3,7 +3,7 @@ import React from 'react';
 import axios from 'axios';
 import { HandleChange , handlePriceChange } from './../../share/Utility';
 import {  ListGroupItem, Button , Row, Col, Form, FormGroup, Label, Input} from 'reactstrap';
-import { DatePicker } from "jalali-react-datepicker";
+
 
 import bankAccount from './../../assets/icons/secondIcons/bankAccount.png'
 import {API} from './../../Services/Config';
@@ -11,7 +11,7 @@ import {API} from './../../Services/Config';
 import './ListItem.css';
 
 //components
-import MainDatePicker from './../../share/MainDatePicker';
+// import MainDatePicker from './../../share/MainDatePicker';
 
 class ListItem extends React.Component {
 
@@ -20,8 +20,8 @@ class ListItem extends React.Component {
         this.state = {
           inputName: "",
           inputAmount: "",
-          inputDate: "",
-          show : false,
+          inputDate: "123456789",
+          show : true,
           listtest : ["melk","banking", "money"],
           totalIncome: []
         };
@@ -48,14 +48,37 @@ class ListItem extends React.Component {
           this.setState({ show: !this.state.show });
       }
 
-      btnnn = (x) => {
-        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      send = (props) => {
+        console.log(this.state.inputDate)
+      // if(this.state.inputName !== null && this.state.inputDate !== null && this.state.inputAmount !== null) {
+      //   alert('true')
+      // }else{
+      //   alert('false')
+      // }
+
+      let data = 
+        {}
+
+        var bodyFormData = new FormData();
+        bodyFormData.append('amount', 100);
+        bodyFormData.append('name', 'mahsa');
+        axios({
+          method: 'post',     //put
+          url: `${API}income/create`,
+          // headers: {'Authorization': 'Bearer'+token}, 
+          headers:{
+            'Content-Type':'multipart/form-data'
+          },
+          data: bodyFormData,
+        }).then(res => console.log(res));
+      
       }
 
      
       
 
-    render() {   
+    render() { 
+      
         return (
             <div >          
                     <ListGroupItem className="income_list_group_item header">
@@ -88,15 +111,16 @@ class ListItem extends React.Component {
                                <Row>
                                    <Col>
                                         <Form>
-                                          <FormGroup >
+                                          <FormGroup className="form_base_part">
                                             <Label for="">تاریخ</Label>
-                                            <DatePicker />
-                                            {/* <MainDatePicker /> */}
-                                            {/* <Input type="date" bsSize="sm" name="date" id="date"  /> */}
+                                            <div className="date_picker">
+                                            {/* <MainDatePicker testDate={this.props.testDate} /> */}
+                                            </div>
+                                            <Input type="date" bsSize="sm" name="inputDate" value={this.state.inputDate} onChange={(e) => HandleChange.call(this, e)}  />
                                           </FormGroup>
                                         </Form>
                                    </Col>
-                                   <Col><Button color="primary"> </Button></Col>
+                                   <Col><Button color="primary" onClick={this.send}> </Button></Col>
                                </Row> 
                              
                        </div>: null}
