@@ -10,6 +10,7 @@
     "bootstrap": "^4.5.2",
     "bootstrap-rtl": "^3.3.4",
     "chart.js": "^2.9.3",
+    "formik": "^2.1.5",
     "jalali-react-datepicker": "^1.0.0",
     "moment-jalaali": "^0.9.2",
     "react": "^16.13.1",
@@ -22,7 +23,8 @@
     "react-persian-datepicker": "^3.0.2",
     "react-scripts": "3.4.3",
     "react-transition-group": "^4.4.1",
-    "reactstrap": "^8.5.1"
+    "reactstrap": "^8.5.1",
+    "reactstrap-formik": "^1.0.9"
   },
   "scripts": {
     "start": "react-scripts start",

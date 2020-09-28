@@ -56,3 +56,12 @@
 .date_picker {
     background-color:red;
 }
+
+.send_btn {
+    font-size: 60%;
+}
+
+.form_part_send_btn {
+    margin-right:30%;
+    margin-top: 25%;
+}

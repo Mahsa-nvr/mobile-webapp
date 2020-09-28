@@ -24,17 +24,18 @@ class IncomePage extends React.Component {
     axios.get(`${API}incomecategory/index`,{
       params: {
         user_id : 1,
-        type: 1
+        type: 1,
     }
     }).then(res => {
       this.setState({incomeCat: res.data.data})
     }).catch(err =>
-       console.log(err))
+       console.log('income page' , err))
   }
 
 
   
 render() {
+  
     return (
         <div className="income_page">
             <Header />
@@ -43,7 +44,7 @@ render() {
                  <ListGroupItem className="income_list_group_item title"><img src={daramad} height={40} alt=""/><span className="title_list">درآمد</span></ListGroupItem>
                  <ListGroupItem className="income_list_group_item"><span className="title_whole">درآمد کل:</span><span className="title_amount">5000 ریال</span></ListGroupItem>
                {this.state.incomeCat.map(el => {
-                 return  <div key={el.id}><ListItem mainTitle={el.title}/></div>
+                 return  <div key={el.id}><ListItem mainTitle={el.title} catId={el.id}/></div>
                })}
               </ListGroup>
               </div>

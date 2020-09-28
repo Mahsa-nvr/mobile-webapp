@@ -20,14 +20,14 @@ class ListItem extends React.Component {
         this.state = {
           inputName: "",
           inputAmount: "",
-          inputDate: "123456789",
-          show : true,
+          inputDate: 2222-56-23,
+          show : false,
           listtest : ["melk","banking", "money"],
           totalIncome: []
         };
       }
 
-      componentDidMount() {
+      UNSAFE_componentWillUpdate() {
           axios.get(`${API}income/index`, {
             params: {
                 user_id : 1,
@@ -36,8 +36,9 @@ class ListItem extends React.Component {
           }
       ).then(res => {
           this.setState({ 
-            totalIncome : res.data.data  
+            totalIncome : [...res.data.data]
         })
+    
       }).catch(err => {
           console.log(err)
       })}
@@ -56,12 +57,13 @@ class ListItem extends React.Component {
       //   alert('false')
       // }
 
-      let data = 
-        {}
-
+      
         var bodyFormData = new FormData();
-        bodyFormData.append('amount', 100);
-        bodyFormData.append('name', 'mahsa');
+        bodyFormData.append('amount', this.state.inputAmount);
+        bodyFormData.append('name', this.state.inputName);
+        bodyFormData.append('categoryID', this.props.catId);
+        bodyFormData.append('date', this.state.inputDate );
+        bodyFormData.append('userID', 1 );
         axios({
           method: 'post',     //put
           url: `${API}income/create`,
@@ -78,24 +80,30 @@ class ListItem extends React.Component {
       
 
     render() { 
-      
-        return (
-            <div >          
+        return ( 
+            <div > 
+                      
                     <ListGroupItem className="income_list_group_item header">
+                      
                         <img src={bankAccount} alt=""/> {this.props.mainTitle}
                         <div className="base_list_btn">
                           <Button onClick={this.btnClick} className="list_btn">+</Button>
                         </div>
                     </ListGroupItem>
 
-                       {this.state.show ? <div className="list_base_show">
+                       {this.state.show  ? <div className="list_base_show">
                           
                                <Row >
                                    <Col>
                                        <Form>
                                           <FormGroup className="form_base_part">
                                             <Label for="">نام</Label>
-                                            <Input type="text" bsSize="sm" name="inputName" value={this.state.inputName} onChange={(e) => HandleChange.call(this, e)}  />
+                                            <Input type="text"
+                                                   bsSize="sm" 
+                                                   name="inputName" 
+                                                   value={this.state.inputName} 
+                                                   onChange={(e) => HandleChange.call(this, e)} 
+                                                    />
                                           </FormGroup>
                                         </Form>
                                    </Col>
@@ -103,7 +111,12 @@ class ListItem extends React.Component {
                                         <Form>
                                           <FormGroup className="form_base_part">
                                             <Label for="">قیمت</Label>
-                                            <Input type="text" bsSize="sm" name="inputAmount" value={this.state.inputAmount}  onChange={(e) => handlePriceChange.call(this, e)}/>
+                                            <Input type="text"
+                                                   bsSize="sm"
+                                                   name="inputAmount"
+                                                   value={this.state.inputAmount} 
+                                                   onChange={(e) => handlePriceChange.call(this, e)}
+                                                   />
                                           </FormGroup>
                                         </Form>
                                    </Col>
@@ -116,25 +129,34 @@ class ListItem extends React.Component {
                                             <div className="date_picker">
                                             {/* <MainDatePicker testDate={this.props.testDate} /> */}
                                             </div>
-                                            <Input type="date" bsSize="sm" name="inputDate" value={this.state.inputDate} onChange={(e) => HandleChange.call(this, e)}  />
+                                            <Input type="date" 
+                                                   bsSize="sm" 
+                                                   name="inputDate" 
+                                                   value={this.state.inputDate} 
+                                                   onChange={(e) => HandleChange.call(this, e)}  
+                                                   />
                                           </FormGroup>
                                         </Form>
                                    </Col>
-                                   <Col><Button color="primary" onClick={this.send}> </Button></Col>
+                                   <Col>
+                                     <div className="form_part_send_btn">
+                                     <Button className="send_btn" color="primary" onClick={this.send}> ارسال</Button>
+                                     </div>
+                                     </Col>
                                </Row> 
                              
                        </div>: null}
 
-                
-                    {this.state.totalIncome.map(li => {
-                        if(li.category_name === this.props.mainTitle)            
+                  {this.state.totalIncome.length > 0 ? this.state.totalIncome.map(li => {
+                 
+                        if(li.category_name === this.props.mainTitle )            
                       return <ListGroupItem key={li.id} className="income_list_part">
                         {li.name}
                         <span className="income_list_part_amount">{li.amount}</span>
                         </ListGroupItem>                   
-                    })}
-
-            </div>
+                    }): null}
+ 
+            </div> 
         )
     }
 }
