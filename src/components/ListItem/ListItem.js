@@ -22,7 +22,8 @@ class ListItem extends React.Component {
           inputAmount: "",
           inputDate: 2222-56-23,
           show : false,
-          totalIncome: []
+          totalIncome: [],
+          totalAmount: []
         };
       }
 
