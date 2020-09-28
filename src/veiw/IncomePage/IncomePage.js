@@ -27,7 +27,7 @@ class IncomePage extends React.Component {
         type: 1,
     }
     }).then(res => {
-      this.setState({incomeCat: res.data.data})
+      this.setState({incomeCat:[...res.data.data] })
     }).catch(err =>
        console.log('income page' , err))
   }

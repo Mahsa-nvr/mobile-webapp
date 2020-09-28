@@ -22,12 +22,11 @@ class ListItem extends React.Component {
           inputAmount: "",
           inputDate: 2222-56-23,
           show : false,
-          listtest : ["melk","banking", "money"],
           totalIncome: []
         };
       }
 
-      UNSAFE_componentWillUpdate() {
+     componentDidMount() {
           axios.get(`${API}income/index`, {
             params: {
                 user_id : 1,
@@ -41,7 +40,8 @@ class ListItem extends React.Component {
     
       }).catch(err => {
           console.log(err)
-      })}
+      })
+    }
 
 
 
@@ -49,14 +49,9 @@ class ListItem extends React.Component {
           this.setState({ show: !this.state.show });
       }
 
-      send = (props) => {
+      send = async (props) => {
         console.log(this.state.inputDate)
-      // if(this.state.inputName !== null && this.state.inputDate !== null && this.state.inputAmount !== null) {
-      //   alert('true')
-      // }else{
-      //   alert('false')
-      // }
-
+     
       
         var bodyFormData = new FormData();
         bodyFormData.append('amount', this.state.inputAmount);
@@ -64,7 +59,8 @@ class ListItem extends React.Component {
         bodyFormData.append('categoryID', this.props.catId);
         bodyFormData.append('date', this.state.inputDate );
         bodyFormData.append('userID', 1 );
-        axios({
+        try {
+        await axios({
           method: 'post',     //put
           url: `${API}income/create`,
           // headers: {'Authorization': 'Bearer'+token}, 
@@ -73,15 +69,37 @@ class ListItem extends React.Component {
           },
           data: bodyFormData,
         }).then(res => console.log(res));
+      }catch(err){console.log('errrr')}
+
       
+        await axios.get(`${API}income/index`, {
+          params: {
+              user_id : 1,
+              type: 1
+          }
+        }
+    ).then(res => {
+      console.log(res.data.data)
+        this.setState({ 
+          totalIncome : [...res.data.data]
+      })
+        console.log('component', this.state.totalIncome)
+    }).catch(err => {
+        console.log(err)
+    })
       }
 
      
       
 
     render() { 
+      // console.log(this.state.totalIncome)
+      // let total = this.state.totalIncome.map(h => {
+      //   console.log(h)
+      // }) 
+      // console.log(total)
         return ( 
-            <div > 
+            <div> 
                       
                     <ListGroupItem className="income_list_group_item header">
                       
@@ -90,7 +108,7 @@ class ListItem extends React.Component {
                           <Button onClick={this.btnClick} className="list_btn">+</Button>
                         </div>
                     </ListGroupItem>
-
+                     
                        {this.state.show  ? <div className="list_base_show">
                           
                                <Row >
@@ -145,16 +163,16 @@ class ListItem extends React.Component {
                                      </Col>
                                </Row> 
                              
-                       </div>: null}
-
-                  {this.state.totalIncome.length > 0 ? this.state.totalIncome.map(li => {
-                 
+                           </div> : null}
+                    
+                      
+                {this.state.totalIncome.map(li => { 
                         if(li.category_name === this.props.mainTitle )            
                       return <ListGroupItem key={li.id} className="income_list_part">
                         {li.name}
                         <span className="income_list_part_amount">{li.amount}</span>
                         </ListGroupItem>                   
-                    }): null}
+                    })}
  
             </div> 
         )
