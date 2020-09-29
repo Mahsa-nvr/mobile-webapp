@@ -31,9 +31,7 @@
 
 .list_base_show {
     text-align: right;
-    animation-duration: 2s;
 }
-
 
 .form_base_part {
     margin: 4%;
@@ -64,5 +62,5 @@
 .form_part_send_btn {
     margin-right:30%;
     margin-top: 25%;
-    float: right
+    float: right;
 }

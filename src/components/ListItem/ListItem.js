@@ -5,6 +5,8 @@ import { HandleChange , handlePriceChange } from './../../share/Utility';
 import {  ListGroupItem, Button , Row, Col, Form, FormGroup, Label, Input} from 'reactstrap';
 import { AvForm, AvField } from 'availity-reactstrap-validation';
 
+// import {Animated} from "react-animated-css";
+
 import bankAccount from './../../assets/icons/secondIcons/bankAccount.png'
 import {API} from './../../Services/Config';
 //css
@@ -21,7 +23,8 @@ class ListItem extends React.Component {
           inputName: "",
           inputAmount: "",
           inputDate: 2222-56-23,
-          show : false,
+          isVisible : false,
+          show: false,
           totalIncome: [],
           totalAmount: '',
           testarr : [1,2,3,4]
@@ -31,9 +34,6 @@ class ListItem extends React.Component {
       }
 
      componentDidMount() {
-      // let testArr = this.state.arr
-      //  sumArray(testArr)
-      
           axios.get(`${API}income/index`, {
             params: {
                 user_id : 1,
@@ -52,7 +52,10 @@ class ListItem extends React.Component {
 
 
       btnClick = () => {
-          this.setState({ show: !this.state.show });
+          this.setState({ 
+            isVisible: !this.state.isVisible,
+            show : !this.state.show
+          });
       }
 
       send = async (props) => {
@@ -77,10 +80,6 @@ class ListItem extends React.Component {
             }
             ).then(res => 
                 console.log(res));
-                this.setState({ 
-                  inputName:'',
-                  inputAmount:''
-                })
             }
             catch(err){
               console.log('errrr')
@@ -96,7 +95,7 @@ class ListItem extends React.Component {
         ).then(res => {
           this.setState({ 
           totalIncome : [...res.data.data],
-         
+
         })
         
         }).catch(err => {
@@ -108,24 +107,18 @@ class ListItem extends React.Component {
       
 
     render() { 
-      // console.log(this.state.totalIncome)
-      // let total = this.state.totalIncome.map(h => {
-      //   console.log(h)
-      // }) 
-      // console.log(total)
-        return ( 
-       
-            <div> 
-                      
-                    <ListGroupItem className="income_list_group_item header">
-                      
+        return (      
+            <div>                      
+                  <ListGroupItem className="income_list_group_item header">                     
                         <img src={bankAccount} alt=""/> {this.props.mainTitle}
                         <div className="base_list_btn">
                           <Button onClick={this.btnClick} className="list_btn">+</Button>
                         </div>
                     </ListGroupItem>
                      
-                       {this.state.show  ? <div className={this.state.show? "list_base_show" : ''}>
+                       {this.state.show  ?
+                     
+                        <div className="list_base_show">
                           
                                <Row >
                                    <Col>
@@ -194,8 +187,10 @@ class ListItem extends React.Component {
                                      </Col>
                                </Row> 
                              
-                           </div> : null}
-                    
+                           </div>
+                     
+                            : null}
+                        
                       
                 {this.state.totalIncome.map(li => { 
                         if(li.category_name === this.props.mainTitle )            
