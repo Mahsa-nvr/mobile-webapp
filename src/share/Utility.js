@@ -24,3 +24,13 @@ export function handlePriceChange(e) {
         [name] : value
     })
 }
+
+
+
+export function sumArray(arr) {
+    
+  const sum = arr.reduce((a,b) => {
+     return  a+b;
+  }, 0);
+  console.log(sum);
+}

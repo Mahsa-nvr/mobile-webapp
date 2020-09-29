@@ -3,7 +3,7 @@ import React from 'react';
 import axios from 'axios';
 import { HandleChange , handlePriceChange } from './../../share/Utility';
 import {  ListGroupItem, Button , Row, Col, Form, FormGroup, Label, Input} from 'reactstrap';
-
+import { AvForm, AvField } from 'availity-reactstrap-validation';
 
 import bankAccount from './../../assets/icons/secondIcons/bankAccount.png'
 import {API} from './../../Services/Config';
@@ -23,11 +23,17 @@ class ListItem extends React.Component {
           inputDate: 2222-56-23,
           show : false,
           totalIncome: [],
-          totalAmount: []
+          totalAmount: '',
+          testarr : [1,2,3,4]
+
         };
+       
       }
 
      componentDidMount() {
+      // let testArr = this.state.arr
+      //  sumArray(testArr)
+      
           axios.get(`${API}income/index`, {
             params: {
                 user_id : 1,
@@ -38,7 +44,6 @@ class ListItem extends React.Component {
           this.setState({ 
             totalIncome : [...res.data.data]
         })
-    
       }).catch(err => {
           console.log(err)
       })
@@ -60,17 +65,26 @@ class ListItem extends React.Component {
         bodyFormData.append('categoryID', this.props.catId);
         bodyFormData.append('date', this.state.inputDate );
         bodyFormData.append('userID', 1 );
+
         try {
-        await axios({
-          method: 'post',     //put
-          url: `${API}income/create`,
-          // headers: {'Authorization': 'Bearer'+token}, 
-          headers:{
-            'Content-Type':'multipart/form-data'
-          },
-          data: bodyFormData,
-        }).then(res => console.log(res));
-      }catch(err){console.log('errrr')}
+            await axios({
+            method: 'post',     //put
+            url: `${API}income/create`,
+            headers:{
+               'Content-Type':'multipart/form-data'
+            },
+            data: bodyFormData,
+            }
+            ).then(res => 
+                console.log(res));
+                this.setState({ 
+                  inputName:'',
+                  inputAmount:''
+                })
+            }
+            catch(err){
+              console.log('errrr')
+            }
 
       
         await axios.get(`${API}income/index`, {
@@ -79,15 +93,15 @@ class ListItem extends React.Component {
               type: 1
           }
         }
-    ).then(res => {
-      console.log(res.data.data)
-        this.setState({ 
-          totalIncome : [...res.data.data]
-      })
-        console.log('component', this.state.totalIncome)
-    }).catch(err => {
+        ).then(res => {
+          this.setState({ 
+          totalIncome : [...res.data.data],
+         
+        })
+        
+        }).catch(err => {
         console.log(err)
-    })
+        })
       }
 
      
@@ -100,6 +114,7 @@ class ListItem extends React.Component {
       // }) 
       // console.log(total)
         return ( 
+       
             <div> 
                       
                     <ListGroupItem className="income_list_group_item header">
@@ -110,34 +125,48 @@ class ListItem extends React.Component {
                         </div>
                     </ListGroupItem>
                      
-                       {this.state.show  ? <div className="list_base_show">
+                       {this.state.show  ? <div className={this.state.show? "list_base_show" : ''}>
                           
                                <Row >
                                    <Col>
-                                       <Form>
-                                          <FormGroup className="form_base_part">
-                                            <Label for="">نام</Label>
-                                            <Input type="text"
-                                                   bsSize="sm" 
-                                                   name="inputName" 
-                                                   value={this.state.inputName} 
-                                                   onChange={(e) => HandleChange.call(this, e)} 
-                                                    />
+                                      
+                                     <FormGroup className="form_base_part">
+                                       <AvForm  onChange={(e) => HandleChange.call(this, e)} >
+                                         <AvField 
+                                          name="inputName"
+                                          label="نام" 
+                                          type="text" 
+                                          value={this.state.inputName}                                         
+                                          errorMessage="نام را وارد کنید" 
+                                          validate={{
+                                                     required: {value: true},
+                                                     pattern: {value: '^[A-Za-z0-9پچجحخهعغفقثصضشسیبلاتنمکگوئدذرزطظژؤإأءًٌٍَُِّs]+$'}, 
+                                                   }} />
+                                       </AvForm>
+                                     </FormGroup>
+                                       
+                                 </Col>
+                                 <Col>
+                                  
+                                     <FormGroup className="form_base_part">
+                                       <AvForm onChange={(e) => handlePriceChange.call(this, e)}>
+                                       
+                                         <AvField 
+                                          name="inputAmount"
+                                          label="قیمت" 
+                                          type="text" 
+                                          value={this.state.inputAmount}                                            
+                                          errorMessage="قیمت را وارد کنید" 
+                                          validate={{
+                                                     number: true,
+                                                     required: {value: true, errorMessage:"قیمت را وارد کنید"},
+                                                     pattern: {value: '^[0-9]+$'},                                                
+                                                   }} />
+                                         
+                                
+                                       </AvForm>                                   
                                           </FormGroup>
-                                        </Form>
-                                   </Col>
-                                   <Col>
-                                        <Form>
-                                          <FormGroup className="form_base_part">
-                                            <Label for="">قیمت</Label>
-                                            <Input type="text"
-                                                   bsSize="sm"
-                                                   name="inputAmount"
-                                                   value={this.state.inputAmount} 
-                                                   onChange={(e) => handlePriceChange.call(this, e)}
-                                                   />
-                                          </FormGroup>
-                                        </Form>
+                                        
                                    </Col>
                                </Row>
                                <Row>
@@ -146,7 +175,8 @@ class ListItem extends React.Component {
                                           <FormGroup className="form_base_part">
                                             <Label for="">تاریخ</Label>
                                             <div className="date_picker">
-                                            {/* <MainDatePicker testDate={this.props.testDate} /> */}
+                                               
+                                          
                                             </div>
                                             <Input type="date" 
                                                    bsSize="sm" 
