@@ -53,7 +53,7 @@ class AssetPage extends React.Component {
                      <ListGroupItem className="asset_list_group_item title"><img src={darayi} height={40} alt=""/><span className="title_list">دارایی</span></ListGroupItem>
                      <ListGroupItem className="asset_list_group_item"><span className="title_whole">دارایی کل:</span><span className="title_amount">1000 ریال</span></ListGroupItem>
                      {this.state.assetCat.map(item => {                       
-                         return <div key={item.id}><AssetList mainTitle={item.title}/>  </div>
+                         return <div key={item.id}><AssetList mainTitle={item.title} />  </div>
                      })}
                      </ListGroup>
                  </div>

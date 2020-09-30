@@ -30,3 +30,32 @@
     color: #07b0c3;
     border: 1px solid  #07b0c3;
 }
+
+.asset_list_part {
+    text-align: right;
+    font-size: 80%;
+    color: #7B8788;
+}
+
+.asset_list_part_amount {
+    float: left;
+}
+
+.list_base_show {
+    text-align: right;
+}
+
+.form_base_part {
+    margin: 4%;
+    font-size: 80%;
+    color: #7f8fa6;
+}
+.send_btn {
+    font-size: 60%;
+}
+
+.form_part_send_btn {
+    margin-right:30%;
+    margin-top: 25%;
+    float: right;
+}
