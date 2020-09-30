@@ -26,9 +26,7 @@ class ListItem extends React.Component {
           isVisible : false,
           show: false,
           totalIncome: [],
-          totalAmount: '',
-          testarr : [1,2,3,4]
-
+          totalAmount: '',         
         };
        
       }
@@ -39,15 +37,15 @@ class ListItem extends React.Component {
                 user_id : 1,
                 type: 1
             }
-          }
-      ).then(res => {
+           }
+          ).then(res => {
           this.setState({ 
             totalIncome : [...res.data.data]
-        })
-      }).catch(err => {
-          console.log(err)
-      })
-    }
+          })
+          }).catch(err => {
+            console.log(err)
+          })
+       }
 
 
 

@@ -9,7 +9,7 @@
     margin: 20px ;
     width: 90%;
     border-radius: 2%;
-    background-color: white;  
+    background-color: white; 
 }
 
 .asset_list_group {
@@ -18,8 +18,27 @@
 
 .asset_list_group_item {
     text-align: right;
+    
 }
 .title {
     background-color:#07b0c3;
     padding: 2%
+}
+
+.title_list {
+    color: white;
+    font-size: 80%;
+    margin-right: 2%;
+}
+
+.title_whole {
+    padding:0;
+    font-size: 80%;
+    color:#7B8788;
+}
+
+.title_amount {
+    font-size: 80%;
+    color:#1dd1a1;
+    float: left
 }
