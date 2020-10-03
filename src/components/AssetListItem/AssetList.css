@@ -39,6 +39,7 @@
 
 .asset_list_part_amount {
     float: left;
+    margin-right: 2%;
 }
 
 .list_base_show {
@@ -58,4 +59,8 @@
     margin-right:30%;
     margin-top: 25%;
     float: right;
+}
+
+.credit_icon {
+    display: inline-block;  
 }

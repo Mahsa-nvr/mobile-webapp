@@ -9,6 +9,8 @@ import { AvForm, AvField } from 'availity-reactstrap-validation';
 
 
 //import icon
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 import home from './../../assets/icons/secondIcons/home.png';
 import car from './../../assets/icons/secondIcons/car.png';
 import credit from './../../assets/icons/secondIcons/credit.png';
@@ -22,7 +24,7 @@ class AssetList extends React.Component {
             show: false,
             inputName: '',
             inputAmount:'',
-
+            inputDate: 2222-56-23
         }
     }
 
@@ -44,9 +46,12 @@ class AssetList extends React.Component {
 
     btnClick = () => {
         this.setState({ 
-          isVisible: !this.state.isVisible,
           show : !this.state.show
         });
+    }
+
+    send = async (props) => {
+      console.log(this.state.inputName, this.state.inputAmount , this.state.inputDate)
     }
 
 
@@ -65,7 +70,7 @@ class AssetList extends React.Component {
         break;
 
       case 5:
-        iconn = car;
+        iconn = <div></div>
         break;
 
       case 6:
@@ -76,10 +81,18 @@ class AssetList extends React.Component {
           iconn = null;
           break;
      }
+
+
         return(
+          
             <div>
+             
             <ListGroupItem className="asset_list_group header">
-             <div className="asset_list_img"><img src={iconn} alt=""/></div>{this.props.mainTitle}
+              { this.props.mainId === 5 ?
+                <div className="asset_list_img"><FontAwesomeIcon icon={faBars} /></div>
+             :  <div className="asset_list_img"><img src={iconn} alt=""/></div>
+             }
+             {this.props.mainTitle}
                 <div className="base_list_btn">
                      <Button onClick={this.btnClick} className="list_btn">+</Button>
                 </div>
@@ -109,26 +122,49 @@ class AssetList extends React.Component {
                                    
                               </Col>
                               <Col>
-                                 
-                                  
+                                
+                              {this.props.mainId === 6 ? 
                                   <FormGroup className="form_base_part">
                                     <AvForm onChange={(e) => handlePriceChange.call(this, e)}>
                                     
+                                     
                                       <AvField 
                                        name="inputAmount"
-                                       label="قیمت" 
+                                       label="شماره حساب" 
                                        type="text" 
                                        value={this.state.inputAmount}                                            
-                                       errorMessage="قیمت را وارد کنید" 
+                                       errorMessage="شماره حساب را وارد کنید" 
                                        validate={{
                                                   number: true,
-                                                  required: {value: true, errorMessage:"قیمت را وارد کنید"},
+                                                  required: {value: true, errorMessage:"شماره حساب را وارد کنید"},
                                                   pattern: {value: '^[0-9]+$'},                                                
-                                                }} />
-                                      
-                             
+                                                }} /> 
+                                              
+                              
                                     </AvForm>                                   
-                                       </FormGroup>
+                                       </FormGroup> : 
+                                       <FormGroup className="form_base_part">
+                                       <AvForm onChange={(e) => handlePriceChange.call(this, e)}>
+                                       
+                                        
+                                         <AvField 
+                                          name="inputAmount"
+                                          label="قیمت " 
+                                          type="text" 
+                                          value={this.state.inputAmount}                                            
+                                          errorMessage="قیمت را وارد کنید" 
+                                          validate={{
+                                                     number: true,
+                                                     required: {value: true, errorMessage:"قیمت را وارد کنید"},
+                                                     pattern: {value: '^[0-9]+$'},                                                
+                                                   }} /> 
+                                                 
+                                 
+                                       </AvForm>                                   
+                                          </FormGroup>
+                                       
+                                       
+                                       }
                                        
                                       
                                 </Col>
@@ -163,11 +199,15 @@ class AssetList extends React.Component {
                          : null}
             
 
-               {this.state.totalAsset.map(li => { 
+               {this.state.totalAsset.map( li => { 
                         if(li.category_name === this.props.mainTitle )            
                       return <ListGroupItem key={li.id} className="asset_list_part">
                         {li.name}
+                         {li.category_name === 'حساب بانکی' ?
+                        <span className="asset_list_part_amount">  {li.amount} <div className="credit_icon"><img src={iconn} alt=""/></div> </span>
+                        : 
                         <span className="asset_list_part_amount">{li.amount}</span>
+                        }
                         </ListGroupItem>                   
                     })}
             </div>
