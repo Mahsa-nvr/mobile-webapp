@@ -1,6 +1,6 @@
 import React from 'react';
 import { ListGroup, ListGroupItem } from 'reactstrap';
-import darayi from './../../assets/icons/darayi.png'
+import darayi from './../../assets/icons/darayi.png';
 import { API } from './../../Services/Config';
 import axios from 'axios';
 
@@ -44,6 +44,7 @@ class AssetPage extends React.Component {
     
     }
     render() {
+    
        
         return (
             <div className="asset_page">
@@ -52,8 +53,8 @@ class AssetPage extends React.Component {
                      <ListGroup className="asset_list_group">
                      <ListGroupItem className="asset_list_group_item title"><img src={darayi} height={40} alt=""/><span className="title_list">دارایی</span></ListGroupItem>
                      <ListGroupItem className="asset_list_group_item"><span className="title_whole">دارایی کل:</span><span className="title_amount">1000 ریال</span></ListGroupItem>
-                     {this.state.assetCat.map(item => {                       
-                         return <div key={item.id}><AssetList mainTitle={item.title} />  </div>
+                     {this.state.assetCat.map(item => {             
+                         return <div key={item.id}><AssetList mainTitle={item.title} mainId={item.id} />  </div>
                      })}
                      </ListGroup>
                  </div>

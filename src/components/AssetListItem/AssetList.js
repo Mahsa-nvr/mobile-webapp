@@ -11,6 +11,7 @@ import { AvForm, AvField } from 'availity-reactstrap-validation';
 //import icon
 import home from './../../assets/icons/secondIcons/home.png';
 import car from './../../assets/icons/secondIcons/car.png';
+import credit from './../../assets/icons/secondIcons/credit.png';
 
 class AssetList extends React.Component {
 
@@ -52,12 +53,33 @@ class AssetList extends React.Component {
     
 
     render() {
-       console.log(this.state.totalAsset)
-      
+     let iconn = null;
+     switch (this.props.mainId) {
+
+       case 3:
+         iconn = home;
+         break;
+
+       case 4:
+        iconn = car;
+        break;
+
+      case 5:
+        iconn = car;
+        break;
+
+      case 6:
+        iconn = credit;
+        break;
+
+        default:
+          iconn = null;
+          break;
+     }
         return(
             <div>
             <ListGroupItem className="asset_list_group header">
-             <div className="asset_list_img"><img src={home} alt=""/></div>{this.props.mainTitle}
+             <div className="asset_list_img"><img src={iconn} alt=""/></div>{this.props.mainTitle}
                 <div className="base_list_btn">
                      <Button onClick={this.btnClick} className="list_btn">+</Button>
                 </div>
@@ -84,7 +106,7 @@ class AssetList extends React.Component {
                                                 }} />
                                     </AvForm>
                                   </FormGroup>
-                                    
+                                   
                               </Col>
                               <Col>
                                  
@@ -108,7 +130,7 @@ class AssetList extends React.Component {
                                     </AvForm>                                   
                                        </FormGroup>
                                        
-                                     
+                                      
                                 </Col>
                             </Row>
                             <Row>
