@@ -49,9 +49,54 @@ class AssetList extends React.Component {
           show : !this.state.show
         });
     }
-
+//post api in asset page and recive update get method immediatly
     send = async (props) => {
-      console.log(this.state.inputName, this.state.inputAmount , this.state.inputDate)
+
+      var bodyFormData = new FormData();
+      bodyFormData.append('amount', this.state.inputAmount);
+      bodyFormData.append('name', this.state.inputName);
+      bodyFormData.append('categoryID', this.props.catId);
+      bodyFormData.append('date', this.state.inputDate );
+      bodyFormData.append('userID', 1 );
+
+      try {
+        await axios({
+        method: 'post',     //put
+        url: `${API}income/create`,
+        headers:{
+           'Content-Type':'multipart/form-data'
+        },
+        data: bodyFormData,
+        }
+        ).then(res => 
+            console.log(res));
+        }
+        catch(err){
+          console.log('errrr')
+        }
+
+        await axios.get(`${API}income/index`, {
+          params: {
+              user_id : 1,
+              type: 2
+          }
+        }
+        ).then(res => {
+          this.setState({ 
+            totalAsset : [...res.data.data],
+
+        })
+        
+        }).catch(err => {
+        console.log(err)
+        })
+
+        this.setState({
+          show: false,
+          inputName: '',
+          inputAmount:'',
+        })
+
     }
 
 
@@ -59,7 +104,7 @@ class AssetList extends React.Component {
 
     render() {
      let iconn = null;
-     switch (this.props.mainId) {
+     switch (this.props.catId) {
 
        case 3:
          iconn = home;
@@ -88,7 +133,7 @@ class AssetList extends React.Component {
             <div>
              
             <ListGroupItem className="asset_list_group header">
-              { this.props.mainId === 5 ?
+              { this.props.catId === 5 ?
                 <div className="asset_list_img"><FontAwesomeIcon icon={faBars} /></div>
              :  <div className="asset_list_img"><img src={iconn} alt=""/></div>
              }
@@ -123,7 +168,7 @@ class AssetList extends React.Component {
                               </Col>
                               <Col>
                                 
-                              {this.props.mainId === 6 ? 
+                              {this.props.catId === 6 ? 
                                   <FormGroup className="form_base_part">
                                     <AvForm onChange={(e) => handlePriceChange.call(this, e)}>
                                     
