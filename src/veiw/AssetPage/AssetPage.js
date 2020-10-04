@@ -59,8 +59,7 @@ class AssetPage extends React.Component {
     
     }
     render() {
-    
-       
+  
         return (
             <div className="asset_page">
                 <Header />
