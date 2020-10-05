@@ -1,11 +1,13 @@
 import React from 'react';
 import axios from 'axios';
 import { API } from './../../Services/Config';
+import { ListGroup, ListGroupItem ,Button} from 'reactstrap';
+
 import Header from './../../components/Header/Header';
 import MainTable from './../../components/MainTable/MainTable';
-import { Button } from 'reactstrap';
-import './PayKhoms.css';
 
+import './PayKhoms.css';
+import daramad from './../../assets/icons/daramad.png'
 
 class PayKhomse extends React.Component {
 
@@ -28,14 +30,17 @@ class PayKhomse extends React.Component {
            <div className="paykhoms_page">
                <Header />
                <div className="main_khoms">
-                 <div className="main_khoms_title">
-                     <span className="title">وجوهات شرعی</span>
+                 <div >
+                   <ListGroup className="paykhoms_list_group">
+                   <ListGroupItem className="paykhoms_list_group_item title"><img src={daramad} height={40} alt=""/><span className="title_list">وجوهات شرعی</span></ListGroupItem>
+                   </ListGroup >
+                     {/* <span className="title">وجوهات شرعی</span> */}
                       <MainTable />
                  </div>                
                </div>
 
                <div className="part_khoms">
-                     <div className="after_pay">شما تاکنون مبلغ <span className="after_pay_amount">190000 </span> ریال خمس پرداخت کردید </div>
+                     <div className="after_pay">شما تاکنون مبلغ <span className="after_pay_amount">190000 </span> ریال خمس پرداخت کرده اید </div>
                      <div className="before_pay">شما باید مبلغ  <span>6000</span> ریال را پرداخت کنید  </div>
                      <div className="btn_pay"><Button color="success" style={{ backgroundColor:"#00b894",width: "60%" , fontSize:"12px"}}>پرداخت </Button></div>
                  </div>

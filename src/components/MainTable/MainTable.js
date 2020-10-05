@@ -6,7 +6,7 @@ import { Table, ConfigProvider } from 'antd';
 class MainTable extends React.Component {
   state={
     payData: [],
-    amount: ''
+    amount: '',
   }
 
     componentDidMount(){
@@ -16,18 +16,21 @@ class MainTable extends React.Component {
             user_id : 1
         }
         }).then(res => {
-          this.setState({payData:[...res.data.data] })
+          this.setState({
+            payData:[...res.data.data] 
+          })
         }).catch(err =>
            console.log('income page' , err))
 }
 
   
   render() {
+   
+ 
     const columns = [
       {
-        title: 'شماره',
+        title: 'ردیف',
         dataIndex: 'id',
-        
       },
       {
         title: 'تاریخ',
@@ -39,30 +42,14 @@ class MainTable extends React.Component {
       },
     ];
 
-    const data = [
-      {
-        id: 1,
-        date: 8,
-        amount: 'kkkkk',
-      },
-     
-    ];
-// for (let i = 0; i < 100; i++) {
-//   data.push({
-//     key: i,
-//     name: `Edward King ${i}`,
-//     age: 32,
-//     address: `London, Park Lane no. ${i}`,
-//   });
-// }
-const totalData = this.state.payData
-totalData.map(item => {
-  
+this.state.payData.map((item, index )=> {
+ item.id = index+1
 })
+
     return (
 <div>
 <ConfigProvider direction="rtl">
-     <Table  pagination={{ pageSize: 6 }}  columns={columns} dataSource={data}  scroll={{ y: 240 }} />
+     <Table  pagination={{ pageSize: 6 }} key={this.state.payData.index} columns={columns} dataSource={this.state.payData}  scroll={{ y: 240 }} />
 </ConfigProvider>
 </div>
     )

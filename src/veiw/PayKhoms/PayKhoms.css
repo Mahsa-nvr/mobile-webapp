@@ -13,6 +13,23 @@
     height: 60%;
 }
 
+.paykhoms_list_group {
+    padding-right: 0; 
+}
+
+.paykhoms_list_group_item {
+    text-align: right;  
+}
+.title{
+    background-color:#07b0c3;
+    padding: 2%
+}
+.title_list {
+    color: white;
+    font-size: 80%;
+    margin-right: 2%;
+}
+
 .main_khoms_title {
     border-radius: 2%;
     height: 10%;
@@ -21,15 +38,9 @@
    
 }
 
-.title {
-    float: right;
-    margin-top: 2%;
-    margin-bottom: 2%;
-    margin-right: 2%;
-}
 
-.part_khoms {
-    
+
+.part_khoms {  
     width: 90%;
     border-radius: 2%;
     background-color: white; 
