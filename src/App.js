@@ -7,7 +7,8 @@ import './App.css';
 // import Defaultpage from './veiw/Default/Defaultpage';
 // import IncomePage from './veiw/IncomePage/IncomePage';
 // import AssetPage from './veiw/AssetPage/AssetPage';
-import PayKhomse from './veiw/PayKhoms/PayKhoms';
+// import PayKhomse from './veiw/PayKhoms/PayKhoms';
+import Register from './veiw/Register/Register';
 
 function App() {
   return (
@@ -16,7 +17,8 @@ function App() {
        {/* <Defaultpage /> */}
        {/* <IncomePage /> */}
        {/* <AssetPage /> */}
-       <PayKhomse />
+       {/* <PayKhomse /> */}
+       <Register/>
     </div>
   );
 }

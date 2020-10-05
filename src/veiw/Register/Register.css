@@ -1,0 +1,27 @@
+.register {
+    background-color:white;
+}
+
+.register_first {
+    height: 300px;
+    background-color:rgb(6 142 158);
+    /* position: relative; */
+}
+
+
+
+.register_second {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background: white;
+    border: 6px solid #057885;
+    margin-bottom: -89px;
+    /* margin: auto; */
+    /* position: absolute; */
+   /* bottom: -22px; */
+   }
+   .reg_sec_img{
+       margin: auto;
+   }
+   
