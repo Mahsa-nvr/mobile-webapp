@@ -1,24 +1,16 @@
 import React from 'react';
 import './App.css';
-// import 'react-datepicker2/dist/react-datepicker2.min.css';
+import { HashRouter } from 'react-router-dom'
 
-//components
-// import Setincome from './veiw/Setincome/Setincome';
-// import Defaultpage from './veiw/Default/Defaultpage';
-// import IncomePage from './veiw/IncomePage/IncomePage';
-// import AssetPage from './veiw/AssetPage/AssetPage';
-// import PayKhomse from './veiw/PayKhoms/PayKhoms';
-import Register from './veiw/Register/Register';
+import RouteFile from './RouteFile';
 
 function App() {
   return (
     <div className = "app">
-       {/* <Setincome /> */}
-       {/* <Defaultpage /> */}
-       {/* <IncomePage /> */}
-       {/* <AssetPage /> */}
-       {/* <PayKhomse /> */}
-       <Register/>
+       <HashRouter>
+         <RouteFile />
+       </HashRouter>
+     
     </div>
   );
 }

@@ -107,9 +107,9 @@ class ListItem extends React.Component {
     render() { 
         return (      
             <div>                      
-                  <ListGroupItem className="income_list_group_item header">                     
+                  <ListGroupItem className="asset_list_title">                     
                         <img src={bankAccount} alt=""/> {this.props.mainTitle}
-                        <div className="base_list_btn">
+                        <div className="base_list_btnn">
                           <Button onClick={this.btnClick} className="list_btn">+</Button>
                         </div>
                     </ListGroupItem>

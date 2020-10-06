@@ -4,7 +4,8 @@ export const pieData = (data , label)=> {
         datasets: [
             {
                 data: [...data],
-                backgroundColor: ['#ff6b6b', '#006266', '#2980b9','#55efc4', '#fa983a', '#6D214F'],
+				backgroundColor: ['#ff6b6b', '#006266', '#2980b9','#55efc4', '#fa983a', '#6D214F',
+			        '#f6e58d','#ff7979','#22a6b3', '#95afc0', '#2980b9', '#22a6b3', '#20bf6b', '#45aaf2'],
                 hoverBackgroundColor: ['#ff6b6b', '#006266', '#2980b9']
             }
         ]

@@ -2,10 +2,11 @@
     padding-right: 0;
     text-align: right
 }
-.header {
+.asset_list_title {
     color:#07b0c3;
     font-size: 12px;
 }
+
 
 .asset_list_img {
     display: inline-block;
