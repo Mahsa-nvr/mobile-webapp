@@ -5,6 +5,7 @@
 .register_first {
     height: 300px;
     background-color:rgb(6 142 158);
+    background-image: radial-gradient(circle,#7FEFF5,rgb(6 142 158));;
     /* position: relative; */
 }
 .main_Reg {

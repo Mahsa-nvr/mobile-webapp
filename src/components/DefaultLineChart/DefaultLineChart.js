@@ -24,7 +24,7 @@ componentDidMount() {
       let totalSpend = response.data.expenditures;
       let totalIncome =  response.data.income;
 
-      console.log(totalSpend,totalIncome)
+    //   console.log(totalSpend,totalIncome)
 
       // eslint-disable-next-line array-callback-return
       totalSpend.map(data => {
