@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { API } from './../../Services/Config';
 import { ListGroup, ListGroupItem ,Button} from 'reactstrap';
+import { withRouter } from "react-router-dom";
 
 import Header from './../../components/Header/Header';
 import MainTable from './../../components/MainTable/MainTable';
@@ -14,7 +15,8 @@ class PayKhomse extends React.Component {
   constructor(props){
     super();
     this.state= {
-      mustAmountPay: ''
+      mustAmountPay: '',
+      payAmount:''
     }
   }
 
@@ -35,23 +37,29 @@ class PayKhomse extends React.Component {
     }
 
 
+    handleGetData = data => {
+     this.setState({ payAmount:data})
+    }
+
     btnPay = async() => {
+     console.log('testtt', this.state.payAmount)
+      // var bodyFormData = new FormData();
+      // bodyFormData.append('amount', this.state.mustAmountPay);
+      // bodyFormData.append('user_id', 1 );
 
-      var bodyFormData = new FormData();
-      bodyFormData.append('amount', this.state.mustAmountPay);
-      bodyFormData.append('user_id', 1 );
+      // try{
+      //   await axios({
+      //     method: 'POST',
+      //     url: `${API}paykhoms/create`,
+      //     headers:{
+      //       'Content-Type':'multipart/form-data'
+      //    },
+      //    data: bodyFormData,
+      //   }).then(res => console.log('send pay amount in paykhoms page', res))
+      // }
+      // catch(err) {console.log('errrrr in pay page', err) }
 
-      try{
-        await axios({
-          method: 'POST',
-          url: `${API}paykhoms/create`,
-          headers:{
-            'Content-Type':'multipart/form-data'
-         },
-         data: bodyFormData,
-        }).then(res => console.log('send pay amount in paykhoms page', res))
-      }
-      catch(err) {console.log('errrrr in pay page', err)}
+      // this.props.history.push('/test')
     }
 
 
@@ -66,12 +74,12 @@ class PayKhomse extends React.Component {
                    <ListGroupItem className="paykhoms_list_group_item title"><img src={daramad} height={40} alt=""/><span className="title_list">وجوهات شرعی</span></ListGroupItem>
                    </ListGroup >
                      {/* <span className="title">وجوهات شرعی</span> */}
-                      <MainTable />
+                      <MainTable  onGetData={this.handleGetData}/>
                  </div>                
                </div>
 
                <div className="part_khoms">
-                     <div className="after_pay">شما تاکنون مبلغ <span className="after_pay_amount">190000 </span> ریال خمس پرداخت کرده اید </div>
+                     <div className="after_pay">شما تاکنون مبلغ <span className="after_pay_amount">{this.state.payAmount} </span> ریال خمس پرداخت کرده اید </div>
                      <div className="before_pay">شما باید مبلغ  <span>{this.state.mustAmountPay}</span> ریال را پرداخت کنید  </div>
                      <div className="btn_pay"><Button onClick={this.btnPay} color="success" style={{ backgroundColor:"#00b894",width: "60%" , fontSize:"12px"}}>پرداخت </Button></div>
                  </div>
@@ -81,4 +89,4 @@ class PayKhomse extends React.Component {
     }
 }
 
-export default PayKhomse;
+export default withRouter(PayKhomse);
