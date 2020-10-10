@@ -59,7 +59,7 @@ class PayKhomse extends React.Component {
       // }
       // catch(err) {console.log('errrrr in pay page', err) }
 
-      // this.props.history.push('/test')
+      this.props.history.push('/test')
     }
 
 
