@@ -23,6 +23,10 @@ class Maincards extends React.Component {
         this.props.history.push('/IncomePage')
     }
 
+    spend = (props) => {
+        this.props.history.push('/spend')
+    }
+
     
     render() {
         return (
@@ -53,7 +57,7 @@ class Maincards extends React.Component {
                            </div>
                         </div>
                         <div className="col col_part">
-                           <div className="card_part">
+                           <div className="card_part" onClick={this.spend}>
                                <img src={hazine}  height="60" alt=""/>
                                <div className="text_card">هزینه</div>
                                <div className="status_card">وارد نشده</div>

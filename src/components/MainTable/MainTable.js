@@ -7,7 +7,7 @@ class MainTable extends React.Component {
   state={
     payData: [],
     amount: '',
-    totalAmount: 2222
+    totalAmount: ''
   }
 
     componentDidMount(){
@@ -41,10 +41,7 @@ class MainTable extends React.Component {
 
   render() {
    
-    var ttt = this.state.payData.reduce(function(prev, cur){
-      return prev + cur.amount;
-   }, 0)
- 
+
     const columns = [
       {
         title: 'ردیف',
@@ -61,7 +58,7 @@ class MainTable extends React.Component {
     ];
 
 this.state.payData.map((item, index )=> {
- item.id = index+1
+return item.id = index+1
 })
 
 
@@ -69,8 +66,8 @@ this.state.payData.map((item, index )=> {
 
     return (
 <div>
-<ConfigProvider direction="rtl">
-     <Table  pagination={{ pageSize: 6 }} key={this.state.payData.index} columns={columns} dataSource={this.state.payData}  scroll={{ y: 240 }} />
+<ConfigProvider direction="rtl" >
+     <Table  pagination={{ pageSize: 6 }}  key={this.state.payData} columns={columns} dataSource={this.state.payData}  scroll={{ y: 240 }} />
 </ConfigProvider>
 </div>
     )

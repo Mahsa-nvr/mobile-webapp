@@ -1,4 +1,4 @@
-.asset_page {
+.spend_page {
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -6,18 +6,18 @@
     background-color:lightgray;
 }
 
-.asset_list {
+.spend_list {
     margin: 20px ;
     width: 90%;
     border-radius: 2%;
     background-color: white; 
 }
 
-.asset_list_group {
+.spend_list_group {
     padding-right: 0;
 }
 
-.asset_list_group_item {
+.spend_list_group_item {
     text-align: right;
     
 }
