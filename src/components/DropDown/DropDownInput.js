@@ -2,22 +2,33 @@ import React from 'react';
 import Select from 'react-select';
 
 const options = [
-  { value: 'chocolate', label: 'Chocolate' },
-  { value: 'strawberry', label: 'Strawberry' },
-  { value: 'vanilla', label: 'Vanilla' },
+  { value: 1 , label: 'درآمد' },
+  { value: 2 , label: 'هدیه' },
+  { value: 3 , label: 'سایر' },
+  
 ];
 
 class DropDownInput extends React.Component {
   state = {
     selectedOption: null,
+    test : 77,
   };
+  componentDidMount(){
+    // const { onGetData } =this.props
+    // onGetData(this.state.test)
+  }
+
   handleChange = selectedOption => {
+    const { onGetData } =this.props
     this.setState(
       { selectedOption },
-      () => console.log(`Option selected:`, this.state.selectedOption)
-    );
+      () => onGetData(this.state.selectedOption),
+    ); 
   };
+
+  
   render() {
+    
     const { selectedOption } = this.state;
 
     return (

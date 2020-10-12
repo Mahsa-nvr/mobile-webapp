@@ -21,6 +21,7 @@ class SpendList extends React.Component {
             inputAmount: "",
             inputDate: '',
             totalSpend: [],
+            inputDropDown:'',
             show: false
         }
     }
@@ -45,6 +46,15 @@ class SpendList extends React.Component {
         this.setState({ 
           show : !this.state.show
         });
+    }
+
+    handleGetData = data => {
+      console.log('get data from dropdown to spend page', data)
+         this.setState({inputDropDown:data})   
+    }
+
+    send = () => {
+      console.log('drop', this.state.inputDropDown.value)
     }
 
     render() {
@@ -129,7 +139,8 @@ class SpendList extends React.Component {
                       </Col>
                       <Col>
                          <div className="title_input_spend">نوع هزینه</div>
-                          <div className="drop"><DropDownInput /></div>                      
+                          <div className="drop">
+                            <DropDownInput onGetData={this.handleGetData} /></div>                      
                         </Col>
                   </Row> 
                   <Row>
