@@ -2,7 +2,7 @@ import React from 'react';
 import Select from 'react-select';
 
 const options = [
-  { value: 1 , label: 'درآمد' },
+  { value: 1 , label: 'حقوق' },
   { value: 2 , label: 'هدیه' },
   { value: 3 , label: 'سایر' },
   

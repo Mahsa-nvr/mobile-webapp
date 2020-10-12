@@ -19,7 +19,7 @@ class SpendList extends React.Component {
         this.state = {
             inputName: "",
             inputAmount: "",
-            inputDate: '',
+            inputDate: 88888 ,
             totalSpend: [],
             inputDropDown:'',
             show: false
@@ -53,12 +53,40 @@ class SpendList extends React.Component {
          this.setState({inputDropDown:data})   
     }
 
-    send = () => {
-      console.log('drop', this.state.inputDropDown.value)
+    send = async(props) => {
+      console.log(this.props.catId)
+      // console.log('drop', this.state.inputDropDown.value)
+      // console.log('drop', this.state.inputName)
+      // console.log('drop', this.state.inputAmount)
+      // console.log('drop', this.state.inputDate)
+
+      var bodyFormData = new FormData();
+      bodyFormData.append('amount', this.state.inputAmount);
+      bodyFormData.append('name', this.state.inputName);
+      bodyFormData.append('incomeCategoryID', this.state.inputDropDown.value);
+      bodyFormData.append('date', this.state.inputDate );
+      bodyFormData.append('expendituresCategoryID', this.props.catId);
+      bodyFormData.append('userID', 1 );
+
+      try {
+        await axios({
+        method: 'post',     //put
+        url: `${API}expenditures/create`,
+        headers:{
+           'Content-Type':'multipart/form-data'
+        },
+        data: bodyFormData,
+        }
+        ).then(res => 
+            console.log(res));
+        }
+        catch(err){
+          console.log('errrr')
+        }
     }
 
     render() {
-      
+    
         return (
             <div>
            

@@ -57,7 +57,7 @@ class ListItem extends React.Component {
       }
 
       send = async (props) => {
-        console.log(this.state.inputDate)
+        // console.log(this.state.inputDate)
      
       
         var bodyFormData = new FormData();
