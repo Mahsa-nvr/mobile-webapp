@@ -7,7 +7,10 @@ import { HandleChange , handlePriceChange } from './../../share/Utility';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 
-import './SpendList.css'
+import './SpendList.css';
+
+//components
+import DropDownInput from './../DropDown/DropDownInput';
 
 class SpendList extends React.Component {
 
@@ -18,7 +21,7 @@ class SpendList extends React.Component {
             inputAmount: "",
             inputDate: '',
             totalSpend: [],
-            show: true
+            show: false
         }
     }
 
@@ -65,7 +68,7 @@ class SpendList extends React.Component {
                           
                   <Row >
                       <Col>
-                         
+                
                         <FormGroup className="form_base_part">
                           <AvForm  onChange={(e) => HandleChange.call(this, e)} >
                             <AvField 
@@ -80,10 +83,10 @@ class SpendList extends React.Component {
                                       }} />
                           </AvForm>
                         </FormGroup>
-                          
+                     
                     </Col>
                     <Col>
-                     
+                 
                         <FormGroup className="form_base_part">
                           <AvForm onChange={(e) => handlePriceChange.call(this, e)}>
                           
@@ -102,7 +105,7 @@ class SpendList extends React.Component {
                    
                           </AvForm>                                   
                              </FormGroup>
-                           
+                             
                       </Col>
                   </Row>
                   <Row>
@@ -114,8 +117,9 @@ class SpendList extends React.Component {
                                   
                              
                                </div>
-                               <Input type="date" 
+                               <Input type="text" 
                                       bsSize="sm" 
+                                      width="50px"
                                       name="inputDate" 
                                       value={this.state.inputDate} 
                                       onChange={(e) => HandleChange.call(this, e)}  
@@ -124,11 +128,13 @@ class SpendList extends React.Component {
                            </Form>
                       </Col>
                       <Col>
-                        <div className="form_part_send_btn">
-                        <Button className="send_btn" color="primary" onClick={this.send}> ارسال</Button>
-                        </div>
+                         <div className="title_input_spend">نوع هزینه</div>
+                          <div className="drop"><DropDownInput /></div>                      
                         </Col>
                   </Row> 
+                  <Row>
+                        <Button className="send_btn_spend" color="primary" onClick={this.send}> ارسال</Button>
+                  </Row>
                 
               </div>
                  
@@ -141,6 +147,16 @@ class SpendList extends React.Component {
                          <span className="asset_list_part_amount">{li.amount}</span>
                          </ListGroupItem>
                  }  )}
+
+{/* {this.state.totalSpend.map(li => {
+                     if(parseInt(li.category_id) === this.props.catId) {
+
+                     return <(ListGroupItem  key={li.id} className="spend_list_part">
+                         {li.name}
+                         <span className="asset_list_part_amount">{li.amount}</span>
+                         </>)
+                     }else{return(<React.Fragment></React.Fragment>)}
+                 }  )}} */}
         
 
             </div>
