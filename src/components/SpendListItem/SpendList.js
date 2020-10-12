@@ -54,11 +54,7 @@ class SpendList extends React.Component {
     }
 
     send = async(props) => {
-      console.log(this.props.catId)
-      // console.log('drop', this.state.inputDropDown.value)
-      // console.log('drop', this.state.inputName)
-      // console.log('drop', this.state.inputAmount)
-      // console.log('drop', this.state.inputDate)
+     
 
       var bodyFormData = new FormData();
       bodyFormData.append('amount', this.state.inputAmount);
@@ -83,6 +79,20 @@ class SpendList extends React.Component {
         catch(err){
           console.log('errrr')
         }
+
+       await axios.get(`${API}expenditures/index`, {
+          params: {
+              user_id : 1         
+          }
+         }
+        ).then(res => {
+        this.setState({
+          totalSpend :[...res.data]
+      })
+      
+        }).catch(err => {
+          console.log(err)
+        })
     }
 
     render() {
