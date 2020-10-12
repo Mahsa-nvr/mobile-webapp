@@ -42,22 +42,22 @@ class PayKhomse extends React.Component {
     }
 
     btnPay = async() => {
-     console.log('testtt', this.state.payAmount)
-      // var bodyFormData = new FormData();
-      // bodyFormData.append('amount', this.state.mustAmountPay);
-      // bodyFormData.append('user_id', 1 );
+     
+      var bodyFormData = new FormData();
+      bodyFormData.append('amount', this.state.mustAmountPay);
+      bodyFormData.append('user_id', 1 );
 
-      // try{
-      //   await axios({
-      //     method: 'POST',
-      //     url: `${API}paykhoms/create`,
-      //     headers:{
-      //       'Content-Type':'multipart/form-data'
-      //    },
-      //    data: bodyFormData,
-      //   }).then(res => console.log('send pay amount in paykhoms page', res))
-      // }
-      // catch(err) {console.log('errrrr in pay page', err) }
+      try{
+        await axios({
+          method: 'POST',
+          url: `${API}paykhoms/create`,
+          headers:{
+            'Content-Type':'multipart/form-data'
+         },
+         data: bodyFormData,
+        }).then(res => console.log('send pay amount in paykhoms page', res))
+      }
+      catch(err) {console.log('errrrr in pay page', err) }
 
       this.props.history.push('/test')
     }
