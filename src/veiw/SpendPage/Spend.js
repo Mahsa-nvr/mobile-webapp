@@ -52,7 +52,7 @@ class Spend extends React.Component {
                   <div className="spend_list">
                       <ListGroup className="spend_list_group">
                           <ListGroupItem className="spend_list_group_item title"><img src={hazine} height={40} alt=""/><span className="title_list">هزینه</span></ListGroupItem>
-                          <ListGroupItem className="spend_list_group_item"><span className="title_whole">هزینه کل:</span><span className="title_amount">{this.state.sum}</span></ListGroupItem>
+                          <ListGroupItem className="spend_list_group_item"><span className="title_whole">هزینه کل:</span><span className="title_amount">{this.state.sum} ریال</span></ListGroupItem>
                           {this.state.spendCat.map(item => {
                               return <div key={item.id}><SpendList  mainTitle={item.name} catId={item.id}  onGetData={this.handleGetData}/></div>
                           })}

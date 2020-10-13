@@ -144,7 +144,8 @@ class SpendList extends React.Component {
         case 'سایر':
         iconList = <FontAwesomeIcon icon={faBars} />
           break;
-        
+          default:
+            iconList = null
       }
      
 

@@ -18,6 +18,7 @@ import AssetPage from './veiw/AssetPage/AssetPage';
 import PayKhomse from './veiw/PayKhoms/PayKhoms';
 import TestPage from './veiw/TestPage/TestPage';
 import Spend from './veiw/SpendPage/Spend';
+import Profile from './veiw/Profile/Profile';
 
 
 
@@ -35,6 +36,7 @@ class RouteFile extends React.Component {
                 <Route path="/PayKhomse" render={()=><PayKhomse />}/>
                 <Route path="/test" render={()=><TestPage/>} />
                 <Route path="/spend" render={()=><Spend/>} />
+                <Route path="/profile" render={()=><Profile/>} />
               </Router>
             </div>
         </HashRouter >
