@@ -37,7 +37,6 @@ class Spend extends React.Component {
           })
     }
     render(){
-        console.log(this.state.spendCat)
         return (
             <div className="spend_page"> 
                 <Header />

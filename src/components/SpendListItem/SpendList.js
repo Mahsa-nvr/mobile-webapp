@@ -22,7 +22,8 @@ class SpendList extends React.Component {
             inputDate: 88888 ,
             totalSpend: [],
             inputDropDown:'',
-            show: false
+            show: false,
+            emptyDrop: true
         }
     }
 
@@ -54,7 +55,8 @@ class SpendList extends React.Component {
     }
 
     send = async(props) => {
-     
+     if(this.state.inputAmount && this.state.inputName
+       && this.state.inputDate && this.props.catId ) {
 
       var bodyFormData = new FormData();
       bodyFormData.append('amount', this.state.inputAmount);
@@ -87,12 +89,20 @@ class SpendList extends React.Component {
          }
         ).then(res => {
         this.setState({
-          totalSpend :[...res.data]
+          totalSpend :[...res.data],
+          emptyDrop: true,
+          show : false
       })
       
         }).catch(err => {
           console.log(err)
         })
+
+      }else {
+        this.setState({
+          emptyDrop : false
+        })
+      }
     }
 
     render() {
@@ -115,6 +125,7 @@ class SpendList extends React.Component {
                   <div className="list_base_show">
                           
                   <Row >
+                    {this.state.test ? <div>helloo</div> : null}
                       <Col>
                 
                         <FormGroup className="form_base_part">
@@ -176,9 +187,9 @@ class SpendList extends React.Component {
                            </Form>
                       </Col>
                       <Col>
-                         <div className="title_input_spend">نوع هزینه</div>
+                         <div className="title_input_spend">نوع هزینه</div> 
                           <div className="drop">
-                            <DropDownInput onGetData={this.handleGetData} /></div>                      
+                            <DropDownInput onGetData={this.handleGetData} emptyDrop={this.state.emptyDrop} /></div>                      
                         </Col>
                   </Row> 
                   <Row>

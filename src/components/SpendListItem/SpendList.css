@@ -30,6 +30,10 @@
     color: #7B8788;
 }
 
+.spend_list_part:nth-child(even) {
+    background-color: #f5f6fa;
+ } 
+
 .spend_list_part_amount {
     float: left;
     margin-right: 2%;
@@ -44,9 +48,14 @@
 }
 .title_input_spend{
     color:  #7B8788;
-    font-size: 12px;
+    font-size: 10px;
     margin-bottom: 5%;
 }
+/* .title_input_spend2 {
+    color:  #DC3545;
+    font-size: 12px;
+    margin-bottom: 5%;
+} */
 .drop {
     margin-left: 4%;
 }

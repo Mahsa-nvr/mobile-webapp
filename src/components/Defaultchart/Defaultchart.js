@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import { API } from './../../Services/Config';
 import './Defaultchart.css';
 
 //components
@@ -17,7 +18,7 @@ class Defaultchart extends React.Component {
 
     componentDidMount() {
         
-        axios.get('http://192.168.22.48/ipfm/frontend/web/index.php/income/index', {
+        axios.get(`${API}income/index`, {
             params: {
                 user_id : 1,
                 type: 1
@@ -37,7 +38,7 @@ class Defaultchart extends React.Component {
         })
 
       
-        axios.get('http://192.168.22.48/ipfm/frontend/web/index.php/report/index', {
+        axios.get(`${API}report/index`, {
             params: {
                 user_id : 1
             },

@@ -1,6 +1,7 @@
 import React from 'react';
 import './DefaultLineChart.css';
 import axios from 'axios';
+import { API } from './../../Services/Config.js';
 
 //components
 import Linechart from '../Charts/Linechart';
@@ -15,7 +16,7 @@ class DefaultLineChart extends React.Component {
    }
 
 componentDidMount() {
-    axios.get('http://192.168.22.48/ipfm/frontend/web/index.php/report/index', {
+    axios.get(`${API}report/index`, {
         params: {
             user_id : 1
         },
