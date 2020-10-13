@@ -1,5 +1,9 @@
+body {
+    background-color: lightgray;
+}
+
 .defaultt {
-    height: 100vh;
+    height: 100%;
     display: flex;
     flex-direction: column;
     background-color: lightgray;
