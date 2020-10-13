@@ -5,8 +5,12 @@ import axios from 'axios';
 import {API} from './../../Services/Config';
 import { HandleChange , handlePriceChange } from './../../share/Utility';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { faHome , faCoffee, faBars , faBiking , faTshirt, faHeart } from '@fortawesome/free-solid-svg-icons';
 
+//faHome ejare
+//faBiking tafrih
+//faTshirt pooshak
+//salamat faHeart
 import './SpendList.css';
 
 //components
@@ -22,12 +26,14 @@ class SpendList extends React.Component {
             inputDate: 88888 ,
             totalSpend: [],
             inputDropDown:'',
+            sumAmount: 0,
             show: false,
             emptyDrop: true
         }
     }
 
     componentDidMount(){
+      const { onGetData } = this.props;
         axios.get(`${API}expenditures/index`, {
             params: {
                 user_id : 1         
@@ -35,8 +41,10 @@ class SpendList extends React.Component {
            }
           ).then(res => {
           this.setState({
-            totalSpend :[...res.data]
+            totalSpend :[...res.data.data],
+            sumAmount: res.data.sum
         })
+        onGetData(this.state.sumAmount);
         
           }).catch(err => {
             console.log(err)
@@ -55,6 +63,9 @@ class SpendList extends React.Component {
     }
 
     send = async(props) => {
+
+      const { onGetData } = this.props;
+
      if(this.state.inputAmount && this.state.inputName
        && this.state.inputDate && this.props.catId ) {
 
@@ -89,11 +100,12 @@ class SpendList extends React.Component {
          }
         ).then(res => {
         this.setState({
-          totalSpend :[...res.data],
+          totalSpend :[...res.data.data],
+          sumAmount: res.data.sum,
           emptyDrop: true,
           show : false
       })
-      
+      onGetData(this.state.sumAmount);
         }).catch(err => {
           console.log(err)
         })
@@ -106,12 +118,42 @@ class SpendList extends React.Component {
     }
 
     render() {
-    
+      let iconList;
+      switch (this.props.mainTitle) {
+
+        case 'اجاره' : 
+        iconList = <FontAwesomeIcon icon={faHome} />
+          break;
+
+        case 'خوراک': 
+        iconList = <FontAwesomeIcon icon={faCoffee} />
+          break;
+
+        case 'پوشاک':
+        iconList = <FontAwesomeIcon icon={faTshirt} />
+          break;
+
+        case 'سلامت':
+        iconList = <FontAwesomeIcon icon={faHeart} />
+          break;
+
+        case 'تفریح': 
+        iconList = <FontAwesomeIcon icon={faBiking} />
+          break;
+
+        case 'سایر':
+        iconList = <FontAwesomeIcon icon={faBars} />
+          break;
+        
+      }
+     
+
+
         return (
             <div>
            
                   <ListGroupItem className="spend_list_group header">
-                      <div className="asset_list_img"><FontAwesomeIcon icon={faBars} /></div>
+                      <div className="asset_list_img">{iconList}</div>
                       
                       {this.props.mainTitle}
                       
@@ -125,7 +167,6 @@ class SpendList extends React.Component {
                   <div className="list_base_show">
                           
                   <Row >
-                    {this.state.test ? <div>helloo</div> : null}
                       <Col>
                 
                         <FormGroup className="form_base_part">
