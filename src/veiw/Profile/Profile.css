@@ -1,8 +1,8 @@
-
 body{
     background-color: lightgray;
 }
-.income_page {
+
+.profile_page {
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -10,44 +10,35 @@ body{
     background-color: lightgray;
 }
 
-.income_list {
+.profile_list {
     margin: 20px ;
     width: 90%;
     border-radius: 2%;
     background-color: white;
-    
 }
-.income_list_group {
+
+.profile_list_group {
     padding-right: 0;
-   
-    
 }
-.income_list_group_item {
-  text-align: right;
+
+.profile_list_group_item {
+    text-align: right;
 }
 .title{
     background-color:#07b0c3;
     padding: 2%
 }
 
-.income_btn {
-    float: left;   
-}
-
 .title_list {
     color: white;
-    font-size: 80%;
+    font-size: 100%;
     margin-right: 2%;
 }
 
-.title_whole {
-    padding:0;
-    font-size: 80%;
-    color:#7B8788;
+.title_part {
+    color: gray;
 }
 
-.title_amount {
-    font-size: 80%;
-    color:#1dd1a1;
-    float: left
+.even-child {
+    background-color: #f5f6fa;
 }
