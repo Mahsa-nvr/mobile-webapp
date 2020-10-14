@@ -36,6 +36,7 @@ class AssetPage extends React.Component {
               type: 2,
           }
           }).then(res => {
+              console.log(res.data.data, 'asset')
            this.setState({
             assetCat : res.data.data
            })

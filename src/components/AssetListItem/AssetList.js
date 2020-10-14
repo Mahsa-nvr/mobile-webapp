@@ -106,19 +106,19 @@ class AssetList extends React.Component {
      let iconn = null;
      switch (this.props.catId) {
 
-       case 3:
+       case 4:
          iconn = home;
          break;
 
-       case 4:
+       case 5:
         iconn = car;
         break;
 
-      case 5:
+      case 6:
         iconn = <div></div>
         break;
 
-      case 6:
+      case 7:
         iconn = credit;
         break;
 
@@ -133,7 +133,7 @@ class AssetList extends React.Component {
             <div>
              
             <ListGroupItem className="asset_list_group header">
-              { this.props.catId === 5 ?
+              { this.props.catId === 6 ?
                 <div className="asset_list_img"><FontAwesomeIcon icon={faBars} /></div>
              :  <div className="asset_list_img"><img src={iconn} alt=""/></div>
              }

@@ -5,9 +5,10 @@ import { HandleChange , handlePriceChange } from './../../share/Utility';
 import {  ListGroupItem, Button , Row, Col, Form, FormGroup, Label, Input} from 'reactstrap';
 import { AvForm, AvField } from 'availity-reactstrap-validation';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {  faBars , faMoneyCheck , faGift } from '@fortawesome/free-solid-svg-icons';
 // import {Animated} from "react-animated-css";
 
-import bankAccount from './../../assets/icons/secondIcons/bankAccount.png'
 import {API} from './../../Services/Config';
 //css
 import './ListItem.css';
@@ -105,10 +106,32 @@ class ListItem extends React.Component {
       
 
     render() { 
+ 
+      let iconList;
+      switch (this.props.mainTitle) {
+
+        case 'حقوق' : 
+        iconList = <FontAwesomeIcon icon={faMoneyCheck} />
+          break;
+
+        case 'هدیه': 
+        iconList = <FontAwesomeIcon icon={faGift} />
+          break;
+
+        case 'سایر':
+        iconList = <FontAwesomeIcon icon={faBars} />
+          break;
+
+          default:
+            iconList = null
+      }
+     
         return (      
             <div>                      
                   <ListGroupItem className="asset_list_title">                     
-                        <img src={bankAccount} alt=""/> {this.props.mainTitle}
+                  <div className="asset_list_img">{iconList}</div> 
+                        
+                        {this.props.mainTitle}
                         <div className="base_list_btnn">
                           <Button onClick={this.btnClick} className="list_btn">+</Button>
                         </div>
