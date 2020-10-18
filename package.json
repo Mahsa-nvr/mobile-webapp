@@ -29,6 +29,7 @@
     "react-datepicker2": "^3.3.11",
     "react-dom": "^16.13.1",
     "react-dropdown-select": "^4.5.2",
+    "react-number-format": "^4.4.1",
     "react-persian-calendar-date-picker": "^1.1.6",
     "react-persian-datepicker": "^3.0.2",
     "react-router": "^5.2.0",

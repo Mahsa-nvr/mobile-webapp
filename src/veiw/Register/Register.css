@@ -13,6 +13,7 @@ body {
     /* position: relative; */
 }
 .main_Reg {
+    height: 100vh;
     background-color:white;
 }
 
@@ -34,16 +35,20 @@ body {
    }
 
    .first_input {
-    margin-top: 40%;
+    margin-top: 140px;
       
    }
 
    .first_btn {
-    margin-top: 10%;
+    margin-top: 50px;
    }
 
    .second_btn {
-       margin-top: 5%;
+       margin-top: 20px;
        font-size: 12px;
    }
+
+   .main_col {
+       text-align: center;
+    }
    
