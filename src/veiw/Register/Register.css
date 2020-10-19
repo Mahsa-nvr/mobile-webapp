@@ -16,7 +16,14 @@ body {
     height: 100vh;
     background-color:white;
 }
-
+.empty_text {
+    border-radius: 5%;
+    border-color: red;
+}
+.full_text {
+    border-radius: 5%;
+   border-color: grey;
+}
 
 
 .register_second {
@@ -38,6 +45,7 @@ body {
     margin-top: 140px;
       
    }
+   
 
    .first_btn {
     margin-top: 50px;
