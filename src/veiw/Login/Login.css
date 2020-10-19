@@ -17,30 +17,12 @@ body {
     background-color:white;
 }
 .empty_text {
-    height: calc(1.5em + 0.75rem + 2px);
-    padding: 0.375rem 0.75rem;
-    width: 90%;
+    border-radius: 5%;
     border-color: red;
-
-    font-weight: 400;
-    line-height: 1.5;
-    background-clip: padding-box;
-    border: 1px solid #ced4da;
-    border-radius: 0.25rem;
-    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 .full_text {
-    height: calc(1.5em + 0.75rem + 2px);
-    padding: 0.375rem 0.75rem;
-    width: 90%;
+    border-radius: 5%;
    border-color: grey;
-
-   font-weight: 400;
-    line-height: 1.5;
-   background-clip: padding-box;
-    border: 1px solid #ced4da;
-    border-radius: 0.25rem;
-    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
 
@@ -60,8 +42,9 @@ body {
    }
 
    .first_input {
+    margin: auto;
     margin-top: 140px;
-      
+    width: 70%;
    }
    
 
@@ -69,12 +52,19 @@ body {
     margin-top: 50px;
    }
 
-   .second_btn {
+   .second_input {
+       margin: auto;
        margin-top: 20px;
        font-size: 12px;
+       width: 70%;
    }
 
    .main_col {
        text-align: center;
+    }
+
+    .second_btn {
+        margin-top: 30px;
+        font-size: 12px;
     }
    

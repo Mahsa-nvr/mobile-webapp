@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import  { API } from './../../Services/Config.js';
 import './Register.css';
-import { Button} from 'reactstrap';
+import { Button } from 'reactstrap';
 import NumberFormat from 'react-number-format';
 
 
@@ -35,7 +35,7 @@ class Register extends React.Component {
         var arr2= arr.includes('*')
         if (!arr2 ) {
             localStorage.setItem("inputPhone", this.state.inputPhone )
-            this.props.history.push('Defaultpage')
+            this.props.history.push('Login')
         }else{
             this.setState({
                 empty: true

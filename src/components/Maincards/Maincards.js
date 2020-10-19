@@ -37,14 +37,14 @@ class Maincards extends React.Component {
                            <div className="card_part" onClick={this.darayi}>
                                <img src={darayi} height="60"  alt=""/>
                                <div className="text_card">دارایی</div>
-                               <div className="status_card">وارد نشده</div>
+                               {/* <div className="status_card">وارد نشده</div> */}
                            </div>
                         </div>
                         <div className="col col_part">
                            <div className="card_part" onClick={this.sharee}>
                                <img src={sharee}  height="60" alt=""/>
                                <div className="text_card">وجوهات شرعی</div>
-                               <div className="status_card">وارد نشده</div>
+                               {/* <div className="status_card">وارد نشده</div> */}
                            </div>
                         </div>
                     </div>
@@ -53,14 +53,14 @@ class Maincards extends React.Component {
                             <div className="card_part" onClick={this.daramad}>
                                <img src={daramad}  height="60" alt=""/>
                                <div className="text_card">درآمد</div>
-                               <div className="status_card">وارد نشده</div>
+                               {/* <div className="status_card">وارد نشده</div> */}
                            </div>
                         </div>
                         <div className="col col_part">
                            <div className="card_part" onClick={this.spend}>
                                <img src={hazine}  height="60" alt=""/>
                                <div className="text_card">هزینه</div>
-                               <div className="status_card">وارد نشده</div>
+                               {/* <div className="status_card">وارد نشده</div> */}
                             </div>
                         </div>
                     </div>
