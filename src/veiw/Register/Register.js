@@ -7,7 +7,7 @@ import NumberFormat from 'react-number-format';
 
 
 import daryan from './../../assets/img/daryan.png';
-// import center from './../../assets/img/daryan.png'
+import center from './../../assets/img/center.png'
 import { withRouter } from "react-router-dom";
 
 class Register extends React.Component {
@@ -68,7 +68,9 @@ class Register extends React.Component {
             <div className="main_Reg"> 
                 <div className="register_first d-flex justify-content-center"> 
                
+                 
                   <div className="register_second d-flex mt-auto">
+                      
                       <img className="reg_sec_img" height={130} src={daryan} alt=""/>
                   </div> 
                 </div>

@@ -77,4 +77,13 @@ body {
    .main_col {
        text-align: center;
     }
+
+    .center_img {
+        margin-left: auto;
+    }
+
+    .top_img {
+        margin-top: 70px;
+        margin-right: -33px;
+    }
    
