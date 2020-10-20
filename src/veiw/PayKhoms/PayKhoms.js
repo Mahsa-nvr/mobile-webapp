@@ -6,6 +6,7 @@ import { withRouter } from "react-router-dom";
 
 import Header from './../../components/Header/Header';
 import MainTable from './../../components/MainTable/MainTable';
+import Footer from './../../components/Footer/Footer';
 
 import './PayKhoms.css';
 import daramad from './../../assets/icons/daramad.png'
@@ -83,7 +84,7 @@ class PayKhomse extends React.Component {
                      <div className="before_pay">شما باید مبلغ  <span>{this.state.mustAmountPay}</span> ریال را پرداخت کنید  </div>
                      <div className="btn_pay"><Button onClick={this.btnPay} color="success" style={{ backgroundColor:"#00b894",width: "60%" , fontSize:"12px"}}>پرداخت </Button></div>
                  </div>
-
+              <Footer />
            </div>
         )
     }

@@ -7,6 +7,7 @@ import axios from 'axios';
 import './Profile.css';
 //components
 import Header from './../../components/Header/Header';
+import Footer from './../../components/Footer/Footer';
 
 class Profile extends React.Component {
 
@@ -66,6 +67,7 @@ class Profile extends React.Component {
                     </ListGroup>
 
                 </div>
+                <Footer />
             </div>
         )
     }

@@ -6,6 +6,7 @@ import Maincards from './../../components/Maincards/Maincards';
 import Defaultchart from '../../components/Defaultchart/Defaultchart';
 import DefaultLineChart from './../../components/DefaultLineChart/DefaultLineChart';
 import HomeCrud from './../../components/Cruds/HomeCrud/HomeCrud';
+import Footer from './../../components/Footer/Footer';
 
 class Deafultpage extends React.Component {
     render() {
@@ -15,7 +16,8 @@ class Deafultpage extends React.Component {
                 <Maincards /> 
                 <Defaultchart />
                 <DefaultLineChart/>  
-                <HomeCrud />          
+                <HomeCrud />
+                <Footer />          
             </div>
         )
     }

@@ -13,6 +13,7 @@ import './AssetPage.css';
 
 //components
 import Header from './../../components/Header/Header';
+import Footer from './../../components/Footer/Footer';
 import AssetList from './../../components/AssetListItem/AssetList';
 
 
@@ -73,6 +74,7 @@ class AssetPage extends React.Component {
                      })}
                      </ListGroup>
                  </div>
+                 <Footer />
             
             </div>
         )

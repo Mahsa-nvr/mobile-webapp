@@ -8,7 +8,8 @@ import './Spend.css';
 
 //components 
 import Header from './../../components/Header/Header';
-import SpendList from './../../components/SpendListItem/SpendList'
+import SpendList from './../../components/SpendListItem/SpendList';
+import Footer from './../../components/Footer/Footer';
 
 
 class Spend extends React.Component {
@@ -60,6 +61,7 @@ class Spend extends React.Component {
                           
                       </ListGroup>
                   </div>
+                  <Footer />
             </div>
         )
     }

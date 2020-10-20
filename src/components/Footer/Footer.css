@@ -1,7 +1,15 @@
 .footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
     width: 100%;
-    background-color: #808e9b;
-    color: white;
-    text-align: center;
-    height: 7%;
+    background-color: white;
+    text-align: center;   
+}
+
+.each_part {
+    float: left;
+    width: 20%;
+    padding: 10px;
+    color:#07b0c3;
 }

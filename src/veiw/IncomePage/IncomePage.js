@@ -9,7 +9,7 @@ import { API } from './../../Services/Config';
 //components
 import Header from './../../components/Header/Header';
 import ListItem from './../../components/ListItem/ListItem';
-
+import Footer from './../../components/Footer/Footer';
 
 class IncomePage extends React.Component {
 
@@ -66,6 +66,8 @@ render() {
                })}
               </ListGroup>
               </div>
+
+              <Footer />
             </div>
     )
 }
