@@ -48,6 +48,7 @@ class Spend extends React.Component {
 
     render(){
         return (
+            <div>
             <div className="spend_page"> 
                 <Header />
                   <div className="spend_list">
@@ -61,7 +62,9 @@ class Spend extends React.Component {
                           
                       </ListGroup>
                   </div>
-                  <Footer />
+                  
+            </div>
+               <div><Footer /></div>
             </div>
         )
     }

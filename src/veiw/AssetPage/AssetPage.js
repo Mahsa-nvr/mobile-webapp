@@ -63,6 +63,7 @@ class AssetPage extends React.Component {
     render() {
   
         return (
+            <div>
             <div className="asset_page">
                 <Header />
                  <div className="asset_list">
@@ -74,8 +75,10 @@ class AssetPage extends React.Component {
                      })}
                      </ListGroup>
                  </div>
-                 <Footer />
+                 
             
+            </div>
+                <div><Footer /></div>
             </div>
         )
     }

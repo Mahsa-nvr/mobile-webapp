@@ -55,6 +55,7 @@ class IncomePage extends React.Component {
   
 render() {
     return (
+      <div>
         <div className="income_page">
             <Header />
               <div className="income_list">
@@ -67,7 +68,10 @@ render() {
               </ListGroup>
               </div>
 
-              <Footer />
+              
+            </div>
+            <div><Footer /></div>
+
             </div>
     )
 }

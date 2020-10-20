@@ -8,6 +8,7 @@ body{
     flex-direction: column;
     align-items: center;
     background-color: lightgray;
+    margin-bottom: 20%;
 }
 
 .income_list {
