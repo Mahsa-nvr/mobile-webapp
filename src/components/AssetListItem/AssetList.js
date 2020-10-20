@@ -24,11 +24,13 @@ class AssetList extends React.Component {
             show: false,
             inputName: '',
             inputAmount:'',
-            inputDate: 2222-56-23
+            inputDate: 2222-56-23,
+            totalSum: 0
         }
     }
 
     componentDidMount() {
+      const { onGetData } = this.props
         axios.get(`${API}income/index`, {
             params: {
                 user_id : 1,
@@ -36,9 +38,12 @@ class AssetList extends React.Component {
             }
            }
           ).then(res => {
+          
           this.setState({ 
-            totalAsset : [...res.data.data]
+            totalAsset : [...res.data.data],
+            totalSum: res.data.sum
           })
+          onGetData(this.state.totalSum)
           }).catch(err => {
             console.log(err)
           })
@@ -51,6 +56,8 @@ class AssetList extends React.Component {
     }
 //post api in asset page and recive update get method immediatly
     send = async (props) => {
+
+      const { onGetData } = this.props
 
       var bodyFormData = new FormData();
       bodyFormData.append('amount', this.state.inputAmount);
@@ -84,9 +91,9 @@ class AssetList extends React.Component {
         ).then(res => {
           this.setState({ 
             totalAsset : [...res.data.data],
-
+            totalSum : res.data.sum
         })
-        
+        onGetData(this.state.totalSum)
         }).catch(err => {
         console.log(err)
         })
@@ -168,7 +175,7 @@ class AssetList extends React.Component {
                               </Col>
                               <Col>
                                 
-                              {this.props.catId === 6 ? 
+                              {this.props.catId === 7 ? 
                                   <FormGroup className="form_base_part">
                                     <AvForm onChange={(e) => handlePriceChange.call(this, e)}>
                                     
@@ -251,7 +258,7 @@ class AssetList extends React.Component {
                          {li.category_name === 'حساب بانکی' ?
                         <span className="asset_list_part_amount">  {li.amount} <div className="credit_icon"><img src={iconn} alt=""/></div> </span>
                         : 
-                        <span className="asset_list_part_amount">{li.amount}</span>
+                        <span className="asset_list_part_amount">{li.amount} ریال</span>
                         }
                         </ListGroupItem>                   
                     })}

@@ -33,6 +33,7 @@ class ListItem extends React.Component {
       }
 
      componentDidMount() {
+       const { onGetData } = this.props
           axios.get(`${API}income/index`, {
             params: {
                 user_id : 1,
@@ -40,9 +41,13 @@ class ListItem extends React.Component {
             }
            }
           ).then(res => {
+            
           this.setState({ 
-            totalIncome : [...res.data.data]
+            totalIncome : [...res.data.data],
+            totalAmount: res.data.sum
           })
+          
+          onGetData(this.state.totalAmount)
           }).catch(err => {
             console.log(err)
           })
@@ -58,7 +63,7 @@ class ListItem extends React.Component {
       }
 
       send = async (props) => {
-        // console.log(this.state.inputDate)
+        const { onGetData } = this.props
      
       
         var bodyFormData = new FormData();
@@ -94,11 +99,18 @@ class ListItem extends React.Component {
         ).then(res => {
           this.setState({ 
           totalIncome : [...res.data.data],
-
+          totalAmount: res.data.sum
         })
+        onGetData(this.state.totalAmount)
         
         }).catch(err => {
         console.log(err)
+        })
+
+        this.setState({
+          inputName: "",
+          inputAmount: "",
+          show: false
         })
       }
 
@@ -106,6 +118,7 @@ class ListItem extends React.Component {
       
 
     render() { 
+     
  
       let iconList;
       switch (this.props.mainTitle) {
@@ -217,7 +230,7 @@ class ListItem extends React.Component {
                         if(li.category_name === this.props.mainTitle )            
                       return <ListGroupItem key={li.id} className="income_list_part">
                         {li.name}
-                        <span className="income_list_part_amount">{li.amount}</span>
+                        <span className="income_list_part_amount">{li.amount} ریال</span>
                         </ListGroupItem>                   
                     })}
  

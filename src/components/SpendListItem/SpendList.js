@@ -246,7 +246,7 @@ class SpendList extends React.Component {
                      if(parseInt(li.category_id) === this.props.catId) 
                      return <ListGroupItem  key={li.id} className="spend_list_part">
                          {li.name}
-                         <span className="asset_list_part_amount">{li.amount}</span>
+                         <span className="asset_list_part_amount">{li.amount} ریال</span>
                          </ListGroupItem>
                  }  )}
 

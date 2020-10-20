@@ -25,8 +25,7 @@ class AssetPage extends React.Component {
         super();
         this.state = {
             assetCat: [],
-            totalAssetAmount : '',
-           
+            totalAssetAmount : '',     
         }
     }
 
@@ -37,28 +36,20 @@ class AssetPage extends React.Component {
               type: 2,
           }
           }).then(res => {
-              console.log(res.data.data, 'asset')
            this.setState({
-            assetCat : res.data.data
+            assetCat :res.data.data ,
            })
           }).catch(err =>
              console.log('asset page' , err))
-
-
-             axios.get(`${API}income/index`, {
-                params: {
-                    user_id : 1,
-                    type: 1
-                }
-              }
-              ).then(res => {
-               this.setState({ 
-                totalAssetAmount : res.data.sum
-               })
-              }).catch(err => {
-              console.log(err)
-              })
     
+    }
+
+
+
+    handleGetData = (data) => {
+       this.setState({
+        totalAssetAmount : data
+       })
     }
     render() {
   
@@ -69,9 +60,9 @@ class AssetPage extends React.Component {
                  <div className="asset_list">
                      <ListGroup className="asset_list_group">
                      <ListGroupItem className="asset_list_group_item title"><img src={darayi} height={40} alt=""/><span className="title_list">دارایی</span></ListGroupItem>
-                     <ListGroupItem className="asset_list_group_item"><span className="title_whole">دارایی کل:</span><span className="title_amount">{this.state.totalAssetAmount} ریال</span></ListGroupItem>
+        <ListGroupItem className="asset_list_group_item"><span className="title_whole">دارایی کل:</span><span className="title_amount">{this.state.totalAssetAmount} ریال</span></ListGroupItem>
                      {this.state.assetCat.map(item => {             
-                         return <div key={item.id}><AssetList mainTitle={item.title} catId={item.id} />  </div>
+                         return <div key={item.id}><AssetList mainTitle={item.title} catId={item.id} onGetData={this.handleGetData} />  </div>
                      })}
                      </ListGroup>
                  </div>
