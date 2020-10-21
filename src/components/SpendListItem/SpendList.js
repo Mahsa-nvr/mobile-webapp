@@ -15,6 +15,7 @@ import './SpendList.css';
 
 //components
 import DropDownInput from './../DropDown/DropDownInput';
+import MainDate from './../mainDatePicker/MainDate'
 
 class SpendList extends React.Component {
 
@@ -215,16 +216,16 @@ class SpendList extends React.Component {
                              <FormGroup className="form_base_part">
                                <Label for="">تاریخ</Label>
                                <div className="date_picker">
-                                  
+                                  <MainDate />
                              
                                </div>
-                               <Input type="text" 
+                               {/* <Input type="text" 
                                       bsSize="sm" 
                                       width="50px"
                                       name="inputDate" 
                                       value={this.state.inputDate} 
                                       onChange={(e) => HandleChange.call(this, e)}  
-                                      />
+                                      /> */}
                              </FormGroup>
                            </Form>
                       </Col>
