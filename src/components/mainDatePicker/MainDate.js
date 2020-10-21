@@ -2,6 +2,7 @@ import React from 'react';
 import momentJalaali from 'moment-jalaali';
 import  DatePicker from 'react-datepicker2';
 // import moment from 'moment-jalaali'
+import './MainDate.css'
 
 export default class MainDate extends React.Component {
     constructor(props) {

@@ -215,7 +215,7 @@ class SpendList extends React.Component {
                            <Form>
                              <FormGroup className="form_base_part">
                                <Label for="">تاریخ</Label>
-                               <div className="date_picker">
+                               <div >
                                   <MainDate />
                              
                                </div>
