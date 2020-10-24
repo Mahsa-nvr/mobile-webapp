@@ -24,7 +24,7 @@ class SpendList extends React.Component {
         this.state = {
             inputName: "",
             inputAmount: "",
-            inputDate: 88888 ,
+            inputDate: "" ,
             totalSpend: [],
             inputDropDown:'',
             sumAmount: 0,
@@ -61,6 +61,10 @@ class SpendList extends React.Component {
     handleGetData = data => {
       console.log('get data from dropdown to spend page', data)
          this.setState({inputDropDown:data})   
+    }
+
+    handleGetFormatDate = formatDate => {
+      this.setState({inputDate:formatDate})
     }
 
     send = async(props) => {
@@ -216,7 +220,7 @@ class SpendList extends React.Component {
                              <FormGroup className="form_base_part">
                                <Label for="">تاریخ</Label>
                                <div >
-                                  <MainDate />
+                                  <MainDate onGetDate={this.handleGetFormatDate}/>
                              
                                </div>
                                {/* <Input type="text" 
