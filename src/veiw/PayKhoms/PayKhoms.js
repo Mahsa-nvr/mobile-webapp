@@ -60,7 +60,8 @@ class PayKhomse extends React.Component {
       }
       catch(err) {console.log('errrrr in pay page', err) }
 
-      this.props.history.push('/test')
+      window.location.href ='https://www.leader.ir/fa/monies'
+    
     }
 
 
@@ -82,7 +83,7 @@ class PayKhomse extends React.Component {
                <div className="part_khoms">
                      <div className="after_pay">شما تاکنون مبلغ <span className="after_pay_amount">{this.state.payAmount} </span> ریال خمس پرداخت کرده اید </div>
                      <div className="before_pay">شما باید مبلغ  <span>{this.state.mustAmountPay}</span> ریال را پرداخت کنید  </div>
-                     <div className="btn_pay"><Button onClick={this.btnPay} color="success" style={{ backgroundColor:"#00b894",width: "60%" , fontSize:"12px"}}>پرداخت </Button></div>
+                     <div className="btn_pay"><Button  onClick={this.btnPay} color="success" style={{ backgroundColor:"#00b894",width: "60%" , fontSize:"12px"}}>پرداخت </Button></div>
                  </div>
               <Footer />
            </div>

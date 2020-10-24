@@ -1,7 +1,8 @@
 
 body {
   background-color: white;
-
+  font-family:BYekan,'BYekan',tahoma !important;
+  font-weight: bold;
 }
 .app {
   margin:0;

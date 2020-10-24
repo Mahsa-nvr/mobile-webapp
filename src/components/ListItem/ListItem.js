@@ -2,7 +2,7 @@
 import React from 'react';
 import axios from 'axios';
 import { HandleChange , handlePriceChange } from './../../share/Utility';
-import {  ListGroupItem, Button , Row, Col, Form, FormGroup, Label, Input} from 'reactstrap';
+import {  ListGroupItem, Button , Row, Col, Form, FormGroup, Label} from 'reactstrap';
 import { AvForm, AvField } from 'availity-reactstrap-validation';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -14,7 +14,8 @@ import {API} from './../../Services/Config';
 import './ListItem.css';
 
 //components
-// import MainDatePicker from './../../share/MainDatePicker';
+import MainDate from './../mainDatePicker/MainDate';
+
 
 class ListItem extends React.Component {
 
@@ -23,7 +24,7 @@ class ListItem extends React.Component {
         this.state = {
           inputName: "",
           inputAmount: "",
-          inputDate: 2222-56-23,
+          inputDate: "",
           isVisible : false,
           show: false,
           totalIncome: [],
@@ -114,7 +115,10 @@ class ListItem extends React.Component {
         })
       }
 
-     
+      handleGetFormatDate = formatDate => {
+        this.setState({inputDate:formatDate})
+      }
+  
       
 
     render() { 
@@ -201,22 +205,17 @@ class ListItem extends React.Component {
                                         <Form>
                                           <FormGroup className="form_base_part">
                                             <Label for="">تاریخ</Label>
-                                            <div className="date_picker">
-                                               
+                                            <div>
+                                            <MainDate onGetDate={this.handleGetFormatDate}/>
                                           
                                             </div>
-                                            <Input type="date" 
-                                                   bsSize="sm" 
-                                                   name="inputDate" 
-                                                   value={this.state.inputDate} 
-                                                   onChange={(e) => HandleChange.call(this, e)}  
-                                                   />
+                                         
                                           </FormGroup>
                                         </Form>
                                    </Col>
                                    <Col>
                                      <div className="form_part_send_btn">
-                                     <Button className="send_btn" color="primary" onClick={this.send}> ارسال</Button>
+                                     <Button className="send_btn"  color="primary" onClick={this.send}> ارسال</Button>
                                      </div>
                                      </Col>
                                </Row> 

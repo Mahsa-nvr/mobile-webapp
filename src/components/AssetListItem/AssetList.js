@@ -3,7 +3,7 @@ import axios from 'axios';
 import './AssetList.css'
 import {API} from './../../Services/Config';
 import { HandleChange , handlePriceChange } from './../../share/Utility';
-import {  ListGroupItem, Button , Row, Col, Form, FormGroup, Label, Input} from 'reactstrap';
+import {  ListGroupItem, Button , Row, Col, Form, FormGroup, Label} from 'reactstrap';
 import { AvForm, AvField } from 'availity-reactstrap-validation';
 // import {InputList} from './../../share/InputList'
 
@@ -15,6 +15,10 @@ import home from './../../assets/icons/secondIcons/home.png';
 import car from './../../assets/icons/secondIcons/car.png';
 import credit from './../../assets/icons/secondIcons/credit.png';
 
+//components
+import MainDate from './../mainDatePicker/MainDate';
+
+
 class AssetList extends React.Component {
 
     constructor(props) {
@@ -24,7 +28,8 @@ class AssetList extends React.Component {
             show: false,
             inputName: '',
             inputAmount:'',
-            inputDate: 2222-56-23,
+            inputDate: '',
+            inputAccountNum:'',
             totalSum: 0
         }
     }
@@ -60,6 +65,7 @@ class AssetList extends React.Component {
       const { onGetData } = this.props
 
       var bodyFormData = new FormData();
+      bodyFormData.append('description', this.state.inputAccountNum);
       bodyFormData.append('amount', this.state.inputAmount);
       bodyFormData.append('name', this.state.inputName);
       bodyFormData.append('categoryID', this.props.catId);
@@ -102,10 +108,15 @@ class AssetList extends React.Component {
           show: false,
           inputName: '',
           inputAmount:'',
+          inputAccountNum:''
         })
 
     }
 
+
+    handleGetFormatDate = formatDate => {
+      this.setState({inputDate:formatDate})
+    }
 
     
 
@@ -181,10 +192,10 @@ class AssetList extends React.Component {
                                     
                                      
                                       <AvField 
-                                       name="inputAmount"
+                                       name="inputAccountNum"
                                        label="شماره حساب" 
                                        type="text" 
-                                       value={this.state.inputAmount}                                            
+                                       value={this.state.inputAccountNum}                                            
                                        errorMessage="شماره حساب را وارد کنید" 
                                        validate={{
                                                   number: true,
@@ -226,16 +237,16 @@ class AssetList extends React.Component {
                                      <Form>
                                        <FormGroup className="form_base_part">
                                          <Label for="">تاریخ</Label>
-                                         <div className="date_picker">
+                                         <div>
                                             
-                                       
+                                           <MainDate onGetDate={this.handleGetFormatDate}/>
                                          </div>
-                                         <Input type="date" 
+                                         {/* <Input type="date" 
                                                 bsSize="sm" 
                                                 name="inputDate" 
                                                 value={this.state.inputDate} 
                                                 onChange={(e) => HandleChange.call(this, e)}  
-                                                />
+                                                /> */}
                                        </FormGroup>
                                      </Form>
                                 </Col>
@@ -256,7 +267,7 @@ class AssetList extends React.Component {
                       return <ListGroupItem key={li.id} className="asset_list_part">
                         {li.name}
                          {li.category_name === 'حساب بانکی' ?
-                        <span className="asset_list_part_amount">  {li.amount} <div className="credit_icon"><img src={iconn} alt=""/></div> </span>
+                        <span className="asset_list_part_amount">  {li.description} <div className="credit_icon"><img src={iconn} alt=""/></div> </span>
                         : 
                         <span className="asset_list_part_amount">{li.amount} ریال</span>
                         }

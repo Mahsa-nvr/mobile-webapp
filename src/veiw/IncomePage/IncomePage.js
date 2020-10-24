@@ -38,7 +38,6 @@ class IncomePage extends React.Component {
   }
 
   handleGetData = (data) => {
-   
    this.setState({
     totalAmount: data
    })
@@ -50,7 +49,7 @@ render() {
       <div >
         <div className="income_page">
             <Header />
-              <div className="income_list">
+              <div className="incomee_list">
                <ListGroup className="income_list_group">
                  <ListGroupItem className="income_list_group_item title"><img src={daramad} height={40} alt=""/><span className="title_list">درآمد</span></ListGroupItem>
                  <ListGroupItem className="income_list_group_item"><span className="title_whole">درآمد کل:</span><span className="title_amount">{this.state.totalAmount} ریال</span></ListGroupItem>

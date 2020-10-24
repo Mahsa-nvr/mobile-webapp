@@ -18,7 +18,7 @@ class Spend extends React.Component {
         super();
         this.state = {
             spendCat: [],
-            sum: ''
+            sum: 0
         }
     }
 
