@@ -66,7 +66,7 @@ return item.id = index+1
     return (
 <div>
 <ConfigProvider direction="rtl" >
-     <Table  pagination={{ pageSize: 6 }}  key={this.state.payData} columns={columns} dataSource={this.state.payData}  scroll={{ y: 240 }} />
+     <Table  pagination={{ pageSize: 4 }}  key={this.state.payData} columns={columns} dataSource={this.state.payData}  scroll={{ y: 240 }} />
 </ConfigProvider>
 </div>
     )
