@@ -62,9 +62,8 @@ class PayKhomse extends React.Component {
             'Content-Type':'multipart/form-data'
          },
          data: bodyFormData,
-        }).then(res => 
-          console.log(res) 
-          //  window.location.href ='https://www.leader.ir/fa/monies'
+        }).then(res =>   
+           window.location.href ='https://www.leader.ir/fa/monies'
            )
       }
       catch(err) {console.log('errrrr in pay page', err) }

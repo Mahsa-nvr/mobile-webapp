@@ -215,13 +215,13 @@ class AssetList extends React.Component {
                                          <AvField 
                                           name="inputAmount"
                                           label="قیمت " 
-                                          type="text" 
+                                          type="number" 
                                           value={this.state.inputAmount}                                            
                                           errorMessage="قیمت را وارد کنید" 
                                           validate={{
                                                      number: true,
                                                      required: {value: true, errorMessage:"قیمت را وارد کنید"},
-                                                     pattern: {value: '^[۱۲۳۴۵۶۷۸۹۰0-9]+$'},                                                
+                                                    //  pattern: {value: '^[۱۲۳۴۵۶۷۸۹۰0-9]+$'},                                                
                                                    }} /> 
                                                  
                                  
