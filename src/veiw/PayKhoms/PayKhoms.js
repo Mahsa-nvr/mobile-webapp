@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { API } from './../../Services/Config';
 import { ListGroup, ListGroupItem ,Button} from 'reactstrap';
+import NumberFormat from 'react-number-format';
 import { withRouter } from "react-router-dom";
 
 import Header from './../../components/Header/Header';
@@ -43,9 +44,14 @@ class PayKhomse extends React.Component {
     }
 
     btnPay = async() => {
-     
+
+      const timeMs = Math.round(new Date() / 1000);
+      var roundAmount = Math.ceil(this.state.mustAmountPay);
+      console.log(timeMs);
+
       var bodyFormData = new FormData();
-      bodyFormData.append('amount', this.state.mustAmountPay);
+      bodyFormData.append('amount', roundAmount);
+      bodyFormData.append('date', timeMs);
       bodyFormData.append('user_id', 1 );
 
       try{
@@ -56,12 +62,12 @@ class PayKhomse extends React.Component {
             'Content-Type':'multipart/form-data'
          },
          data: bodyFormData,
-        }).then(res => console.log('send pay amount in paykhoms page', res))
+        }).then(res => 
+          console.log(res) 
+          //  window.location.href ='https://www.leader.ir/fa/monies'
+           )
       }
       catch(err) {console.log('errrrr in pay page', err) }
-
-      window.location.href ='https://www.leader.ir/fa/monies'
-    
     }
 
 
@@ -81,8 +87,12 @@ class PayKhomse extends React.Component {
                </div>
 
                <div className="part_khoms">
-                     <div className="after_pay">شما تاکنون مبلغ <span className="after_pay_amount">{this.state.payAmount} </span> ریال خمس پرداخت کرده اید </div>
-                     <div className="before_pay">شما باید مبلغ  <span>{this.state.mustAmountPay}</span> ریال را پرداخت کنید  </div>
+                     <div className="after_pay">شما تاکنون مبلغ <span className="after_pay_amount">
+                     <NumberFormat value={this.state.payAmount} displayType={'text'} thousandSeparator={true}  renderText={value => <div style={{display:"inline-block"}}>{value}</div>} />
+                       </span> ریال خمس پرداخت کرده اید </div>
+                     <div className="before_pay">شما باید مبلغ  <span>
+                     <NumberFormat value={this.state.mustAmountPay} displayType={'text'} thousandSeparator={true}  renderText={value => <div style={{display:"inline-block"}}>{value}</div>} />
+                       </span> ریال را پرداخت کنید  </div>
                      <div className="btn_pay"><Button  onClick={this.btnPay} color="success" style={{ backgroundColor:"#00b894",width: "60%" , fontSize:"12px"}}>پرداخت </Button></div>
                  </div>
               <Footer />

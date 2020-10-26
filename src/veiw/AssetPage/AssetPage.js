@@ -3,6 +3,7 @@ import { ListGroup, ListGroupItem } from 'reactstrap';
 import darayi from './../../assets/icons/darayi.png';
 import { API } from './../../Services/Config';
 import axios from 'axios';
+import NumberFormat from 'react-number-format';
 
 //import css files 
 import './AssetPage.css';
@@ -60,7 +61,9 @@ class AssetPage extends React.Component {
                  <div className="asset_list">
                      <ListGroup className="asset_list_group">
                      <ListGroupItem className="asset_list_group_item title"><img src={darayi} height={40} alt=""/><span className="title_list">دارایی</span></ListGroupItem>
-                     <ListGroupItem className="asset_list_group_item"><span className="title_whole">دارایی کل:</span><span className="title_amount">{this.state.totalAssetAmount} ریال</span></ListGroupItem>
+                     <ListGroupItem className="asset_list_group_item"><span className="title_whole">دارایی کل:</span><span className="title_amount">
+                       <NumberFormat value={this.state.totalAssetAmount} displayType={'text'} thousandSeparator={true}  renderText={value => <div>{value} ریال</div>} />                     
+                         </span></ListGroupItem>
                      {this.state.assetCat.map(item => {             
                          return <div key={item.id}><AssetList mainTitle={item.title} catId={item.id} onGetData={this.handleGetData} />  </div>
                      })}

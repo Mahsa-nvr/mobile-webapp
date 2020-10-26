@@ -4,6 +4,7 @@ import './IncomePage.css';
 import daramad from './../../assets/icons/daramad.png'
 import { ListGroup, ListGroupItem } from 'reactstrap';
 import { API } from './../../Services/Config';
+import NumberFormat from 'react-number-format';
 
 
 //components
@@ -52,7 +53,9 @@ render() {
               <div className="incomee_list">
                <ListGroup className="income_list_group">
                  <ListGroupItem className="income_list_group_item title"><img src={daramad} height={40} alt=""/><span className="title_list">درآمد</span></ListGroupItem>
-                 <ListGroupItem className="income_list_group_item"><span className="title_whole">درآمد کل:</span><span className="title_amount">{this.state.totalAmount} ریال</span></ListGroupItem>
+                 <ListGroupItem className="income_list_group_item"><span className="title_whole">درآمد کل:</span><span className="title_amount">
+                 <NumberFormat value={this.state.totalAmount} displayType={'text'} thousandSeparator={true}  renderText={value => <div>{value} ریال</div>} />
+                   </span></ListGroupItem>
                {this.state.incomeCat.map(el => {
                  return  <div key={el.id}><ListItem  mainTitle={el.title} catId={el.id} onGetData={this.handleGetData}/></div>
                })}

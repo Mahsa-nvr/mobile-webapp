@@ -5,6 +5,8 @@ import {API} from './../../Services/Config';
 import { HandleChange , handlePriceChange } from './../../share/Utility';
 import {  ListGroupItem, Button , Row, Col, Form, FormGroup, Label} from 'reactstrap';
 import { AvForm, AvField } from 'availity-reactstrap-validation';
+import NumberFormat from 'react-number-format';
+
 // import {InputList} from './../../share/InputList'
 
 
@@ -172,13 +174,13 @@ class AssetList extends React.Component {
                                     <AvForm  onChange={(e) => HandleChange.call(this, e)} >
                                       <AvField 
                                        name="inputName"
-                                       label="نام" 
+                                       label="شرح" 
                                        type="text" 
                                        value={this.state.inputName}                                         
-                                       errorMessage="نام را وارد کنید" 
+                                       errorMessage="شرح را وارد کنید" 
                                        validate={{
                                                   required: {value: true},
-                                                  pattern: {value: '^[A-Za-z0-9پچجحخهعغفقثصضشسیبلاتنمکگوئدذرزطظژؤإأءًٌٍَُِّs]+$'}, 
+                                                  // pattern: {value: '^[A-Za-z0-9پچجحخهعغفقثصضشسیبلاتنمکگوئدذرزطظژؤإأءًٌٍَُِّs]+$'}, 
                                                 }} />
                                     </AvForm>
                                   </FormGroup>
@@ -200,7 +202,7 @@ class AssetList extends React.Component {
                                        validate={{
                                                   number: true,
                                                   required: {value: true, errorMessage:"شماره حساب را وارد کنید"},
-                                                  pattern: {value: '^[0-9]+$'},                                                
+                                                  pattern: {value: '^[۱۲۳۴۵۶۷۸۹۰0-9]+$'},                                                
                                                 }} /> 
                                               
                               
@@ -219,7 +221,7 @@ class AssetList extends React.Component {
                                           validate={{
                                                      number: true,
                                                      required: {value: true, errorMessage:"قیمت را وارد کنید"},
-                                                     pattern: {value: '^[0-9]+$'},                                                
+                                                     pattern: {value: '^[۱۲۳۴۵۶۷۸۹۰0-9]+$'},                                                
                                                    }} /> 
                                                  
                                  
@@ -269,7 +271,9 @@ class AssetList extends React.Component {
                          {li.category_name === 'حساب بانکی' ?
                         <span className="asset_list_part_amount">  {li.description} <div className="credit_icon"><img src={iconn} alt=""/></div> </span>
                         : 
-                        <span className="asset_list_part_amount">{li.amount} ریال</span>
+                        <span className="asset_list_part_amount">
+                          <NumberFormat value={li.amount} displayType={'text'} thousandSeparator={true}  renderText={value => <div>{value} ریال</div>} />
+                        </span>
                         }
                         </ListGroupItem>                   
                     })}

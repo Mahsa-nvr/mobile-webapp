@@ -6,6 +6,7 @@ import {API} from './../../Services/Config';
 import { HandleChange , handlePriceChange } from './../../share/Utility';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome , faCoffee, faBars , faBiking , faTshirt, faHeart } from '@fortawesome/free-solid-svg-icons';
+import NumberFormat from 'react-number-format';
 
 //faHome ejare
 //faBiking tafrih
@@ -179,13 +180,13 @@ class SpendList extends React.Component {
                           <AvForm  onChange={(e) => HandleChange.call(this, e)} >
                             <AvField 
                              name="inputName"
-                             label="نام" 
+                             label="شرح" 
                              type="text" 
                              value={this.state.inputName}                                         
-                             errorMessage="نام را وارد کنید" 
+                             errorMessage="شرح را وارد کنید" 
                              validate={{
                                         required: {value: true},
-                                        pattern: {value: '^[A-Za-z0-9پچجحخهعغفقثصضشسیبلاتنمکگوئدذرزطظژؤإأءًٌٍَُِّs]+$'}, 
+                                        // pattern: {value: '^[A-Za-z0-9پچجحخهعغفقثصضشسیبلاتنمکگوئدذرزطظژؤإأءًٌٍَُِّs]+$'}, 
                                       }} />
                           </AvForm>
                         </FormGroup>
@@ -205,7 +206,7 @@ class SpendList extends React.Component {
                              validate={{
                                         number: true,
                                         required: {value: true, errorMessage:"قیمت را وارد کنید"},
-                                        pattern: {value: '^[0-9]+$'},                                                
+                                        pattern: {value: '^[۱۲۳۴۵۶۷۸۹۰0-9]+$'},                                                
                                       }} />
                             
                    
@@ -251,7 +252,9 @@ class SpendList extends React.Component {
                      if(parseInt(li.category_id) === this.props.catId) 
                      return <ListGroupItem  key={li.id} className="spend_list_part">
                          {li.name}
-                         <span className="asset_list_part_amount">{li.amount} ریال</span>
+                         <span className="asset_list_part_amount">
+                         <NumberFormat value={li.amount} displayType={'text'} thousandSeparator={true}  renderText={value => <div>{value} ریال</div>} />
+                           </span>
                          </ListGroupItem>
                  }  )}
 
