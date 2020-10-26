@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import {API} from './../../Services/Config';
 import { Table, ConfigProvider } from 'antd';
-import NumberFormat from 'react-number-format';
+// import NumberFormat from 'react-number-format';
 
 class MainTable extends React.Component {
   state={
