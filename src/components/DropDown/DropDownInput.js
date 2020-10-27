@@ -37,7 +37,7 @@ class DropDownInput extends React.Component {
     return (
       <div>
       <Select
-        placeholder={this.props.emptyDrop ? "انتخاب هزینه..." : <span className="text-danger">انتخاب هزینه...</span>}
+        placeholder={this.props.emptyDrop ? "انتخاب منبع..." : <span className="text-danger">انتخاب هزینه...</span>}
         value={selectedOption}
         onChange={this.handleChange}
         options={options}

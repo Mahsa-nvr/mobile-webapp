@@ -188,7 +188,7 @@ class ListItem extends React.Component {
                                          <AvField 
                                           name="inputAmount"
                                           isNumericString={true} 
-                                          label="قیمت" 
+                                          label="قیمت (ریال) " 
                                           type="number" 
                                           value={this.state.inputAmount}                                            
                                           errorMessage="قیمت را وارد کنید" 

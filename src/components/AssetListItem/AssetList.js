@@ -214,7 +214,7 @@ class AssetList extends React.Component {
                                         
                                          <AvField 
                                           name="inputAmount"
-                                          label="قیمت " 
+                                          label="قیمت (ریال) "  
                                           type="number" 
                                           value={this.state.inputAmount}                                            
                                           errorMessage="قیمت را وارد کنید" 

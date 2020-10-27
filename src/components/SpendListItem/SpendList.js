@@ -199,7 +199,7 @@ class SpendList extends React.Component {
                           
                             <AvField 
                              name="inputAmount"
-                             label="قیمت" 
+                             label="قیمت (ریال) " 
                              type="number" 
                              value={this.state.inputAmount}                                            
                              errorMessage="قیمت را وارد کنید" 
@@ -235,7 +235,7 @@ class SpendList extends React.Component {
                            </Form>
                       </Col>
                       <Col>
-                         <div className="title_input_spend">نوع هزینه</div> 
+                         <div className="title_input_spend">منبع دارایی </div> 
                           <div className="drop">
                             <DropDownInput onGetData={this.handleGetData} emptyDrop={this.state.emptyDrop} /></div>                      
                         </Col>

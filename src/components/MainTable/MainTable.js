@@ -53,7 +53,7 @@ class MainTable extends React.Component {
         dataIndex: 'date',
       },
       {
-        title: 'قیمت',
+        title: "قیمت (ریال) " ,
         dataIndex: 'amount',
       },
     ];
