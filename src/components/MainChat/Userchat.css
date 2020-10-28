@@ -1,0 +1,16 @@
+.user_chat {
+    float: right;
+    margin-right: 2%;
+    margin-top: 2%; 
+    text-align: center
+}
+
+.user_part1 {
+    padding: 2%;
+    font-size: 12px;
+    width: 100px;
+    background-color:#f1f2f6;
+    border-radius:50% ;
+    color: #8395a7;
+   
+}
