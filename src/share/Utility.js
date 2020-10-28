@@ -11,18 +11,21 @@ export function HandleChange(e) {
 
 export function handlePriceChange(e) {
     // eslint-disable-next-line no-unused-vars
-    let str1= "";
+
     //  str1 = e.target.value.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+    //  e.target.value = e.target.value.replace(',', '');  
+    //  str1 = new Intl.NumberFormat().format(e.target.value);
+    const inputValue = e.target.value.split(',').join('');     
+   e.target.value = new Intl.NumberFormat().format(inputValue);
+  
    
 
-    //  e.target.value  =     e.target.value.replace(',', ''); 
-  
-   // str1 = new Intl.NumberFormat().format(e.target.value)
-  
     const {name, value } = e.target;
     this.setState({
         [name] : value
     })
+
+
 }
 
 

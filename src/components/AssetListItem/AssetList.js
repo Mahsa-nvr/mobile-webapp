@@ -64,11 +64,14 @@ class AssetList extends React.Component {
 //post api in asset page and recive update get method immediatly
     send = async (props) => {
 
+      const value = this.state.inputAmount   
+      const price = value.replace(/,/g, "");
+    
       const { onGetData } = this.props
 
       var bodyFormData = new FormData();
       bodyFormData.append('description', this.state.inputAccountNum);
-      bodyFormData.append('amount', this.state.inputAmount);
+      bodyFormData.append('amount', price);
       bodyFormData.append('name', this.state.inputName);
       bodyFormData.append('categoryID', this.props.catId);
       bodyFormData.append('date', this.state.inputDate );
@@ -215,13 +218,13 @@ class AssetList extends React.Component {
                                          <AvField 
                                           name="inputAmount"
                                           label="قیمت (ریال) "  
-                                          type="number" 
+                                          type="text" 
                                           value={this.state.inputAmount}                                            
                                           errorMessage="قیمت را وارد کنید" 
                                           validate={{
-                                                     number: true,
+                                                    //  number: true,
                                                      required: {value: true, errorMessage:"قیمت را وارد کنید"},
-                                                    //  pattern: {value: '^[۱۲۳۴۵۶۷۸۹۰0-9]+$'},                                                
+                                                     pattern: {value: '^[\u06F0-\u06F90-9,]+$'},                                                
                                                    }} /> 
                                                  
                                  

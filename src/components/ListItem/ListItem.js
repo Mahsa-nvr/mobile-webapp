@@ -65,11 +65,15 @@ class ListItem extends React.Component {
       }
 
       send = async (props) => {
+
+        const value = this.state.inputAmount   
+      const price = value.replace(/,/g, "");
+
         const { onGetData } = this.props
      
       
         var bodyFormData = new FormData();
-        bodyFormData.append('amount', this.state.inputAmount);
+        bodyFormData.append('amount', price);
         bodyFormData.append('name', this.state.inputName);
         bodyFormData.append('categoryID', this.props.catId);
         bodyFormData.append('date', this.state.inputDate );
@@ -187,15 +191,15 @@ class ListItem extends React.Component {
                                        
                                          <AvField 
                                           name="inputAmount"
-                                          isNumericString={true} 
+                                          // isNumericString={true} 
                                           label="قیمت (ریال) " 
-                                          type="number" 
+                                          type="text" 
                                           value={this.state.inputAmount}                                            
                                           errorMessage="قیمت را وارد کنید" 
                                           validate={{
-                                                     number: true,
+                                                    //  number: true,
                                                      required: {value: true, errorMessage:"قیمت را وارد کنید"},
-                                                    //  pattern: {value: '^[۱۲۳۴۵۶۷۸۹۰0-9]+$'},                                                
+                                                     pattern: {value: '^[\u06F0-\u06F90-9,]+$'},
                                                    }} />
                                          
                                 
