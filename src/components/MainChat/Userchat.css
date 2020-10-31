@@ -2,7 +2,8 @@
     float: right;
     margin-right: 2%;
     margin-top: 2%; 
-    text-align: center
+    text-align: center;
+    
 }
 
 .user_part1 {
@@ -12,5 +13,15 @@
     background-color:#f1f2f6;
     border-radius:50% ;
     color: #8395a7;
-   
+    margin-bottom: 1%;
+}
+.user_chat_part1 {
+    font-size:12px;
+    margin-top: 2px;
+    padding: 3%;
+    border-radius: 3%;
+    width: 270px;
+    background-color: #ecf0f1;
+    text-align: right;
+    white-space: pre-wrap; 
 }

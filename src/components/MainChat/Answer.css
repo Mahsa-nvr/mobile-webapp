@@ -1,0 +1,27 @@
+.answer_chat {
+  margin-left: 2%;
+  margin-top: 2%; 
+  text-align: center;
+  float: left;
+}
+
+.answer_part1 {
+    padding: 2%;
+    font-size: 12px;
+    width: 105px;
+    background-color:#abe6eb;
+    border-radius:50% ;
+    /* color: white; */
+    margin-bottom: 1%; 
+}
+
+.answer_chat_part1 {
+    font-size:12px;
+    margin-top: 2px;
+    padding: 3%;
+    border-radius: 3%;
+    width: 270px;
+    background-color: #d8f5f7;
+    text-align: right;
+    white-space: pre-wrap; 
+}
