@@ -10,6 +10,7 @@
     height: 500px;
     border-radius: 2%;
    
+   
 }
 .title_part {
     height: 40px;
@@ -31,5 +32,10 @@
     float: right;
     margin-right: 3%;
     margin-top: 2%;  
+}
+
+.center_main {
+    border-radius: 2%;
+    /* overflow-y: scroll; */
 }
 

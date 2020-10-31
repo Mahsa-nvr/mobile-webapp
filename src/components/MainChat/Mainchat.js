@@ -7,6 +7,8 @@ import {   faComment  } from '@fortawesome/free-solid-svg-icons';
 //components 
 import Userchat from './Userchat';
 import Answer from './Answer';
+import ModalChat from './../Modalchat/Modalchat';
+
 
 class Mainchat extends React.Component {
     constructor(props) {
@@ -37,6 +39,7 @@ class Mainchat extends React.Component {
                        <span className="title_icon"><FontAwesomeIcon icon={faComment} /></span>
                         <span className="title_text"> پرسش و پاسخ</span>                       
                    </div>
+                   <div className="center_main">
                    {this.state.chat.map((item , index)=> {
                    return   (<div key={index}> 
                                 <Userchat  question={item.Q} /> 
@@ -47,8 +50,9 @@ class Mainchat extends React.Component {
                   {this.state.addQuestion.map((item , index) => {
                        return (<div key={index}>  <Userchat  question={item} /> </div>)
                    })}
-                    
+                    </div>
                 </div>
+                <div>< ModalChat /></div>
             </div>
         )
     }
