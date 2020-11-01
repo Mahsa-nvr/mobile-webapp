@@ -6,12 +6,13 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Input, Label, Form,
 const ModalChat = (props) => {
     const {
       buttonLabel,
-      className
+      className, 
+      getData
     } = props;
   
     const [modal, setModal] = useState(false);
     const [unmountOnClose, setUnmountOnClose] = useState(true);
-    
+    const [inputValue, setInputValue] = useState('')
   
     const toggle = () => setModal(!modal)
     const changeUnmountOnClose = e => {
@@ -19,7 +20,16 @@ const ModalChat = (props) => {
         setUnmountOnClose(JSON.parse(value));
     }
 
-    const add = () => console.log('add')
+    const handleChange= e => {
+        let value = e.target.value
+        setInputValue(value)
+    }
+
+    const add = () => {
+       getData(inputValue)
+       setModal(false)
+       setInputValue('')
+    }
   
     return (
         <div>
@@ -37,7 +47,7 @@ const ModalChat = (props) => {
             <Modal isOpen={modal} toggle={toggle} className={className} unmountOnClose={unmountOnClose}>
                 <ModalHeader toggle={toggle}>ثبت پرسش جدید </ModalHeader>
                 <ModalBody>
-                    <Input  type="textarea"  rows={5} />
+                    <Input  type="textarea" value={inputValue} onChange={handleChange} rows={5} />
                 </ModalBody>
                 <ModalFooter>
                     <Button color="primary" onClick={add}>ثبت</Button>{' '}

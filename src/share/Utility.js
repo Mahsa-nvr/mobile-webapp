@@ -28,6 +28,9 @@ export function handlePriceChange(e) {
 
 }
 
+export function passData(data) {
+   return {data}
+}
 
 
 export function sumArray(arr) {

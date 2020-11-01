@@ -4,6 +4,8 @@ import './MainChat.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {   faComment  } from '@fortawesome/free-solid-svg-icons';
 
+
+
 //components 
 import Userchat from './Userchat';
 import Answer from './Answer';
@@ -28,10 +30,18 @@ class Mainchat extends React.Component {
             //     A:"اگر جزء منفعت کسب محسوب شود ، حکم سایر درآمدهای کسب را در وجوب خمس دارد"
             //    }
           ],
-          addQuestion:["سوال 111111", "سوال 22222222"]
+          addQuestion:[]
         }
     }
+    handleGetData = (data) => {
+    this.setState({
+        addQuestion: [...this.state.addQuestion , data]
+    })
+    }
+
+ 
     render() {
+     
         return (
             <div>
                 <div className="main_chat">
@@ -52,7 +62,7 @@ class Mainchat extends React.Component {
                    })}
                     </div>
                 </div>
-                <div>< ModalChat /></div>
+                {/* <div>< ModalChat getData={this.handleGetData}/></div> */}
             </div>
         )
     }
