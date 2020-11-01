@@ -1,4 +1,13 @@
 
+.chatt {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    width: 90%;
+    margin-right: 5%;
+    margin-top: 5%;
+    border-radius: 2%;
+}
 
 .main_chat {
     display: flex;
@@ -9,7 +18,7 @@
     margin-top: 5%;
     height: 500px;
     border-radius: 2%;
-   
+    overflow-x: scroll;
    
 }
 .title_part {
@@ -37,5 +46,10 @@
 .center_main {
     border-radius: 2%;
     overflow-x: scroll;
+}
+
+.btn_modal {
+    margin-top: 10px;
+    margin-right: 20px;
 }
 

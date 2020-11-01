@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Input, Label, Form, FormGroup } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Input, Form, FormGroup } from 'reactstrap';
 
 
 
@@ -15,10 +15,10 @@ const ModalChat = (props) => {
     const [inputValue, setInputValue] = useState('')
   
     const toggle = () => setModal(!modal)
-    const changeUnmountOnClose = e => {
-        let value = e.target.value;
-        setUnmountOnClose(JSON.parse(value));
-    }
+    // const changeUnmountOnClose = e => {
+    //     let value = e.target.value;
+    //     setUnmountOnClose(JSON.parse(value));
+    // }
 
     const handleChange= e => {
         let value = e.target.value
@@ -26,6 +26,7 @@ const ModalChat = (props) => {
     }
 
     const add = () => {
+      if(!inputValue == '')
        getData(inputValue)
        setModal(false)
        setInputValue('')

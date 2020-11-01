@@ -44,11 +44,13 @@ class Mainchat extends React.Component {
      
         return (
             <div>
-                <div className="main_chat">
-                    <div className="title_part">
+            <div className="chatt">
+                <div className="title_part">
                        <span className="title_icon"><FontAwesomeIcon icon={faComment} /></span>
-                        <span className="title_text"> پرسش و پاسخ</span>                       
-                   </div>
+                       <span className="title_text"> پرسش و پاسخ</span>                       
+                </div>
+                <div className="main_chat">
+                    
                    <div className="center_main">
                    {this.state.chat.map((item , index)=> {
                    return   (<div key={index}> 
@@ -62,8 +64,11 @@ class Mainchat extends React.Component {
                    })}
                     </div>
                 </div>
-                {/* <div>< ModalChat getData={this.handleGetData}/></div> */}
+               
             </div>
+
+       <div className="btn_modal">< ModalChat getData={this.handleGetData}/></div>
+     </div>
         )
     }
 }
