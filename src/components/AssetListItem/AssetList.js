@@ -19,7 +19,7 @@ import credit from './../../assets/icons/secondIcons/credit.png';
 
 //components
 import MainDate from './../mainDatePicker/MainDate';
-
+import Salemodal from './../SaleModal/Salemodal';
 
 class AssetList extends React.Component {
 
@@ -193,7 +193,7 @@ class AssetList extends React.Component {
                                 
                               {this.props.catId === 7 ? 
                                   <FormGroup className="form_base_part">
-                                    <AvForm onChange={(e) => handlePriceChange.call(this, e)}>
+                                    <AvForm onChange={(e) => HandleChange.call(this, e)}>
                                     
                                      
                                       <AvField 
@@ -272,12 +272,21 @@ class AssetList extends React.Component {
                       return <ListGroupItem key={li.id} className="asset_list_part">
                         {li.name}
                          {li.category_name === 'حساب بانکی' ?
-                        <span className="asset_list_part_amount">  {li.description} <div className="credit_icon"><img src={iconn} alt=""/></div> </span>
+                         
+                           
+                        <span className="asset_list_part_amount">  {li.description} <div className="credit_icon"><img src={iconn} alt=""/></div>
+                        <span className="sale_modal"><Salemodal/></span>
+                         </span>
+                        
+                         
                         : 
                         <span className="asset_list_part_amount">
-                          <NumberFormat value={li.amount} displayType={'text'} thousandSeparator={true}  renderText={value => <div>{value} ریال</div>} />
+                          <NumberFormat value={li.amount} displayType={'text'} thousandSeparator={true}  renderText={value => <div>{value} ریال  <span className="sale_modal"><Salemodal/></span></div>} />
+                           
                         </span>
+                        
                         }
+                        
                         </ListGroupItem>                   
                     })}
             </div>

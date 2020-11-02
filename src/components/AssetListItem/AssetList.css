@@ -65,3 +65,8 @@
 .credit_icon {
     display: inline-block;  
 }
+
+.sale_modal {
+    display: inline-block; 
+    margin-right: 12px;
+}

@@ -8,7 +8,7 @@ import NumberFormat from 'react-number-format';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {  faBars , faMoneyCheck , faGift } from '@fortawesome/free-solid-svg-icons';
-// import {Animated} from "react-animated-css";
+
 
 import {API} from './../../Services/Config';
 //css
@@ -128,7 +128,6 @@ class ListItem extends React.Component {
 
     render() { 
      
- 
       let iconList;
       switch (this.props.mainTitle) {
 
