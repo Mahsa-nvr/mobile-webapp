@@ -123,6 +123,17 @@ class AssetList extends React.Component {
       this.setState({inputDate:formatDate})
     }
 
+    handleSendData = (data1, data2) => {
+      const { onGetData } = this.props
+
+     this.setState({
+      totalAsset: data1,
+      totalSum: data2
+     })
+     onGetData(this.state.totalSum)
+     
+    }
+
     
 
     render() {
@@ -275,14 +286,22 @@ class AssetList extends React.Component {
                          
                            
                         <span className="asset_list_part_amount">  {li.description} <div className="credit_icon"><img src={iconn} alt=""/></div>
-                        <span className="sale_modal"><Salemodal mainId={li.id}/></span>
-                         </span>
-                        
-                         
+                        <span className="sale_modal">
+                          <Salemodal 
+                        mainId={li.id} 
+                        mainName={li.name}
+                        sendData={this.handleSendData}
+                        /></span>
+                         </span>                       
                         : 
                         <span className="asset_list_part_amount">
                           <NumberFormat value={li.amount} displayType={'text'} thousandSeparator={true}  renderText={value => <div>{value} ریال  
-                          <span className="sale_modal"><Salemodal mainId={li.id}/></span>
+                          <span className="sale_modal">
+                            <Salemodal
+                             mainId={li.id}
+                              mainName={li.name}
+                              sendData={this.handleSendData}
+                              /></span>
                           </div>} />
                            
                         </span>

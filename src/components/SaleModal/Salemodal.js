@@ -1,10 +1,10 @@
 import React from 'react';
 import { Modal, Button } from 'antd';
-import {Input} from 'reactstrap';
+import {Input, Row, Col, Label} from 'reactstrap';
 import axios from 'axios';
 import {API} from './../../Services/Config';
 
-import { HandleChange  } from './../../share/Utility';
+import { handlePriceChange  } from './../../share/Utility';
 
 import './Salemodal.css';
 
@@ -15,7 +15,9 @@ class Salemodal extends React.Component {
 
     state = { 
       visible: false,
-      inputPrice: ''
+      inputPrice: '',
+      totalData: '',
+      totalSum: ''
     };
 
   showModal = () => {
@@ -24,18 +26,18 @@ class Salemodal extends React.Component {
     });
   };
 
-  handleOk = e => {
-    console.log(this.state.inputPrice, 'inputprice')
-    // console.log(e);
+  handleOk = async e => {
+   const { sendData } = this.props
     this.setState({
       visible: false,
     });
+
+    if(!this.state.inputPrice == "") {
     var bodyFormData = new FormData();
     bodyFormData.append('amount_sell', this.state.inputPrice);
-    // bodyFormData.append('id', this.props.mainId);
-    // bodyFormData.append('user_id', 1 );
-
-    axios({
+    
+    try {
+    await axios({
       method: 'post',     //put
       url: `${API}income/sell`,
       headers:{
@@ -46,17 +48,48 @@ class Salemodal extends React.Component {
          user_id : 1
       },
       data: bodyFormData,
-    }).then(res => {
-      console.log(res)
-    }).catch(err => {
-      console.log(err)
+    }
+    ).then(res => 
+      console.log(res));
+  }
+  catch(err){
+    console.log('errrr')
+  }
+
+    
+
+  await axios.get(`${API}income/index`, {
+    params: {
+        user_id : 1,
+        type: 2
+    }
+  }
+  ).then(res => {
+    this.setState({ 
+      totalData : [...res.data.data],
+      totalSum : res.data.sum
+  })
+  sendData(this.state.totalData,this.state.totalSum)
+  }).catch(err => {
+  console.log(err,'errrrr')
+  })
+
+
+
+    }
+
+    this.setState({
+      inputPrice: ''
     })
   };
 
+
+
   handleCancel = e => {
-    console.log(e);
+    // console.log(e);
     this.setState({
       visible: false,
+      inputPrice: ''
     });
   };
 
@@ -73,12 +106,15 @@ class Salemodal extends React.Component {
           onOk={this.handleOk}
           onCancel={this.handleCancel}
         >
-          <p>نام</p>
+          <Row>
+         <div style={{float:"right", display:"block"}}> <span>نام :</span> <span>{this.props.mainName}</span></div></Row>
+        <Row><span style={{float:"right"}}>قیمت :</span>
           <Input 
           name="inputPrice"
           value={this.state.inputPrice}
-          onChange={(e) => HandleChange.call(this, e)}
+          onChange={(e) => handlePriceChange.call(this, e)}
            />
+        </Row>
         </Modal>
       </>
     );
