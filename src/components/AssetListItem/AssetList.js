@@ -275,13 +275,15 @@ class AssetList extends React.Component {
                          
                            
                         <span className="asset_list_part_amount">  {li.description} <div className="credit_icon"><img src={iconn} alt=""/></div>
-                        <span className="sale_modal"><Salemodal/></span>
+                        <span className="sale_modal"><Salemodal mainId={li.id}/></span>
                          </span>
                         
                          
                         : 
                         <span className="asset_list_part_amount">
-                          <NumberFormat value={li.amount} displayType={'text'} thousandSeparator={true}  renderText={value => <div>{value} ریال  <span className="sale_modal"><Salemodal/></span></div>} />
+                          <NumberFormat value={li.amount} displayType={'text'} thousandSeparator={true}  renderText={value => <div>{value} ریال  
+                          <span className="sale_modal"><Salemodal mainId={li.id}/></span>
+                          </div>} />
                            
                         </span>
                         
