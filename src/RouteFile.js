@@ -20,7 +20,8 @@ import PayKhomse from './veiw/PayKhoms/PayKhoms';
 import TestPage from './veiw/TestPage/TestPage';
 import Spend from './veiw/SpendPage/Spend';
 import Profile from './veiw/Profile/Profile';
-import Chat from './veiw/Chat/Chat'
+import Chat from './veiw/Chat/Chat';
+import Signout from './veiw/Signout/Signout';
 
 
 
@@ -41,6 +42,7 @@ class RouteFile extends React.Component {
                 <Route path="/profile" render={()=><Profile/>} />
                 <Route path="/login" render={()=><Login/>} />
                 <Route path="/chat" render={()=><Chat/>} />
+                <Route path="/signout" render={()=><Signout/>} />
               </Router>
             </div>
         </HashRouter >
