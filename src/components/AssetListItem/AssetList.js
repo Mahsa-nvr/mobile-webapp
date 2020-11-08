@@ -44,8 +44,7 @@ class AssetList extends React.Component {
                 type: 2
             }
            }
-          ).then(res => {
-          
+          ).then(res => {        
           this.setState({ 
             totalAsset : [...res.data.data],
             totalSum: res.data.sum

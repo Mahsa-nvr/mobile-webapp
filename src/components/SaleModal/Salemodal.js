@@ -3,8 +3,9 @@ import { Modal, Button } from 'antd';
 import {Input, Row, Col, Label} from 'reactstrap';
 import axios from 'axios';
 import {API} from './../../Services/Config';
+import NumberFormat from 'react-number-format';
 
-import { handlePriceChange  } from './../../share/Utility';
+import { HandleChange } from './../../share/Utility';
 
 import './Salemodal.css';
 
@@ -105,15 +106,34 @@ class Salemodal extends React.Component {
           visible={this.state.visible}
           onOk={this.handleOk}
           onCancel={this.handleCancel}
+
+          okButtonProps={{
+            children: "Custom OK"
+          }}
+          cancelButtonProps={{
+            children: "Custom cancel"
+          }}
+          okText="ثبت"
+          cancelText="حذف"
+          
         >
           <Row>
-         <div style={{float:"right", display:"block"}}> <span>نام :</span> <span>{this.props.mainName}</span></div></Row>
-        <Row><span style={{float:"right"}}>قیمت :</span>
-          <Input 
+         <div style={{float:"right", display:"block", marginBottom: "5px"}}> <span>نام :</span> <span>{this.props.mainName}</span></div></Row>
+        <Row><span style={{float:"right", marginTop: "5px"}}>قیمت :</span>
+          {/* <Input 
           name="inputPrice"
           value={this.state.inputPrice}
           onChange={(e) => handlePriceChange.call(this, e)}
-           />
+           /> */}
+            <NumberFormat
+                className="input_number_fomat"
+                name="inputPrice"
+                value={this.state.inputPrice}
+                onChange={(e) => HandleChange.call(this, e)}
+                displayType="input" 
+                thousandSeparator={true}
+                allowEmptyFormatting 
+                  />
         </Row>
         </Modal>
       </>
