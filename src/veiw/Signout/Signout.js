@@ -11,7 +11,7 @@ import NumberFormat from 'react-number-format';
 
 
 import daryan from './../../assets/img/daryan.png';
-import center from './../../assets/img/center.png'
+import center from './../../assets/img/center.png';
 import { withRouter } from "react-router-dom";
 
 
@@ -19,9 +19,59 @@ class Signout extends React.Component {
     constructor() {
         super()
         this.state={
-            empty: true
+            empty: false,
+            phoneSignout: ''
         }
     }
+    handleChange=(event) => {
+        const {name, value } = event.target;
+        this.setState({
+            [name] : value,
+            empty: false
+        })
+        }
+
+
+    signout = () => {
+     
+
+        if(this.state.phoneSignout) {
+            const test = this.state.phoneSignout
+            var arr=test.split('');
+            var arr2= arr.includes('*')
+            if (!arr2 ) {
+                
+                var bodyFormData = new FormData();
+               
+                bodyFormData.append('username', this.state.phoneSignout);
+               
+               axios({
+                   method: 'post',
+                   url: `${API}user/signup`,
+                   headers: {
+                    'Content-Type':'multipart/form-data'
+                   },
+                   data: bodyFormData,
+               }
+               ).then(res => {
+                 const{id} = res.data.data
+                   console.log(id,'res in post phone')
+               }).then(err => console.log(err))
+
+
+            }else{
+                this.setState({
+                    empty: true
+                })
+            }
+    
+        }else {
+            this.setState({
+                empty: true
+            })
+        }
+    }
+
    render() {
        return (
            <div>
@@ -37,17 +87,22 @@ class Signout extends React.Component {
 
                
                 <div className="first_input d-flex justify-content-center ">                   
-                <NumberFormat className={this.state.empty?'empty_text': 'full_text'} dir="ltr" name="inputPhone" value={this.state.inputPhone} onChange={this.handleChange}  displayType="input" format="09#########" allowEmptyFormatting mask="*"/>
+                <NumberFormat
+                 className={this.state.empty?'empty_text': 'full_text'} 
+                 dir="ltr" 
+                 name="phoneSignout" 
+                 value={this.state.phoneSignout}
+                 onChange={this.handleChange}  
+                 displayType="input" 
+                 format="09#########" 
+                 allowEmptyFormatting mask="*"/>
                 </div>
 
                 <div  className="first_btn d-flex justify-content-center ">
-                    <Button  color="success" style={{ width: "50%", backgroundColor: "#20bf6b", fontSize:"15px"}}>تایید</Button>
+                    <Button onClick={this.signout} color="success" style={{ width: "50%", backgroundColor: "#20bf6b", fontSize:"15px"}}>تایید</Button>
                 </div>
 
-                <div  className="second_btn d-flex justify-content-center ">
-                    <Button   style={{ width: "50%", backgroundColor: "white", border: "1px solid #07b0c3" , color:"#07b0c3", fontSize:"12px"}}> ثبت نام</Button>
-                </div>
-  
+              
             </div>
            </div>
        )
