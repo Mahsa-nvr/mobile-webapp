@@ -48,3 +48,13 @@ export const dateConvertFormat = (gitDate)=>{
         + '/' + ((date.getMonth() > 8) ? (date.getMonth() + 1) : ('0' + (date.getMonth() + 1)))  + '/' + 
         date.getFullYear());
 }
+
+
+export const checkStorageId = () => {
+    const id = localStorage.getItem("User_Id")
+    if(id) {
+        return id
+    }else{
+       return  window.location.href = '/';
+    }
+}

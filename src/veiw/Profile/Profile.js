@@ -2,7 +2,10 @@ import React from 'react';
 import  { API } from './../../Services/Config.js';
 import profile from './../../assets/icons/profile2.png'
 import { ListGroup, ListGroupItem } from 'reactstrap';
+import { checkStorageId } from './../../share/Utility';
 import axios from 'axios';
+
+
 
 import './Profile.css';
 //components
@@ -20,6 +23,9 @@ class Profile extends React.Component {
     }
 
     componentDidMount() {
+        checkStorageId()
+        let x = checkStorageId()
+        console.log(x,'kkk')
 
         var getLocalValue= localStorage.getItem("inputPhone")
         this.setState({

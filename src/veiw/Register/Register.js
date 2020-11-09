@@ -40,6 +40,7 @@ class Register extends React.Component {
             this.setState({
                 empty: true
             })
+
         }
 
     }else {
@@ -50,16 +51,17 @@ class Register extends React.Component {
     }
 
     register = () => {
-        axios.get(`${API}database/clean`,{
-            params: {
-              user_id : 1,
-              clean: true
-          }
-          }).then(res => {
-              console.log(res)
-            console.log('empty data base', res)
-          }).catch(err =>
-             console.log('err to empty data base' , err))
+        this.props.history.push('/signup')
+        // axios.get(`${API}database/clean`,{
+        //     params: {
+        //       user_id : 1,
+        //       clean: true
+        //   }
+        //   }).then(res => {
+        //       console.log(res)
+        //     console.log('empty data base', res)
+        //   }).catch(err =>
+        //      console.log('err to empty data base' , err))
 
     }
 

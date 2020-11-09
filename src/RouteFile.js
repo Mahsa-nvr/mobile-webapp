@@ -42,7 +42,7 @@ class RouteFile extends React.Component {
                 <Route path="/profile" render={()=><Profile/>} />
                 <Route path="/login" render={()=><Login/>} />
                 <Route path="/chat" render={()=><Chat/>} />
-                <Route path="/signout" render={()=><Signout/>} />
+                <Route path="/signup" render={()=><Signout/>} />
               </Router>
             </div>
         </HashRouter >

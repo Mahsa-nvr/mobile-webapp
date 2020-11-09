@@ -11,7 +11,6 @@ import NumberFormat from 'react-number-format';
 
 
 import daryan from './../../assets/img/daryan.png';
-import center from './../../assets/img/center.png';
 import { withRouter } from "react-router-dom";
 
 
@@ -20,7 +19,8 @@ class Signout extends React.Component {
         super()
         this.state={
             empty: false,
-            phoneSignout: ''
+            phoneSignout: '',
+
         }
     }
     handleChange=(event) => {
@@ -54,21 +54,22 @@ class Signout extends React.Component {
                    data: bodyFormData,
                }
                ).then(res => {
-                 const{id} = res.data.data
-                   console.log(id,'res in post phone')
+
+                 const{ id } = res.data.data
+                //  localStorage.setItem("User_Id", id )
+                this.props.history.push('/Defaultpage')
                }).then(err => console.log(err))
 
-
-            }else{
-                this.setState({
+                 }else{
+                    this.setState({
                     empty: true
-                })
-            }
+                  })
+                 }
     
-        }else {
-            this.setState({
-                empty: true
-            })
+               }else {
+                 this.setState({
+                  empty: true
+                 })
         }
     }
 
@@ -99,7 +100,7 @@ class Signout extends React.Component {
                 </div>
 
                 <div  className="first_btn d-flex justify-content-center ">
-                    <Button onClick={this.signout} color="success" style={{ width: "50%", backgroundColor: "#20bf6b", fontSize:"15px"}}>تایید</Button>
+                    <Button onClick={this.signout} color="primary" style={{ width: "50%", fontSize:"15px"}}>ثبت</Button>
                 </div>
 
               
@@ -109,4 +110,4 @@ class Signout extends React.Component {
    }
 }
 
-export default Signout;
+export default withRouter(Signout);
