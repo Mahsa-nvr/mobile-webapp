@@ -61,7 +61,14 @@ body {
 
    .first_input {
     margin-top: 140px;
-  
+    position:relative;
+   }
+
+   .hilo {
+       color:red;
+       font-size: 9px;
+       position:absolute;
+       bottom:-25px;
    }
    
 

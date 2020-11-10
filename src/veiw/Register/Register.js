@@ -107,8 +107,8 @@ class Register extends React.Component {
                   </div> 
                 </div>
 
-                <div>ededed</div>
                 <div className="first_input d-flex justify-content-center ">  
+                <div className="hilo">ededed</div>
                                  
                 <NumberFormat className={this.state.empty?'empty_text': 'full_text'} dir="ltr" name="inputPhone" value={this.state.inputPhone} onChange={this.handleChange}  displayType="input" format="09#########" allowEmptyFormatting mask="*"/>
                 </div>
