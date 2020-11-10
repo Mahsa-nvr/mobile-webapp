@@ -1,6 +1,6 @@
 import React from 'react';
-import { Modal, Button } from 'antd';
-import {Input, Row, Col, Label} from 'reactstrap';
+import { Modal } from 'antd';
+import { Row } from 'reactstrap';
 import axios from 'axios';
 import {API} from './../../Services/Config';
 import NumberFormat from 'react-number-format';

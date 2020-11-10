@@ -1,13 +1,12 @@
 import React from 'react';
-import axios from 'axios';
-import  { API } from './../../Services/Config.js';
 import './Register.css';
 import { Button } from 'reactstrap';
 import NumberFormat from 'react-number-format';
+import axios from 'axios';
+import  { API } from './../../Services/Config.js';
 
 
 import daryan from './../../assets/img/daryan.png';
-import center from './../../assets/img/center.png'
 import { withRouter } from "react-router-dom";
 
 class Register extends React.Component {
@@ -16,7 +15,8 @@ class Register extends React.Component {
         super();
         this.state={
             inputPhone:'',
-            empty: false
+            empty: false,
+            show: false
         }
     }
 
@@ -35,7 +35,36 @@ class Register extends React.Component {
         var arr2= arr.includes('*')
         if (!arr2 ) {
             localStorage.setItem("inputPhone", this.state.inputPhone )
-            this.props.history.push('Login')
+           
+
+            var bodyFormData = new FormData();
+               
+            bodyFormData.append('username', this.state.inputPhone);
+           
+           axios({
+               method: 'post',
+               url: `${API}user/login`,
+               headers: {
+                'Content-Type':'multipart/form-data'
+               },
+               data: bodyFormData,
+           }
+           ).then(res => {
+                if(res.data.data == "Username not found.")
+                this.setState({
+                    show:true
+                })
+            else{
+                const{ id , username } = res.data.data
+                localStorage.setItem("User_Id", id )
+                localStorage.setItem("inputPhone", username )
+               this.props.history.push('/Login')
+               this.setState({ show: false})
+            }
+                
+           }).then(err => console.log(err))
+
+            // this.props.history.push('Login')
         }else{
             this.setState({
                 empty: true
@@ -51,6 +80,7 @@ class Register extends React.Component {
     }
 
     register = () => {
+       
         this.props.history.push('/signup')
         // axios.get(`${API}database/clean`,{
         //     params: {

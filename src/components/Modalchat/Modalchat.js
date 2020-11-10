@@ -4,14 +4,14 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Input, Form, FormGr
 
 
 const ModalChat = (props) => {
+    
     const {
-      buttonLabel,
       className, 
       getData
     } = props;
   
     const [modal, setModal] = useState(false);
-    const [unmountOnClose, setUnmountOnClose] = useState(true);
+    const [unmountOnClose] = useState(true);
     const [inputValue, setInputValue] = useState('')
   
     const toggle = () => setModal(!modal)
