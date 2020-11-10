@@ -11,6 +11,7 @@ import './Profile.css';
 //components
 import Header from './../../components/Header/Header';
 import Footer from './../../components/Footer/Footer';
+import Loading from './../../components/Loading/Loading';
 
 class Profile extends React.Component {
 
@@ -18,14 +19,29 @@ class Profile extends React.Component {
         super();
         this.state= {
             totalprofile : {},
-            phoneNum: ''
+            phoneNum: '',
+            flag: true
         }
     }
 
     componentDidMount() {
+
         checkStorageId()
-        let x = checkStorageId()
-        console.log(x,'kkk')
+        let x = checkStorageId()  
+        if(x == null) {
+            return  window.location.href = '/';
+        }else {
+            this.setState({ flag:false})
+        }
+            // if(x) {
+            //     this.setState({flag:false})
+            // }else{
+            //     this.setState({flag:true})
+            // }
+       
+       
+        
+        
 
         var getLocalValue= localStorage.getItem("inputPhone")
         this.setState({
@@ -47,12 +63,17 @@ class Profile extends React.Component {
 
     }
 
+
+    
+
     render() {
-      
-       
+    
         return (
+           
             <div className="profile_page">
                 <Header />
+                { this.state.flag ? <Loading/> : 
+
                 <div className="profile_list">
                     <ListGroup className="profile_list_group">
                         <ListGroupItem className="profile_list_group_item title">
@@ -80,6 +101,8 @@ class Profile extends React.Component {
                     </ListGroup>
 
                 </div>
+
+    }
                 <Footer />
             </div>
         )

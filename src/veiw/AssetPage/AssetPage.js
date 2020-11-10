@@ -4,6 +4,7 @@ import darayi from './../../assets/icons/darayi.png';
 import { API } from './../../Services/Config';
 import axios from 'axios';
 import NumberFormat from 'react-number-format';
+import { checkStorageId } from './../../share/Utility';
 
 //import css files 
 import './AssetPage.css';
@@ -16,7 +17,7 @@ import './AssetPage.css';
 import Header from './../../components/Header/Header';
 import Footer from './../../components/Footer/Footer';
 import AssetList from './../../components/AssetListItem/AssetList';
-
+import Loading from './../../components/Loading/Loading';
 
 class AssetPage extends React.Component {
 
@@ -26,11 +27,21 @@ class AssetPage extends React.Component {
         super();
         this.state = {
             assetCat: [],
-            totalAssetAmount : '',     
+            totalAssetAmount : '', 
+            flag: true    
         }
     }
 
     componentDidMount() {
+
+        checkStorageId()
+        let x = checkStorageId()  
+        if(x == null) {
+            return  window.location.href = '/';
+        }else {
+            this.setState({ flag:false})
+        }
+
         axios.get(`${API}incomecategory/index`,{
             params: {
               user_id : 1,
@@ -58,6 +69,8 @@ class AssetPage extends React.Component {
             <div>
             <div className="asset_page">
                 <Header />
+                { this.state.flag ? <Loading/> : 
+
                  <div className="asset_list">
                      <ListGroup className="asset_list_group">
                      <ListGroupItem className="asset_list_group_item title"><img src={darayi} height={40} alt=""/><span className="title_list">دارایی</span></ListGroupItem>
@@ -69,7 +82,7 @@ class AssetPage extends React.Component {
                      })}
                      </ListGroup>
                  </div>
-                 
+               }
             
             </div>
                 <div><Footer /></div>

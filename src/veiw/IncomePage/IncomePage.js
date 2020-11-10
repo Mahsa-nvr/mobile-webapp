@@ -5,12 +5,14 @@ import daramad from './../../assets/icons/daramad.png'
 import { ListGroup, ListGroupItem } from 'reactstrap';
 import { API } from './../../Services/Config';
 import NumberFormat from 'react-number-format';
+import { checkStorageId } from './../../share/Utility';
 
 
 //components
 import Header from './../../components/Header/Header';
 import ListItem from './../../components/ListItem/ListItem';
 import Footer from './../../components/Footer/Footer';
+import Loading from './../../components/Loading/Loading';
 
 class IncomePage extends React.Component {
 
@@ -19,11 +21,21 @@ class IncomePage extends React.Component {
     super(props);
     this.state = {
       incomeCat: [],
-      totalAmount : ''
+      totalAmount : '',
+      flag: true
     }
   }
 
   componentDidMount() {
+   
+    checkStorageId()
+        let x = checkStorageId()  
+        if(x == null) {
+            return  window.location.href = '/';
+        }else {
+            this.setState({ flag:false})
+        }
+
     axios.get(`${API}incomecategory/index`,{
       params: {
         user_id : 1,
@@ -50,6 +62,7 @@ render() {
       <div >
         <div className="income_page">
             <Header />
+            { this.state.flag ? <Loading/> : 
               <div className="incomee_list">
                <ListGroup className="income_list_group">
                  <ListGroupItem className="income_list_group_item title"><img src={daramad} height={40} alt=""/><span className="title_list">درآمد</span></ListGroupItem>
@@ -61,12 +74,14 @@ render() {
                })}
               </ListGroup>
               </div>
+            }
+
               <div><Footer /></div>
               
             </div>
            
 
-            </div>
+       </div>
     )
 }
 }

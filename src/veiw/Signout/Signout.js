@@ -56,7 +56,7 @@ class Signout extends React.Component {
                ).then(res => {
 
                  const{ id } = res.data.data
-                //  localStorage.setItem("User_Id", id )
+                 localStorage.setItem("User_Id", id )
                 this.props.history.push('/Defaultpage')
                }).then(err => console.log(err))
 

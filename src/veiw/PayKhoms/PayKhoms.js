@@ -5,9 +5,12 @@ import { ListGroup, ListGroupItem ,Button} from 'reactstrap';
 import NumberFormat from 'react-number-format';
 import { withRouter } from "react-router-dom";
 
+import { checkStorageId } from './../../share/Utility';
+
 import Header from './../../components/Header/Header';
 import MainTable from './../../components/MainTable/MainTable';
 import Footer from './../../components/Footer/Footer';
+import Loading from './../../components/Loading/Loading';
 
 import './PayKhoms.css';
 import daramad from './../../assets/icons/daramad.png'
@@ -18,13 +21,22 @@ class PayKhomse extends React.Component {
     super();
     this.state= {
       mustAmountPay: '',
-      payAmount:''
+      payAmount:'',
+      flag: true
     }
   }
 
   
 
     componentDidMount(){
+
+      checkStorageId()
+        let x = checkStorageId()  
+        if(x == null) {
+            return  window.location.href = '/';
+        }else {
+            this.setState({ flag:false})
+        }
  
             axios.get(`${API}paykhoms/index`,{
               params: {
@@ -75,6 +87,8 @@ class PayKhomse extends React.Component {
         return (
            <div className="paykhoms_page">
                <Header />
+               { this.state.flag ? <Loading/> : 
+            
                <div className="main_khoms">
                  <div >
                    <ListGroup className="paykhoms_list_group">
@@ -84,7 +98,8 @@ class PayKhomse extends React.Component {
                       <MainTable  onGetData={this.handleGetData}/>
                  </div>                
                </div>
-
+    }
+    {!this.state.flag ?
                <div className="part_khoms">
                      <div className="after_pay">شما تاکنون مبلغ <span className="after_pay_amount">
                      <NumberFormat value={this.state.payAmount} displayType={'text'} thousandSeparator={true}  renderText={value => <div style={{display:"inline-block"}}>{value}</div>} />
@@ -93,7 +108,11 @@ class PayKhomse extends React.Component {
                      <NumberFormat value={this.state.mustAmountPay} displayType={'text'} thousandSeparator={true}  renderText={value => <div style={{display:"inline-block"}}>{value}</div>} />
                        </span> ریال را پرداخت کنید  </div>
                      <div className="btn_pay"><Button  onClick={this.btnPay} color="success" style={{ backgroundColor:"#00b894",width: "60%" , fontSize:"12px"}}>پرداخت </Button></div>
+               
+                
                  </div>
+              : null}
+                 
               <Footer />
            </div>
         )

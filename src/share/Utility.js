@@ -55,6 +55,7 @@ export const checkStorageId = () => {
     if(id) {
         return id
     }else{
-       return  window.location.href = '/';
+       return null
+    
     }
 }

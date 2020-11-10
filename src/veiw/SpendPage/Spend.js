@@ -5,13 +5,15 @@ import axios from 'axios';
 import { API } from './../../Services/Config';
 import NumberFormat from 'react-number-format';
 
+import { checkStorageId } from './../../share/Utility';
+
 import './Spend.css';
 
 //components 
 import Header from './../../components/Header/Header';
 import SpendList from './../../components/SpendListItem/SpendList';
 import Footer from './../../components/Footer/Footer';
-
+import Loading from './../../components/Loading/Loading';
 
 class Spend extends React.Component {
 
@@ -19,11 +21,22 @@ class Spend extends React.Component {
         super();
         this.state = {
             spendCat: [],
-            sum: 0
+            sum: 0,
+            flag: true
         }
     }
 
     componentDidMount() {
+
+        checkStorageId()
+        let x = checkStorageId()  
+        if(x == null) {
+            return  window.location.href = '/';
+        }else {
+            this.setState({ flag:false})
+        }
+
+
         axios.get(`${API}expenditurescategory/index`, {
             params: {
                 user_id : 1         
@@ -52,6 +65,7 @@ class Spend extends React.Component {
             <div>
             <div className="spend_page"> 
                 <Header />
+                { this.state.flag ? <Loading/> : 
                   <div className="spend_list">
                       <ListGroup className="spend_list_group">
                           <ListGroupItem className="spend_list_group_item title"><img src={hazine} height={40} alt=""/><span className="title_list">هزینه</span></ListGroupItem>
@@ -65,7 +79,7 @@ class Spend extends React.Component {
                           
                       </ListGroup>
                   </div>
-                  
+              }
             </div>
                <div><Footer /></div>
             </div>
