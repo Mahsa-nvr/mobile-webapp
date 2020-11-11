@@ -18,6 +18,8 @@ import './SpendList.css';
 import DropDownInput from './../DropDown/DropDownInput';
 import MainDate from './../mainDatePicker/MainDate';
 
+import { checkStorageId } from './../../share/Utility';
+
 class SpendList extends React.Component {
 
     constructor(props){
@@ -35,10 +37,15 @@ class SpendList extends React.Component {
     }
 
     componentDidMount(){
+
+
+      checkStorageId()
+        let userId = checkStorageId()  
+
       const { onGetData } = this.props;
         axios.get(`${API}expenditures/index`, {
             params: {
-                user_id : 1         
+                user_id : userId        
             }
            }
           ).then(res => {
@@ -70,6 +77,10 @@ class SpendList extends React.Component {
 
     send = async(props) => {
 
+      checkStorageId()
+      let userId = checkStorageId()  
+
+
       const value = this.state.inputAmount   
       const price = value.replace(/,/g, "");
 
@@ -84,7 +95,7 @@ class SpendList extends React.Component {
       bodyFormData.append('incomeCategoryID', this.state.inputDropDown.value);
       bodyFormData.append('date', this.state.inputDate );
       bodyFormData.append('expendituresCategoryID', this.props.catId);
-      bodyFormData.append('userID', 1 );
+      bodyFormData.append('userID', userId );
 
       try {
         await axios({
@@ -104,7 +115,7 @@ class SpendList extends React.Component {
 
        await axios.get(`${API}expenditures/index`, {
           params: {
-              user_id : 1         
+              user_id : userId        
           }
          }
         ).then(res => {

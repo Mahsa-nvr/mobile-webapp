@@ -24,7 +24,8 @@ class Register extends React.Component {
         const {name, value } = event.target;
         this.setState({
             [name] : value,
-            empty: false
+            empty: false,
+            show: false
         })
         }
 
@@ -108,7 +109,7 @@ class Register extends React.Component {
                 </div>
 
                 <div className="first_input d-flex justify-content-center ">  
-                <div className="hilo">ededed</div>
+                <div className={this.state.show ? "hilo" : "hilo2"}>لطفا ثبت نام کنید</div>
                                  
                 <NumberFormat className={this.state.empty?'empty_text': 'full_text'} dir="ltr" name="inputPhone" value={this.state.inputPhone} onChange={this.handleChange}  displayType="input" format="09#########" allowEmptyFormatting mask="*"/>
                 </div>

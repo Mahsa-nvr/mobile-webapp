@@ -4,6 +4,8 @@ import {API} from './../../Services/Config';
 import { Table, ConfigProvider } from 'antd';
 // import NumberFormat from 'react-number-format';
 
+import { checkStorageId } from './../../share/Utility';
+
 class MainTable extends React.Component {
   state={
     payData: [],
@@ -12,11 +14,15 @@ class MainTable extends React.Component {
   }
 
     componentDidMount(){
+
+      checkStorageId()
+        let userId = checkStorageId() 
+
       const { onGetData } = this.props
       
         axios.get(`${API}paykhoms/index`,{
           params: {
-            user_id : 1
+            user_id : userId
         }
         }).then(res => {
           this.setState({

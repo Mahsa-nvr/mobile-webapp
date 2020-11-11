@@ -66,10 +66,15 @@ body {
 
    .hilo {
        color:red;
-       font-size: 9px;
+       font-size: 12px;
        position:absolute;
        bottom:-25px;
    }
+
+   .hilo2 {
+   display: none;
+}
+
    
 
    .first_btn {

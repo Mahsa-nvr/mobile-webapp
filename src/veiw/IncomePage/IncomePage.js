@@ -29,8 +29,8 @@ class IncomePage extends React.Component {
   componentDidMount() {
    
     checkStorageId()
-        let x = checkStorageId()  
-        if(x == null) {
+        let userId = checkStorageId()  
+        if(userId == null) {
             return  window.location.href = '/';
         }else {
             this.setState({ flag:false})
@@ -38,7 +38,7 @@ class IncomePage extends React.Component {
 
     axios.get(`${API}incomecategory/index`,{
       params: {
-        user_id : 1,
+        user_id : userId,
         type: 1,
     }
     }).then(res => {

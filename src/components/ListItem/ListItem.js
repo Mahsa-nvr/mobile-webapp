@@ -9,7 +9,7 @@ import NumberFormat from 'react-number-format';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {  faBars , faMoneyCheck , faGift } from '@fortawesome/free-solid-svg-icons';
 
-
+import { checkStorageId } from './../../share/Utility';
 import {API} from './../../Services/Config';
 //css
 import './ListItem.css';
@@ -35,10 +35,13 @@ class ListItem extends React.Component {
       }
 
      componentDidMount() {
+      checkStorageId()
+      let userId = checkStorageId()
+
        const { onGetData } = this.props
           axios.get(`${API}income/index`, {
             params: {
-                user_id : 1,
+                user_id : userId,
                 type: 1
             }
            }
@@ -66,6 +69,9 @@ class ListItem extends React.Component {
 
       send = async (props) => {
 
+        checkStorageId()
+        let userId = checkStorageId()
+
         const value = this.state.inputAmount   
       const price = value.replace(/,/g, "");
 
@@ -77,7 +83,7 @@ class ListItem extends React.Component {
         bodyFormData.append('name', this.state.inputName);
         bodyFormData.append('categoryID', this.props.catId);
         bodyFormData.append('date', this.state.inputDate );
-        bodyFormData.append('userID', 1 );
+        bodyFormData.append('userID', userId );
 
         try {
             await axios({
@@ -98,7 +104,7 @@ class ListItem extends React.Component {
       
         await axios.get(`${API}income/index`, {
           params: {
-              user_id : 1,
+              user_id : userId,
               type: 1
           }
         }

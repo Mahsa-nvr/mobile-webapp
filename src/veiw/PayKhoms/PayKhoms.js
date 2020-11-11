@@ -31,8 +31,8 @@ class PayKhomse extends React.Component {
     componentDidMount(){
 
       checkStorageId()
-        let x = checkStorageId()  
-        if(x == null) {
+        let userId = checkStorageId()  
+        if(userId == null) {
             return  window.location.href = '/';
         }else {
             this.setState({ flag:false})
@@ -40,7 +40,7 @@ class PayKhomse extends React.Component {
  
             axios.get(`${API}paykhoms/index`,{
               params: {
-                user_id : 1
+                user_id : userId
             }
             }).then(res => {
               this.setState({

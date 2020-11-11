@@ -25,8 +25,8 @@ class Deafultpage extends React.Component {
     componentDidMount() {
 
         checkStorageId()
-        let x = checkStorageId()  
-        if(x == null) {
+        let userId = checkStorageId()  
+        if(userId == null) {
             return  window.location.href = '/';
         }else {
             this.setState({ flag:false})

@@ -9,6 +9,8 @@ import { HandleChange } from './../../share/Utility';
 
 import './Salemodal.css';
 
+import { checkStorageId } from './../../share/Utility';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMedal } from '@fortawesome/free-solid-svg-icons';
 
@@ -28,6 +30,10 @@ class Salemodal extends React.Component {
   };
 
   handleOk = async e => {
+
+    checkStorageId()
+    let userId = checkStorageId()  
+
    const { sendData } = this.props
     this.setState({
       visible: false,
@@ -46,7 +52,7 @@ class Salemodal extends React.Component {
       },
       params: {
          id: this.props.mainId,
-         user_id : 1
+         user_id : userId
       },
       data: bodyFormData,
     }
@@ -61,7 +67,7 @@ class Salemodal extends React.Component {
 
   await axios.get(`${API}income/index`, {
     params: {
-        user_id : 1,
+        user_id : userId,
         type: 2
     }
   }

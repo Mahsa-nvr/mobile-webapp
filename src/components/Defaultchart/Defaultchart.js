@@ -3,6 +3,8 @@ import axios from 'axios';
 import { API } from './../../Services/Config';
 import './Defaultchart.css';
 
+import { checkStorageId } from './../../share/Utility';
+
 //components
 import Piechart from '../Charts/Piechart';
 import { pieData } from './../../share/ChartData'
@@ -17,10 +19,13 @@ class Defaultchart extends React.Component {
     }
 
     componentDidMount() {
+
+        checkStorageId()
+        let userId = checkStorageId()  
         
         axios.get(`${API}income/index`, {
             params: {
-                user_id : 1,
+                user_id : userId,
                 type: 1
             },
         }).then(response => {
@@ -40,7 +45,7 @@ class Defaultchart extends React.Component {
       
         axios.get(`${API}report/index`, {
             params: {
-                user_id : 1
+                user_id : userId
             },
         }).then(response => {
             // console.log('//get data in default home page for spend pie chart' , response)

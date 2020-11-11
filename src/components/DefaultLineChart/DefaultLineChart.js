@@ -8,6 +8,8 @@ import Linechart from '../Charts/Linechart';
 import { lineData } from './../../share/ChartData';
 
 
+import { checkStorageId } from './../../share/Utility';
+
 class DefaultLineChart extends React.Component { 
    state = {
        incomeLineChartData: [],
@@ -16,9 +18,13 @@ class DefaultLineChart extends React.Component {
    }
 
 componentDidMount() {
+    
+    checkStorageId()
+        let userId = checkStorageId() 
+
     axios.get(`${API}report/index`, {
         params: {
-            user_id : 1
+            user_id : userId
         },
     }).then(response => {
       

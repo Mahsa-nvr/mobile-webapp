@@ -8,7 +8,7 @@ import { AvForm, AvField } from 'availity-reactstrap-validation';
 import NumberFormat from 'react-number-format';
 
 // import {InputList} from './../../share/InputList'
-
+import { checkStorageId } from './../../share/Utility';
 
 //import icon
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -37,10 +37,14 @@ class AssetList extends React.Component {
     }
 
     componentDidMount() {
+
+      checkStorageId()
+        let userId = checkStorageId()  
+
       const { onGetData } = this.props
         axios.get(`${API}income/index`, {
             params: {
-                user_id : 1,
+                user_id : userId,
                 type: 2
             }
            }
@@ -63,6 +67,9 @@ class AssetList extends React.Component {
 //post api in asset page and recive update get method immediatly
     send = async (props) => {
 
+      checkStorageId()
+      let userId = checkStorageId() 
+
       const value = this.state.inputAmount   
       const price = value.replace(/,/g, "");
     
@@ -74,7 +81,7 @@ class AssetList extends React.Component {
       bodyFormData.append('name', this.state.inputName);
       bodyFormData.append('categoryID', this.props.catId);
       bodyFormData.append('date', this.state.inputDate );
-      bodyFormData.append('userID', 1 );
+      bodyFormData.append('userID', userId );
 
       try {
         await axios({
@@ -94,7 +101,7 @@ class AssetList extends React.Component {
 
         await axios.get(`${API}income/index`, {
           params: {
-              user_id : 1,
+              user_id : userId,
               type: 2
           }
         }

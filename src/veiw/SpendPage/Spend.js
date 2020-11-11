@@ -29,8 +29,8 @@ class Spend extends React.Component {
     componentDidMount() {
 
         checkStorageId()
-        let x = checkStorageId()  
-        if(x == null) {
+        let userId = checkStorageId()  
+        if(userId == null) {
             return  window.location.href = '/';
         }else {
             this.setState({ flag:false})
@@ -39,7 +39,7 @@ class Spend extends React.Component {
 
         axios.get(`${API}expenditurescategory/index`, {
             params: {
-                user_id : 1         
+                user_id : userId         
             }
            }
           ).then(res => {

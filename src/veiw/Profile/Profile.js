@@ -27,8 +27,8 @@ class Profile extends React.Component {
     componentDidMount() {
 
         checkStorageId()
-        let x = checkStorageId()  
-        if(x == null) {
+        let userId = checkStorageId()  
+        if(userId == null) {
             return  window.location.href = '/';
         }else {
             this.setState({ flag:false})
@@ -50,7 +50,7 @@ class Profile extends React.Component {
 
         axios.get(`${API}user/profile`,{
             params: {
-              user_id : 1,
+              user_id : userId,
               
           }
           }).then(res => {
@@ -80,22 +80,22 @@ class Profile extends React.Component {
                             <img src={profile} height={40} alt=""/><span className="title_list">اطلاعات عمومی</span>
                         </ListGroupItem>
                         <ListGroupItem className="profile_list_group_item ">
-                           <span className="title_part">نام : </span><span>{this.state.totalprofile.name}</span>
+                           <span className="title_partt">نام : </span><span>{this.state.totalprofile.name}</span>
                         </ListGroupItem>
                         <ListGroupItem className="profile_list_group_item even-child">
-                          <span className="title_part">نام کاربری : </span><span>{this.state.totalprofile.username}</span>
+                          <span className="title_partt">نام کاربری : </span><span>{this.state.totalprofile.username}</span>
                         </ListGroupItem>
                         <ListGroupItem className="profile_list_group_item ">
-                           <span className="title_part">سال خمسی : </span><span>{this.state.totalprofile.date_khoms}</span>
+                           <span className="title_partt">سال خمسی : </span><span>{this.state.totalprofile.date_khoms}</span>
                         </ListGroupItem>
                         <ListGroupItem className="profile_list_group_item even-child">
-                           <span className="title_part">دوره خمسی (ماه) : </span><span>{this.state.totalprofile.last_clear_khoms}</span>
+                           <span className="title_partt">دوره خمسی (ماه) : </span><span>{this.state.totalprofile.last_clear_khoms}</span>
                         </ListGroupItem>
                         <ListGroupItem className="profile_list_group_item ">
-                           <span className="title_part">شماره موبایل : </span><span>{this.state.phoneNum}</span>
+                           <span className="title_partt">شماره موبایل : </span><span>{this.state.phoneNum}</span>
                         </ListGroupItem>
                         <ListGroupItem className="profile_list_group_item even-child">
-                           <span className="title_part"> نام مرجع تقلید : </span><span>{this.state.totalprofile.leader_name}</span>
+                           <span className="title_partt"> نام مرجع تقلید : </span><span>{this.state.totalprofile.leader_name}</span>
                         </ListGroupItem>
 
                     </ListGroup>
