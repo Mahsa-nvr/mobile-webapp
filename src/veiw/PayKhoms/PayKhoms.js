@@ -57,6 +57,9 @@ class PayKhomse extends React.Component {
 
     btnPay = async() => {
 
+      checkStorageId()
+      let userId = checkStorageId()  
+
       const timeMs = Math.round(new Date() / 1000);
       var roundAmount = Math.ceil(this.state.mustAmountPay);
       console.log(timeMs);
@@ -64,7 +67,7 @@ class PayKhomse extends React.Component {
       var bodyFormData = new FormData();
       bodyFormData.append('amount', roundAmount);
       bodyFormData.append('date', timeMs);
-      bodyFormData.append('user_id', 1 );
+      bodyFormData.append('user_id', userId );
 
       try{
         await axios({

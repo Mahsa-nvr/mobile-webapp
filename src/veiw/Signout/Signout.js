@@ -20,6 +20,7 @@ class Signout extends React.Component {
         this.state={
             empty: false,
             phoneSignout: '',
+            show: false
 
         }
     }
@@ -27,7 +28,8 @@ class Signout extends React.Component {
         const {name, value } = event.target;
         this.setState({
             [name] : value,
-            empty: false
+            empty: false,
+            show: false
         })
         }
 
@@ -54,11 +56,17 @@ class Signout extends React.Component {
                    data: bodyFormData,
                }
                ).then(res => {
-
+                if(res.data.status !== false) {
+                
                  const{ id , username } = res.data.data
                  localStorage.setItem("User_Id", id )
                  localStorage.setItem("inputPhone", username )
-                this.props.history.push('/Defaultpage')
+                 this.props.history.push('/Defaultpage')
+                }else{
+                   this.setState({
+                       show: true
+                   })
+                }
                }).then(err => console.log(err))
 
                  }else{
@@ -75,6 +83,7 @@ class Signout extends React.Component {
     }
 
    render() {
+       console.log(this.state.show)
        return (
            <div>
                <div className="main_Reg"> 
@@ -89,6 +98,8 @@ class Signout extends React.Component {
 
                
                 <div className="first_input d-flex justify-content-center ">                   
+                <div className={this.state.show ? "hilo" : "hilo2"}> شماره وارد شده تکراری است </div>
+                
                 <NumberFormat
                  className={this.state.empty?'empty_text': 'full_text'} 
                  dir="ltr" 
