@@ -22,7 +22,7 @@ import Spend from './veiw/SpendPage/Spend';
 import Profile from './veiw/Profile/Profile';
 import Chat from './veiw/Chat/Chat';
 import Signout from './veiw/Signout/Signout';
-
+import Mainprofile from './veiw/Mainprofile/Mainprofile';
 
 
 class RouteFile extends React.Component {
@@ -43,6 +43,7 @@ class RouteFile extends React.Component {
                 <Route path="/login" render={()=><Login/>} />
                 <Route path="/chat" render={()=><Chat/>} />
                 <Route path="/signup" render={()=><Signout/>} />
+                <Route path="/register/profile" render={()=><Mainprofile/>} />
               </Router>
             </div>
         </HashRouter >
