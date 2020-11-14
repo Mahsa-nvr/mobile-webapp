@@ -1,8 +1,8 @@
 import React from 'react';
 import  { API } from './../../Services/Config.js';
 import profile from './../../assets/icons/profile2.png'
-import { ListGroup, ListGroupItem , Input,  Form, FormGroup, Label} from 'reactstrap';
-import { AvForm, AvField } from 'availity-reactstrap-validation';
+import { ListGroup, ListGroupItem , FormGroup, Row, Col, Button} from 'reactstrap';
+import { AvForm, AvField, AvRadioGroup, AvRadio } from 'availity-reactstrap-validation';
 import { HandleChange } from './../../share/Utility';
 import { checkStorageId } from './../../share/Utility';
 import axios from 'axios';
@@ -23,17 +23,25 @@ class Mainprofile extends React.Component {
             inputName:'',
             inputFamily:'',
             inputSource:'',
-            inputDate:''
+            inputYear:'',
+            inputMonth:'',
+            radioYear:'',
+            radioMonth:''
         }
     }
 
 
-    handleGetFormatDate = formatDate => {
-        this.setState({inputDate:formatDate})
-      }
+  
 
       handleModalData = modalData => {
-          console.log(modalData)
+         this.setState({
+            inputSource: modalData
+         })
+      }
+
+      click = () => {
+     
+          console.log(this.state.inputName, this.state.inputFamily, this.state.inputSource, this.state.inputYear, this.state.inputMonth)
       }
    
     
@@ -84,24 +92,75 @@ class Mainprofile extends React.Component {
                             </FormGroup>
 
                         </ListGroupItem>
-                        <ListGroupItem className="profile_list_group_item">
-                           {/* <span className="title_partt">سال خمسی : </span> */}
-                              <Form>
-                                 <FormGroup >
-                                   <div>
-                                   <MainDate onGetDate={this.handleGetFormatDate}/>
-                                  </div>
-                                 </FormGroup>
-                              </Form>
-                        </ListGroupItem>
-                       
-                       
-                        <ListGroupItem className="profile_list_group_item even-child">
+                        <ListGroupItem className="profile_list_group_item ">
                            <span className="title_partt"> انتخاب مرجع تقلید : </span>
                            <div><Maindrop onGetData={this.handleModalData}/></div>
                         </ListGroupItem>
 
+                        <ListGroupItem className="profile_list_group_item even-child">
+                        <span className="title_partt"> سال خمسی : </span>
+
+                        <Row>
+                                <Col>
+                                   
+                                  <FormGroup className="form_base_part">
+                                    <AvForm  onChange={(e) => HandleChange.call(this, e)} >
+                                      <AvField 
+                                       name="inputYear"
+                                       label="سال" 
+                                       type="number" 
+                                       value={this.state.inputYear}                                         
+                                       errorMessage="سال را وارد کنید" 
+                                       validate={{
+                                                  required: {value: true},
+                                                  // pattern: {value: '^[A-Za-z0-9پچجحخهعغفقثصضشسیبلاتنمکگوئدذرزطظژؤإأءًٌٍَُِّs]+$'}, 
+                                                }} />
+                                    </AvForm>
+                                  </FormGroup>
+                                   
+                              </Col>
+                              <Col>
+                                
+                          
+                                  <FormGroup className="form_base_part">
+                                    <AvForm onChange={(e) => HandleChange.call(this, e)}>
+                                    
+                                     
+                                      <AvField 
+                                       name="inputMonth"
+                                       label="ماه" 
+                                       type="number" 
+                                       value={this.state.inputMonth}                                            
+                                       errorMessage="ماه را وارد کنید" 
+                                       validate={{
+                                                  number: true,
+                                                  required: {value: true, errorMessage:"شماره حساب را وارد کنید"},
+                                                  pattern: {value: '^[۱۲۳۴۵۶۷۸۹۰0-9]+$'},                                                
+                                                }} /> 
+
+
+                                  </AvForm> 
+                                 </FormGroup>       
+                                 </Col>
+
+                                
+                                 </Row>
+                                 <Row>
+                                 <AvForm onChange={(e) => HandleChange.call(this, e)}>
+                                  <AvRadioGroup inline name="radioExample2" label="پرداخت" >
+                                   <AvRadio  label="سال" value="radioYear"  />
+                                   <AvRadio label="ماه" value="radioMonth" />
+          
+                                  </AvRadioGroup>
+                                 </AvForm>
+                                 </Row>
+                                   </ListGroupItem>
+                                            
+                       
+                      
+
                     </ListGroup>
+                    <Button onClick={this.click}>click</Button>
                     </div>
                     <Footer />
             </div>
