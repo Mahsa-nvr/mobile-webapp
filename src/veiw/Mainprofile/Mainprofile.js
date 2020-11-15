@@ -26,7 +26,8 @@ class Mainprofile extends React.Component {
             inputYear:'',
             inputMonth:'',
             radioYear:'',
-            radioMonth:''
+            radioMonth:'',
+            show: true
         }
     }
 
@@ -40,9 +41,17 @@ class Mainprofile extends React.Component {
       }
 
       click = () => {
+
+        if(!this.state.inputSource) {
+          this.setState({
+            show: false
+          })
+        }
      
           console.log(this.state.inputName, this.state.inputFamily, this.state.inputSource, this.state.inputYear, this.state.inputMonth)
-      }
+        
+     
+        }
    
     
     render() {
@@ -94,7 +103,11 @@ class Mainprofile extends React.Component {
                         </ListGroupItem>
                         <ListGroupItem className="profile_list_group_item ">
                            <span className="title_partt"> انتخاب مرجع تقلید : </span>
-                           <div><Maindrop onGetData={this.handleModalData}/></div>
+                           <div>
+                             <Maindrop
+                             empShow={this.state.show}
+                            onGetData={this.handleModalData}
+                            /></div>
                         </ListGroupItem>
 
                         <ListGroupItem className="profile_list_group_item even-child">

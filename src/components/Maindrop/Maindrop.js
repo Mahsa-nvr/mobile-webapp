@@ -1,14 +1,9 @@
 import React from 'react';
 import Select from 'react-select';
-import axios from 'axios';
-import {API} from './../../Services/Config';
+// import axios from 'axios';
+// import {API} from './../../Services/Config';
 
-// const a = [
-//   { value: 1 , label: 'حقوق' },
-//   { value: 2 , label: 'هدیه' },
-//   { value: 3 , label: 'سایر' },
-  
-// ];
+
 
 
 
@@ -16,22 +11,21 @@ import {API} from './../../Services/Config';
 class Maindrop extends React.Component {
     state = {
         selectedOption: null,
-        test : 77,
         totalLeader:[]
       };
 
 
       componentDidMount(){
-        axios.get(`${API}leadership/index`)
-        .then(res => {
-          console.log(res.data.data, 'res in main modal')
-        this.setState({
-          totalLeader: [...res.data.data]
-        })
+        // axios.get(`${API}leadership/index`)
+        // .then(res => {
+        //   console.log(res.data.data, 'res in main modal')
+        // this.setState({
+        //   totalLeader: [...res.data.data]
+        // })
         
-        }).catch(err => {
-          console.log(err)
-        })
+        // }).catch(err => {
+        //   console.log(err)
+        // })
      
       }
     
@@ -47,21 +41,32 @@ class Maindrop extends React.Component {
 
     
     render() {
-      console.log(this.state.totalLeader)
+     
+      const options = [
+        { value: 1 , label: 'آیت اله سید علی خامنه ای' },
+       
+      ];
+      // const options=this.state.totalLeader.map(el => {
+      //   return el.name
+      // })
 
-      const options = this.state.totalLeader.map(li => li.name)
+
+
+     
         const { selectedOption } = this.state;
 
         return (
             <div>
             <Select
-              placeholder={this.props.emptyDrop ? "انتخاب منبع..." : <span className="text-danger">انتخاب هزینه...</span>}
+              placeholder={this.props.empShow ? "انتخاب مرجع..." : <span className="text-danger">انتخاب مرجع...</span>}
               value={selectedOption}
-              onChange={this.handleChange}
-              options={options}
-              
+              onChange={this.handleChange}  
+              options={options}          
             />
-            <div></div>
+
+              
+           
+           
             
             </div>
         )
