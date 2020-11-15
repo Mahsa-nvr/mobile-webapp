@@ -6,6 +6,7 @@ import { AvForm, AvField, AvRadioGroup, AvRadio } from 'availity-reactstrap-vali
 import { HandleChange } from './../../share/Utility';
 import { checkStorageId } from './../../share/Utility';
 import axios from 'axios';
+import { withRouter } from "react-router-dom";
 
 import './Mainprofile.css';
 
@@ -42,15 +43,46 @@ class Mainprofile extends React.Component {
 
       click = () => {
 
+        checkStorageId()
+        let userId = checkStorageId()  
+
+
+     
+
+
+        if(this.state.inputName 
+          && this.state.inputFamily
+          && this.state.inputSource) {
+            
+            var bodyFormData = new FormData();
+            
+            bodyFormData.append('name', this.state.inputName);
+            bodyFormData.append('last_name', this.state.inputFamily);
+            bodyFormData.append('leadership_legalID', this.state.inputSource.value );
+            bodyFormData.append('user_id', userId );
+
+
+            axios({
+              method: 'post',     //put
+              url: `${API}profile/create`,
+              headers:{
+                 'Content-Type':'multipart/form-data'
+              },
+              data: bodyFormData,
+              }
+              ).then(res => 
+                  console.log(res)
+            ).catch(err => console.log(err))
+
+             this.props.history.push('/Defaultpage')
+              
+          }
+
         if(!this.state.inputSource) {
           this.setState({
             show: false
           })
         }
-     
-          console.log(this.state.inputName, this.state.inputFamily, this.state.inputSource, this.state.inputYear, this.state.inputMonth)
-        
-     
         }
    
     
@@ -160,7 +192,8 @@ class Mainprofile extends React.Component {
                                  </Row>
                                  <Row>
                                  <AvForm onChange={(e) => HandleChange.call(this, e)}>
-                                  <AvRadioGroup inline name="radioExample2" label="پرداخت" >
+                                  <AvRadioGroup inline name="radioExample2"  >
+                                  <span className="title_partt"> پرداخت : </span>
                                    <AvRadio  label="سال" value="radioYear"  />
                                    <AvRadio label="ماه" value="radioMonth" />
           
@@ -173,7 +206,7 @@ class Mainprofile extends React.Component {
                       
 
                     </ListGroup>
-                    <Button onClick={this.click}>click</Button>
+                    <Button color="primary" className="register_btn" onClick={this.click}>ثبت اطلاعات </Button>
                     </div>
                     <Footer />
             </div>
@@ -182,4 +215,4 @@ class Mainprofile extends React.Component {
     }
 }
 
-export default Mainprofile;
+export default withRouter(Mainprofile);

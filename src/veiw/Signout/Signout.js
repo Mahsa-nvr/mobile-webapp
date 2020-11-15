@@ -61,7 +61,7 @@ class Signout extends React.Component {
                  const{ id , username } = res.data.data
                  localStorage.setItem("User_Id", id )
                  localStorage.setItem("inputPhone", username )
-                 this.props.history.push('/Defaultpage')
+                 this.props.history.push('/register/profile')
                 }else{
                    this.setState({
                        show: true

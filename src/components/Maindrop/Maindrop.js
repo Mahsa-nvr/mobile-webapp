@@ -4,7 +4,14 @@ import Select from 'react-select';
 // import {API} from './../../Services/Config';
 
 
-
+const options = [
+  { value: 1 , label: ' سید علی خامنه ای' },
+  { value: 5 , label: ' سیستانی' },
+  { value: 6 , label: ' مکارم' },
+  { value: 7 , label: ' صافی گلپایگانی' },
+  { value: 8 , label: ' نوری همدانی' },
+  { value: 9 , label: ' سبحانی' },
+];
 
 
 
@@ -42,10 +49,7 @@ class Maindrop extends React.Component {
     
     render() {
      
-      const options = [
-        { value: 1 , label: 'آیت اله سید علی خامنه ای' },
-       
-      ];
+     
       // const options=this.state.totalLeader.map(el => {
       //   return el.name
       // })
