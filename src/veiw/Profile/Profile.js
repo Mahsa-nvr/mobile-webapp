@@ -13,6 +13,8 @@ import Header from './../../components/Header/Header';
 import Footer from './../../components/Footer/Footer';
 import Loading from './../../components/Loading/Loading';
 
+
+
 class Profile extends React.Component {
 
     constructor(props){
@@ -71,7 +73,7 @@ class Profile extends React.Component {
         return (
            
             <div className="profile_page">
-                <Header />
+                <Header name={this.state.totalprofile.name}/>
                 { this.state.flag ? <Loading/> : 
 
                 <div className="profile_list">
@@ -83,7 +85,7 @@ class Profile extends React.Component {
                            <span className="title_partt">نام : </span><span>{this.state.totalprofile.name}</span>
                         </ListGroupItem>
                         <ListGroupItem className="profile_list_group_item even-child">
-                          <span className="title_partt">نام کاربری : </span><span>{this.state.totalprofile.username}</span>
+                          <span className="title_partt">نام خانوادگی : </span><span>{this.state.totalprofile.last_name}</span>
                         </ListGroupItem>
                         <ListGroupItem className="profile_list_group_item ">
                            <span className="title_partt">سال خمسی : </span><span>{this.state.totalprofile.date_khoms}</span>

@@ -12,7 +12,7 @@ class Header extends React.Component {
                   <div className="profile_icon">
                     <img src={profileIcon} height="30"  alt=""/>
                   </div> 
-                  <div className="profile_text">سلام علیرضا</div>
+                   <div className="profile_text">سلام {this.props.name}</div>
 
                   <div className="profile_logo"> <img src={dariyan} height="30"  alt=""/></div>
                </div>

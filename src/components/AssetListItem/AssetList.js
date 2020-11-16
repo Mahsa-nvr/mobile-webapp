@@ -48,7 +48,7 @@ class AssetList extends React.Component {
                 type: 2
             }
            }
-          ).then(res => {        
+          ).then(res => {  
           this.setState({ 
             totalAsset : [...res.data.data],
             totalSum: res.data.sum
@@ -106,6 +106,7 @@ class AssetList extends React.Component {
           }
         }
         ).then(res => {
+          
           this.setState({ 
             totalAsset : [...res.data.data],
             totalSum : res.data.sum
@@ -293,21 +294,26 @@ class AssetList extends React.Component {
                            
                         <span className="asset_list_part_amount">  {li.description} <div className="credit_icon"><img src={iconn} alt=""/></div>
                         <span className="sale_modal">
-                          <Salemodal 
+                            <div>موجودی: 
+                            <NumberFormat value={li.amount} displayType={'text'} thousandSeparator={true}  renderText={value => <div className="sale_modal">{value} ریال </div>}/>
+                            </div>
+                          {/* <Salemodal 
                         mainId={li.id} 
                         mainName={li.name}
                         sendData={this.handleSendData}
-                        /></span>
+                        /> */}
+
+                        </span>
                          </span>                       
                         : 
                         <span className="asset_list_part_amount">
                           <NumberFormat value={li.amount} displayType={'text'} thousandSeparator={true}  renderText={value => <div>{value} ریال  
                           <span className="sale_modal">
                             <Salemodal
-                             mainId={li.id}
+                              mainId={li.id}
                               mainName={li.name}
                               sendData={this.handleSendData}
-                              /></span>
+                            /></span>
                           </div>} />
                            
                         </span>
