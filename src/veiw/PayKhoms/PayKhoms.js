@@ -11,6 +11,7 @@ import Header from './../../components/Header/Header';
 import MainTable from './../../components/MainTable/MainTable';
 import Footer from './../../components/Footer/Footer';
 import Loading from './../../components/Loading/Loading';
+import UpdateAmount from './../../components/Updateamount/Updateamount'
 
 import './PayKhoms.css';
 import daramad from './../../assets/icons/daramad.png'
@@ -95,7 +96,10 @@ class PayKhomse extends React.Component {
                <div className="main_khoms">
                  <div >
                    <ListGroup className="paykhoms_list_group">
-                   <ListGroupItem className="paykhoms_list_group_item title"><img src={daramad} height={40} alt=""/><span className="title_list">وجوهات شرعی</span></ListGroupItem>
+                   <ListGroupItem className="paykhoms_list_group_item title"><img src={daramad} height={40} alt=""/>
+                   <span className="title_list">وجوهات شرعی</span>
+                   <div><UpdateAmount/></div>
+                   </ListGroupItem>
                    </ListGroup >
                      {/* <span className="title">وجوهات شرعی</span> */}
                       <MainTable  onGetData={this.handleGetData}/>

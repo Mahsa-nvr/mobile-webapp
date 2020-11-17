@@ -124,13 +124,10 @@ class Salemodal extends React.Component {
           
         >
           <Row>
-         <div style={{float:"right", display:"block", marginBottom: "5px"}}> <span>نام :</span> <span>{this.props.mainName}</span></div></Row>
+         <div style={{float:"right", display:"block", marginBottom: "5px"}}> <span>نام :</span> <span>{this.props.mainName}</span></div>
+         </Row>
         <Row><span style={{float:"right", marginTop: "5px"}}>قیمت :</span>
-          {/* <Input 
-          name="inputPrice"
-          value={this.state.inputPrice}
-          onChange={(e) => handlePriceChange.call(this, e)}
-           /> */}
+         
             <NumberFormat
                 className="input_number_fomat"
                 name="inputPrice"

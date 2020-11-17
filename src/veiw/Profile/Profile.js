@@ -61,7 +61,7 @@ class Profile extends React.Component {
                 totalprofile : res.data.data
              })
           }).catch(err =>
-             console.log('asset page' , err))
+             console.log('profile page' , err))
 
     }
 
@@ -73,7 +73,7 @@ class Profile extends React.Component {
         return (
            
             <div className="profile_page">
-                <Header name={this.state.totalprofile.name}/>
+                <Header />
                 { this.state.flag ? <Loading/> : 
 
                 <div className="profile_list">
