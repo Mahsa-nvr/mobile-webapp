@@ -16,7 +16,9 @@ const UpdateAmount = (props) => {
   } = props;
 
   const [modal, setModal] = useState(false);
-  const [total, setTotal] = useState('')
+  const [total, setTotal] = useState('');
+  const [first, setFirst] = useState()
+
 
 
   useEffect(() => {   
@@ -29,9 +31,9 @@ const UpdateAmount = (props) => {
           
       }
       }).then(res => {
-        //  console.log(res.data.data, 'header')
+         console.log(res.data.data, 'header')
          setTotal(res.data.data)
-         
+         setFirst(res.data.data[0])
       }).catch(err =>
          console.log('updateamount' , err))
     
@@ -41,13 +43,21 @@ const UpdateAmount = (props) => {
   const toggle = () => setModal(!modal);
 
   const next = () => {
-      return (
-          <div> <BodyModal /></div>
-      )
+     if(total.length > 1) {
+       let i=[...total]
+       console.log(i)
+      // for(let i=total[1]; i<total.length; i++) {
+      //   console.log(i,'i in for')
+      // }
+     }else {
+       console.log('no')
+     }
     }
 
   const closeBtn = <button className="close" onClick={toggle}>&times;</button>;
   
+  console.log(first,'first in hook')
+  console.log(total[0],'total in parent')
   return (
       
   <div>
@@ -55,7 +65,7 @@ const UpdateAmount = (props) => {
     <Modal isOpen={modal} toggle={toggle} className={className}>
       <ModalHeader toggle={toggle} close={closeBtn}> به روز رسانی هزینه</ModalHeader>
       <ModalBody className="bd_main">
-        <BodyModal />
+        <BodyModal firstData={first} />
       </ModalBody>
       <ModalFooter>
         <Button color="primary" onClick={toggle}>Do Something</Button>{' '}
