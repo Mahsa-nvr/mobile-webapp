@@ -17,7 +17,8 @@ const UpdateAmount = (props) => {
 
   const [modal, setModal] = useState(false);
   const [total, setTotal] = useState('');
-  const [first, setFirst] = useState()
+  const [first, setFirst] = useState();
+  const [ count , setCount] = useState(1)
 
 
 
@@ -32,8 +33,9 @@ const UpdateAmount = (props) => {
       }
       }).then(res => {
          console.log(res.data.data, 'header')
-         setTotal(res.data.data)
-         setFirst(res.data.data[0])
+         setTotal([...res.data.data])
+         setFirst(res.data.data[0].name)
+         
       }).catch(err =>
          console.log('updateamount' , err))
     
@@ -43,21 +45,40 @@ const UpdateAmount = (props) => {
   const toggle = () => setModal(!modal);
 
   const next = () => {
-     if(total.length > 1) {
-       let i=[...total]
-       console.log(i)
-      // for(let i=total[1]; i<total.length; i++) {
-      //   console.log(i,'i in for')
-      // }
-     }else {
-       console.log('no')
+    console.log(count, 'count in parent')
+    setCount(count + 1)
+
+   let i=[...total]
+   i.map((el, index) => {
+    //  console.log(el.name, index)
+     if(index === count) {
+       console.log(index,count,el.name,'is ok')
+       setFirst(el.name)
+     }else{
+       console.log('noooo')
      }
+   })
+
+
+    //  if(total.length > 1) {
+    //    let i=[...total]
+    //    console.log(i[1].id)
+    //   for(i[1]; i<total.length; i++) {
+    //     console.log(i,'i in for')
+    //   }
+    //   setCount(count + 1)
+    //  }else {
+    //    console.log('no')
+    //  }
     }
 
   const closeBtn = <button className="close" onClick={toggle}>&times;</button>;
   
+  
+
+ 
+  
   console.log(first,'first in hook')
-  console.log(total[0],'total in parent')
   return (
       
   <div>

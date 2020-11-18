@@ -8,12 +8,12 @@ class BodyModal extends React.Component {
 
 
     render() {
-      console.log(this.props.firstData.name,';;')
-      let items = this.props.firstData
+      console.log(this.props.firstData,';;')
+      
         return (
             <div>
              <Row>
-               <div style={{float:"right", display:"block", marginBottom: "5px"}}> <span>نام : {this.props.firstData.name} </span> <span>{this.props.mainName}</span></div>
+               <div style={{float:"right", display:"block", marginBottom: "5px"}}> <span>نام : {this.props.firstData} </span> <span>{this.props.mainName}</span></div>
             </Row>
             <Row><span style={{float:"right", marginTop: "5px"}}>قیمت :</span>
          
