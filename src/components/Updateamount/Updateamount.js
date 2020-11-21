@@ -76,6 +76,56 @@ const UpdateAmount = (props) => {
       bodyFormData.append('amount_now', amount);
       bodyFormData.append('id', addid );
       bodyFormData.append('userID', userId );
+      bodyFormData.append('status', 2 );
+    
+      axios({
+
+        method: 'post',     //put
+        url: `${API}expenditures/consumer_update`,
+        headers:{
+           'Content-Type':'multipart/form-data'
+        },
+        data: bodyFormData,
+        }
+
+       ).then(res => {
+        console.log(res)
+      }).catch(err => {
+        console.log(err)
+      })
+
+
+  }
+
+  const end = () => {
+    
+
+
+    let i=[...total]
+    i.map((el, index) => {
+     //  console.log(el.name, index)
+      if(index === count) {
+        console.log(index,count,el.name,'is ok')
+        setFirst(el.name)
+        setAddid(el.id)
+      }else{
+        console.log('noooo')
+      }
+    })
+
+    console.log(addid, first, 'sssssssss')
+
+    setCount(count + 1)
+
+    checkStorageId()
+    let userId = checkStorageId() 
+
+    var bodyFormData = new FormData();
+     
+      bodyFormData.append('amount_now', 0 );
+      bodyFormData.append('id', addid );
+      bodyFormData.append('userID', userId );
+      bodyFormData.append('status', 1 );
     
       axios({
 
@@ -95,10 +145,6 @@ const UpdateAmount = (props) => {
 
   }
 
-  const end = () => {
-    console.log('end')
-  }
-
   const next = () => {
     setCount(count + 1)
 
@@ -107,9 +153,9 @@ const UpdateAmount = (props) => {
     //  console.log(el.name, index)
      if(index === count) {
        console.log(index,count,el.name,'is ok')
-       setFirst(el.name)
+      return  setFirst(el.name)
      }else{
-       console.log('noooo')
+      return null
      }
    })
 
@@ -129,6 +175,8 @@ const UpdateAmount = (props) => {
     const handleGetAmount = (data) => {
       setPrice(data)
     }
+
+
 
 
   const closeBtn = <button className="close" onClick={toggle}>&times;</button>;
