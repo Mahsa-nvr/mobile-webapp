@@ -20,7 +20,8 @@ const UpdateAmount = (props) => {
   const [first, setFirst] = useState();
   const [count , setCount] = useState(1);
   const [price , setPrice] = useState('');
-  const [addid , setAddid] = useState('')
+  const [addid , setAddid] = useState('');
+  const [test , setTest] = useState('')
 
 
 
@@ -71,29 +72,31 @@ const UpdateAmount = (props) => {
     checkStorageId()
     let userId = checkStorageId() 
 
-    var bodyFormData = new FormData();
+    // var bodyFormData = new FormData();
      
-      bodyFormData.append('amount_now', amount);
-      bodyFormData.append('id', addid );
-      bodyFormData.append('userID', userId );
-      bodyFormData.append('status', 2 );
+    //   bodyFormData.append('amount_now', amount);
+    //   bodyFormData.append('id', addid );
+    //   bodyFormData.append('userID', userId );
+    //   bodyFormData.append('status', 2 );
     
-      axios({
+    //   axios({
 
-        method: 'post',     //put
-        url: `${API}expenditures/consumer_update`,
-        headers:{
-           'Content-Type':'multipart/form-data'
-        },
-        data: bodyFormData,
-        }
+    //     method: 'post',     //put
+    //     url: `${API}expenditures/consumer_update`,
+    //     headers:{
+    //        'Content-Type':'multipart/form-data'
+    //     },
+    //     data: bodyFormData,
+    //     }
 
-       ).then(res => {
-        console.log(res)
-      }).catch(err => {
-        console.log(err)
-      })
+    //    ).then(res => {
+    //     console.log(res)
+    //   }).catch(err => {
+    //     console.log(err)
+    //   })
 
+    setTest('gg')
+    
 
   }
 
@@ -112,8 +115,6 @@ const UpdateAmount = (props) => {
         console.log('noooo')
       }
     })
-
-    console.log(addid, first, 'sssssssss')
 
     setCount(count + 1)
 
@@ -193,7 +194,7 @@ const UpdateAmount = (props) => {
     <Modal isOpen={modal} toggle={toggle} className={className}>
       <ModalHeader toggle={toggle} close={closeBtn}> به روز رسانی هزینه</ModalHeader>
       <ModalBody className="bd_main">
-        <BodyModal firstData={first} getData={handleGetAmount}/>
+        <BodyModal firstData={first} getData={handleGetAmount} test={test}/>
       </ModalBody>
       <ModalFooter>
         {/* <Button color="primary" onClick={toggle}>Do Something</Button>{' '}

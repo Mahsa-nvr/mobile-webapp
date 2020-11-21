@@ -13,12 +13,31 @@ class BodyModal extends React.Component {
     }
   }
 
+  componentDidMount() {
+    const { test } = this.props;
+    console.log(test, 'hhhh')
+    // if(test == 'gg') {
+    //   console.log(test)
+    //   // this.setState({
+    //   //   inputPrice:''
+    //   // })
+    // }else {
+    //   console.log('no yyyyy')
+    // }
+  }
+
+
+    
+  
 
 
     render() {
+      console.log(this.props.test,'testttttt')
       const totalAmount = this.state.inputPrice
-      const {getData} =  this.props
+      const {getData } =  this.props
       getData(totalAmount)
+
+     
      
         return (
             <div>
