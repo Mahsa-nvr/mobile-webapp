@@ -6,10 +6,20 @@ import { HandleChange } from './../../share/Utility';
 
 class BodyModal extends React.Component {
 
+  constructor(props){
+    super(props);
+    this.state = {
+      inputPrice: ''
+    }
+  }
+
+
 
     render() {
-      console.log(this.props.firstData,';;')
-      
+      const totalAmount = this.state.inputPrice
+      const {getData} =  this.props
+      getData(totalAmount)
+     
         return (
             <div>
              <Row>
@@ -20,7 +30,7 @@ class BodyModal extends React.Component {
             <NumberFormat
                 className="input_number_fomat"
                 name="inputPrice"
-                // value={this.state.inputPrice}
+                value={this.state.inputPrice}
                 onChange={(e) => HandleChange.call(this, e)}
                 displayType="input" 
                 thousandSeparator={true}

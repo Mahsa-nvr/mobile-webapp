@@ -18,7 +18,9 @@ const UpdateAmount = (props) => {
   const [modal, setModal] = useState(false);
   const [total, setTotal] = useState('');
   const [first, setFirst] = useState();
-  const [ count , setCount] = useState(1)
+  const [count , setCount] = useState(1);
+  const [price , setPrice] = useState('');
+  const [addid , setAddid] = useState('')
 
 
 
@@ -35,7 +37,7 @@ const UpdateAmount = (props) => {
          console.log(res.data.data, 'header')
          setTotal([...res.data.data])
          setFirst(res.data.data[0].name)
-         
+         setAddid(res.data.data[0].id)
       }).catch(err =>
          console.log('updateamount' , err))
     
@@ -44,8 +46,60 @@ const UpdateAmount = (props) => {
 
   const toggle = () => setModal(!modal);
 
+  const add = () => {
+
+    const value = price;
+    const amount = value.replace(/,/g, "");
+    console.log(amount, 'price in parent')
+
+    let i=[...total]
+    i.map((el, index) => {
+     //  console.log(el.name, index)
+      if(index === count) {
+        console.log(index,count,el.name,'is ok')
+        setFirst(el.name)
+        setAddid(el.id)
+      }else{
+        console.log('noooo')
+      }
+    })
+
+    console.log(addid, first, 'sssssssss')
+
+    setCount(count + 1)
+
+    checkStorageId()
+    let userId = checkStorageId() 
+
+    var bodyFormData = new FormData();
+     
+      bodyFormData.append('amount_now', amount);
+      bodyFormData.append('id', addid );
+      bodyFormData.append('userID', userId );
+    
+      axios({
+
+        method: 'post',     //put
+        url: `${API}expenditures/consumer_update`,
+        headers:{
+           'Content-Type':'multipart/form-data'
+        },
+        data: bodyFormData,
+        }
+
+       ).then(res => {
+        console.log(res)
+      }).catch(err => {
+        console.log(err)
+      })
+
+  }
+
+  const end = () => {
+    console.log('end')
+  }
+
   const next = () => {
-    console.log(count, 'count in parent')
     setCount(count + 1)
 
    let i=[...total]
@@ -72,13 +126,18 @@ const UpdateAmount = (props) => {
     //  }
     }
 
+    const handleGetAmount = (data) => {
+      setPrice(data)
+    }
+
+
   const closeBtn = <button className="close" onClick={toggle}>&times;</button>;
   
   
 
  
   
-  console.log(first,'first in hook')
+
   return (
       
   <div>
@@ -86,12 +145,15 @@ const UpdateAmount = (props) => {
     <Modal isOpen={modal} toggle={toggle} className={className}>
       <ModalHeader toggle={toggle} close={closeBtn}> به روز رسانی هزینه</ModalHeader>
       <ModalBody className="bd_main">
-        <BodyModal firstData={first} />
+        <BodyModal firstData={first} getData={handleGetAmount}/>
       </ModalBody>
       <ModalFooter>
-        <Button color="primary" onClick={toggle}>Do Something</Button>{' '}
-        <Button color="secondary" onClick={toggle}>Cancel</Button>
-        <Button color="danger" onClick={next}>next</Button>
+        {/* <Button color="primary" onClick={toggle}>Do Something</Button>{' '}
+        <Button color="secondary" onClick={toggle}>Cancel</Button> */}
+
+        <Button color="success" onClick={add}>ثبت</Button>
+        <Button color="primary" onClick={end}>اتمام کالا</Button>
+        <Button color="danger" onClick={next}>بعدی</Button>
       </ModalFooter>
     </Modal>
   </div>
