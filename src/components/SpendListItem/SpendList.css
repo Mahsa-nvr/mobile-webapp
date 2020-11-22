@@ -60,3 +60,7 @@
 .drop {
     margin-left: 4%;
 }
+.payment_account {
+    color: red;
+    margin: auto;
+}

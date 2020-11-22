@@ -13,20 +13,23 @@ class BodyModal extends React.Component {
     }
   }
 
-  componentDidMount() {
-    const { test } = this.props;
-    console.log(test, 'hhhh')
-    // if(test == 'gg') {
-    //   console.log(test)
-    //   // this.setState({
-    //   //   inputPrice:''
-    //   // })
-    // }else {
-    //   console.log('no yyyyy')
-    // }
+  // componentDidUpdate() {
+
+  //   console.log(this.props.test, 'prop in life')
+
+  // if(this.props.test) {
+  //   this.setState({inputPrice : ''})
+  // }
+    
+  // }
+
+
+  handleInputChange = (e) => {
+    const {name , value} = e.target;
+    this.setState({
+        [name] : value
+    })
   }
-
-
     
   
 
@@ -50,7 +53,7 @@ class BodyModal extends React.Component {
                 className="input_number_fomat"
                 name="inputPrice"
                 value={this.state.inputPrice}
-                onChange={(e) => HandleChange.call(this, e)}
+                onChange={(e) => this.handleInputChange.call(this, e)}
                 displayType="input" 
                 thousandSeparator={true}
                 allowEmptyFormatting 

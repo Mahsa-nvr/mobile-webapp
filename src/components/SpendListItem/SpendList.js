@@ -32,7 +32,8 @@ class SpendList extends React.Component {
             inputDropDown:'',
             sumAmount: 0,
             show: false,
-            emptyDrop: true
+            emptyDrop: true,
+            showAmountdiv: false
         }
     }
 
@@ -62,7 +63,10 @@ class SpendList extends React.Component {
 
     btnClick = () => {
         this.setState({ 
-          show : !this.state.show
+          show : !this.state.show,
+          showAmountdiv : false,
+          inputName: "",
+          inputAmount: ""
         });
     }
 
@@ -89,6 +93,8 @@ class SpendList extends React.Component {
      if(this.state.inputAmount && this.state.inputName
        && this.state.inputDate && this.props.catId ) {
 
+        
+
       var bodyFormData = new FormData();
       bodyFormData.append('amount', price);
       bodyFormData.append('name', this.state.inputName);
@@ -106,12 +112,20 @@ class SpendList extends React.Component {
         },
         data: bodyFormData,
         }
-        ).then(res => 
-            console.log(res));
+        ).then(res => {
+            console.log(res.data.type)
+            if(res.data.type == 1){
+              this.setState({show : true, showAmountdiv: true})
+            }else {
+              this.setState({show: false})
+            }
+        });
         }
         catch(err){
           console.log('errrr')
         }
+
+     
 
        await axios.get(`${API}expenditures/index`, {
           params: {
@@ -123,7 +137,7 @@ class SpendList extends React.Component {
           totalSpend :[...res.data.data],
           sumAmount: res.data.sum,
           emptyDrop: true,
-          show : false
+          // show : false
       })
       onGetData(this.state.sumAmount);
         }).catch(err => {
@@ -132,9 +146,11 @@ class SpendList extends React.Component {
 
       }else {
         this.setState({
-          emptyDrop : false
+          emptyDrop : false, 
         })
       }
+
+     
     }
 
     render() {
@@ -257,6 +273,7 @@ class SpendList extends React.Component {
                         </Col>
                   </Row> 
                   <Row>
+                        {this.state.showAmountdiv ? <div className="payment_account">موجودی حساب شما کافی نیست</div> : null }
                         <Button className="send_btn_spend"  color="primary" onClick={this.send}> ارسال</Button>
                   </Row>
                 

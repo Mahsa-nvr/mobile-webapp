@@ -11,6 +11,7 @@ import './Salemodal.css';
 
 import { checkStorageId } from './../../share/Utility';
 
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMedal } from '@fortawesome/free-solid-svg-icons';
 

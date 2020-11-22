@@ -98,9 +98,9 @@ class PayKhomse extends React.Component {
                    <ListGroup className="paykhoms_list_group">
                    <ListGroupItem className="paykhoms_list_group_item title"><img src={daramad} height={40} alt=""/>
                    <span className="title_list">وجوهات شرعی</span>
-                   <div><UpdateAmount/></div>
+                   <div className="title_update_amount"><UpdateAmount/></div>
                    </ListGroupItem>
-                   </ListGroup >
+                   </ListGroup>
                      {/* <span className="title">وجوهات شرعی</span> */}
                       <MainTable  onGetData={this.handleGetData}/>
                  </div>                
@@ -111,12 +111,11 @@ class PayKhomse extends React.Component {
                      <div className="after_pay">شما تاکنون مبلغ <span className="after_pay_amount">
                      <NumberFormat value={this.state.payAmount} displayType={'text'} thousandSeparator={true}  renderText={value => <div style={{display:"inline-block"}}>{value}</div>} />
                        </span> ریال خمس پرداخت کرده اید </div>
-                     <div className="before_pay">شما باید مبلغ  <span>
+                     <div className="before_pay">شما باید مبلغ <span>
                      <NumberFormat value={this.state.mustAmountPay} displayType={'text'} thousandSeparator={true}  renderText={value => <div style={{display:"inline-block"}}>{value}</div>} />
                        </span> ریال را پرداخت کنید  </div>
                      <div className="btn_pay"><Button  onClick={this.btnPay} color="success" style={{ backgroundColor:"#00b894",width: "60%" , fontSize:"12px"}}>پرداخت </Button></div>
-               
-                
+      
                  </div>
               : null}
                  

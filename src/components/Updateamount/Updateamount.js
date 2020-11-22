@@ -25,14 +25,13 @@ const UpdateAmount = (props) => {
 
 
 
-  useEffect(() => {   
+  useEffect(() => {  
+
     checkStorageId()
-    let userId = checkStorageId()   
-           
+    let userId = checkStorageId()           
     axios.get(`${API}expenditures/consumer`,{
         params: {
-          user_id : userId,
-          
+          user_id : userId,    
       }
       }).then(res => {
          console.log(res.data.data, 'header')
@@ -40,10 +39,8 @@ const UpdateAmount = (props) => {
          setFirst(res.data.data[0].name)
          setAddid(res.data.data[0].id)
       }).catch(err =>
-         console.log('updateamount' , err))
-    
-   
-}, [setTotal])
+         console.log( 'updateamount' , err))
+}, [setTotal] )
 
   const toggle = () => setModal(!modal);
 
@@ -72,28 +69,28 @@ const UpdateAmount = (props) => {
     checkStorageId()
     let userId = checkStorageId() 
 
-    // var bodyFormData = new FormData();
+    var bodyFormData = new FormData();
      
-    //   bodyFormData.append('amount_now', amount);
-    //   bodyFormData.append('id', addid );
-    //   bodyFormData.append('userID', userId );
-    //   bodyFormData.append('status', 2 );
+      bodyFormData.append('amount_now', amount);
+      bodyFormData.append('id', addid );
+      bodyFormData.append('userID', userId );
+      bodyFormData.append('status', 2 );
     
-    //   axios({
+      axios({
 
-    //     method: 'post',     //put
-    //     url: `${API}expenditures/consumer_update`,
-    //     headers:{
-    //        'Content-Type':'multipart/form-data'
-    //     },
-    //     data: bodyFormData,
-    //     }
+        method: 'post',     //put
+        url: `${API}expenditures/consumer_update`,
+        headers:{
+           'Content-Type':'multipart/form-data'
+        },
+        data: bodyFormData,
+        }
 
-    //    ).then(res => {
-    //     console.log(res)
-    //   }).catch(err => {
-    //     console.log(err)
-    //   })
+       ).then(res => {
+        console.log(res)
+      }).catch(err => {
+        console.log(err)
+      })
 
     setTest('gg')
     
@@ -190,7 +187,7 @@ const UpdateAmount = (props) => {
   return (
       
   <div>
-    <Button color="danger" onClick={toggle}>{buttonLabel}</Button>
+    <Button color="danger" onClick={toggle} style={{fontSize:"10px", marginTop:"5px"}}>به روز رسانی هزینه های مصرفی</Button>
     <Modal isOpen={modal} toggle={toggle} className={className}>
       <ModalHeader toggle={toggle} close={closeBtn}> به روز رسانی هزینه</ModalHeader>
       <ModalBody className="bd_main">

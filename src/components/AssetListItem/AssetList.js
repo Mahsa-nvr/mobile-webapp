@@ -20,6 +20,7 @@ import credit from './../../assets/icons/secondIcons/credit.png';
 //components
 import MainDate from './../mainDatePicker/MainDate';
 import Salemodal from './../SaleModal/Salemodal';
+import Bankmodal from './../Bankmodal/Bankmodal';
 
 class AssetList extends React.Component {
 
@@ -291,8 +292,10 @@ class AssetList extends React.Component {
                         {li.name}
                          {li.category_name === 'حساب بانکی' ?
                          
-                           
-                        <span className="asset_list_part_amount">  {li.description} <div className="credit_icon"><img src={iconn} alt=""/></div>
+                          
+                        <span className="asset_list_part_amount">
+                          <div style={{display: 'inline-block'}}><Bankmodal /></div>
+                            {li.description} <div className="credit_icon"><img src={iconn} alt=""/></div>
                         <span className="sale_modal">
                             <div>موجودی: 
                             <NumberFormat value={li.amount} displayType={'text'} thousandSeparator={true}  renderText={value => <div className="sale_modal">{value} ریال </div>}/>
@@ -304,6 +307,7 @@ class AssetList extends React.Component {
                         /> */}
 
                         </span>
+                        
                          </span>                       
                         : 
                         <span className="asset_list_part_amount">
