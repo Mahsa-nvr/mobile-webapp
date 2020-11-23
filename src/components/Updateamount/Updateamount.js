@@ -1,13 +1,15 @@
 import React, { useState , useEffect} from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Row } from 'reactstrap';
 import axios from 'axios';
 import  { API } from './../../Services/Config.js';
 import { checkStorageId } from './../../share/Utility';
 
+import NumberFormat from 'react-number-format';
+
 import './Updateamount.css';
 
 //component 
-import BodyModal from './BodyModal';
+// import BodyModal from './BodyModal';
 
 const UpdateAmount = (props) => {
   const {
@@ -21,11 +23,13 @@ const UpdateAmount = (props) => {
   const [count , setCount] = useState(1);
   const [price , setPrice] = useState('');
   const [addid , setAddid] = useState('');
-  const [test , setTest] = useState('')
+  const [checkUser , setCheckUser] = useState('');
+ 
 
 
 
   useEffect(() => {  
+
 
     checkStorageId()
     let userId = checkStorageId()           
@@ -40,29 +44,28 @@ const UpdateAmount = (props) => {
          setAddid(res.data.data[0].id)
       }).catch(err =>
          console.log( 'updateamount' , err))
+
 }, [setTotal] )
 
   const toggle = () => setModal(!modal);
 
-  const add = () => {
 
+  const add = async () => {
     const value = price;
     const amount = value.replace(/,/g, "");
-    console.log(amount, 'price in parent')
-
+   
     let i=[...total]
     i.map((el, index) => {
      //  console.log(el.name, index)
-      if(index === count) {
-        console.log(index,count,el.name,'is ok')
+      if(index === count){
         setFirst(el.name)
         setAddid(el.id)
-      }else{
-        console.log('noooo')
+      }else {
+        console.log('kkkkkkkkkk')
       }
     })
+  
 
-    console.log(addid, first, 'sssssssss')
 
     setCount(count + 1)
 
@@ -75,9 +78,9 @@ const UpdateAmount = (props) => {
       bodyFormData.append('id', addid );
       bodyFormData.append('userID', userId );
       bodyFormData.append('status', 2 );
-    
-      axios({
 
+      try {
+        await axios({
         method: 'post',     //put
         url: `${API}expenditures/consumer_update`,
         headers:{
@@ -85,19 +88,37 @@ const UpdateAmount = (props) => {
         },
         data: bodyFormData,
         }
+        ).then(res => 
+            console.log(res)
+           );
+        }
+        catch(err){
+          console.log('errrr')
+        }
 
-       ).then(res => {
-        console.log(res)
-      }).catch(err => {
+        await axios.get(`${API}expenditures/consumer`, {
+          params: {
+              user_id : userId,
+          }
+        }
+        ).then(res => {
+          let totaldata = [...res.data.data]
+          console.log(totaldata.length, 'aaaaa')
+          if(totaldata.length === 0) {
+            setModal(false) 
+            setFirst('')    
+          } 
+        }).catch(err => {
         console.log(err)
-      })
+        })
+      
+    setPrice('')
 
-    setTest('gg')
-    
 
+      
   }
 
-  const end = () => {
+  const end = async () => {
     
 
 
@@ -125,8 +146,8 @@ const UpdateAmount = (props) => {
       bodyFormData.append('userID', userId );
       bodyFormData.append('status', 1 );
     
-      axios({
-
+      try {
+        await axios({
         method: 'post',     //put
         url: `${API}expenditures/consumer_update`,
         headers:{
@@ -134,45 +155,56 @@ const UpdateAmount = (props) => {
         },
         data: bodyFormData,
         }
+        ).then(res => 
+            console.log(res));
+        }
+        catch(err){
+          console.log('errrr')
+        }
 
-       ).then(res => {
-        console.log(res)
-      }).catch(err => {
+        await axios.get(`${API}expenditures/consumer`, {
+          params: {
+              user_id : userId,
+          }
+        }
+        ).then(res => {
+          let totaldata = [...res.data.data]
+          console.log(totaldata.length, 'aaaaa')
+          if(totaldata.length === 0) {
+            setModal(false)
+          }
+          
+        }).catch(err => {
         console.log(err)
-      })
+        })
 
   }
 
   const next = () => {
+
+    checkStorageId()
+    let userId = checkStorageId() 
+
     setCount(count + 1)
 
    let i=[...total]
+   
    i.map((el, index) => {
     //  console.log(el.name, index)
      if(index === count) {
        console.log(index,count,el.name,'is ok')
       return  setFirst(el.name)
-     }else{
-      return null
+     }else {
+      setCheckUser(true)
      }
-   })
+   }) 
+ }
 
 
-    //  if(total.length > 1) {
-    //    let i=[...total]
-    //    console.log(i[1].id)
-    //   for(i[1]; i<total.length; i++) {
-    //     console.log(i,'i in for')
-    //   }
-    //   setCount(count + 1)
-    //  }else {
-    //    console.log('no')
-    //  }
-    }
 
-    const handleGetAmount = (data) => {
-      setPrice(data)
-    }
+const handleOnchange = e => {
+  setPrice(e.target.value)
+}
 
 
 
@@ -191,7 +223,29 @@ const UpdateAmount = (props) => {
     <Modal isOpen={modal} toggle={toggle} className={className}>
       <ModalHeader toggle={toggle} close={closeBtn}> به روز رسانی هزینه</ModalHeader>
       <ModalBody className="bd_main">
-        <BodyModal firstData={first} getData={handleGetAmount} test={test}/>
+        {/* <BodyModal firstData={first} getData={handleGetAmount} test={test}/> */}
+     
+
+        <div>
+             <Row>
+               <div style={{float:"right", display:"block", marginBottom: "5px"}}> <span>نام : {first} </span> </div>
+            </Row>
+            <Row><span style={{float:"right", marginTop: "5px"}}>قیمت :</span>
+         
+            <NumberFormat
+                className="input_number_fomat"
+                name="price"
+                value={price}
+                onChange={(e) => handleOnchange.call(this, e)}
+                displayType="input" 
+                thousandSeparator={true}
+                allowEmptyFormatting 
+                  />
+           </Row>
+
+   
+       </div>
+     
       </ModalBody>
       <ModalFooter>
         {/* <Button color="primary" onClick={toggle}>Do Something</Button>{' '}

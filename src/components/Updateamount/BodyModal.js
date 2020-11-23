@@ -45,7 +45,7 @@ class BodyModal extends React.Component {
         return (
             <div>
              <Row>
-               <div style={{float:"right", display:"block", marginBottom: "5px"}}> <span>نام : {this.props.firstData} </span> <span>{this.props.mainName}</span></div>
+               <div style={{float:"right", display:"block", marginBottom: "5px"}}> <span>نام : {this.props.firstData} </span> </div>
             </Row>
             <Row><span style={{float:"right", marginTop: "5px"}}>قیمت :</span>
          
