@@ -53,6 +53,8 @@ const UpdateAmount = (props) => {
     const value = price;
     const amount = value.replace(/,/g, "");
    
+    if(amount !== '') {
+
     let i=[...total]
     i.map((el, index) => {
      //  console.log(el.name, index)
@@ -60,7 +62,7 @@ const UpdateAmount = (props) => {
         setFirst(el.name)
         setAddid(el.id)
       }else {
-        console.log('kkkkkkkkkk')
+        console.log('index & count arent equal in add button')
       }
     })
     setCount(count + 1)
@@ -74,7 +76,7 @@ const UpdateAmount = (props) => {
       bodyFormData.append('userID', userId );
       bodyFormData.append('status', 2 );
       
-     
+    
       try {
         await axios({
         method: 'post',     //put
@@ -107,6 +109,13 @@ const UpdateAmount = (props) => {
         }).catch(err => {
         console.log(err)
         })
+
+      
+    }
+      else{
+        console.log(amount, 'amountttt')
+        setEmptyprice(true)
+      }
       
     setPrice('')
   
@@ -163,53 +172,65 @@ const UpdateAmount = (props) => {
         }
         ).then(res => {
           let totaldata = [...res.data.data]
-          console.log(totaldata.length, 'aaaaa')
+          // setTotal([...res.data.data])
+          // setFirst(res.data.data[0].name)
+          // setAddid(res.data.data[0].id)
           if(totaldata.length === 0) {
             setModal(false)
+            setFirst('')    
           }
           
         }).catch(err => {
         console.log(err)
         })
-
+        setEmptyprice(false)
   }
 
   const next = () => {
-
+  setCount(count + 1)
+   let i=[...total] 
+   i.map((el, index) => {
+     if(index === count) {
+      console.log( index ,count,el.name,'is ok')
+     setFirst(el.name)
+     setAddid(el.id)
+     } else {
+      console.log('index & count aret equal in other items of array')
+     } 
+    
+   }) 
+ //when we recive last part of array modal is close and refresh data to show
+   if( count >= total.length) {
+    setModal(false)
     checkStorageId()
     let userId = checkStorageId() 
-
-    setCount(count + 1)
-
-   let i=[...total]
-   
-   i.map((el, index) => {
-    //  console.log(el.name, index)
-     if(index === count) {
-       console.log( index ,count,el.name,'is ok')
-      //  let test = [...i]
-      // let test2=  test.shift()
-      // console.log(test, test2, 'lllkkk')
-     setFirst(el.name)
-    
-     } else {
-       console.log(count,'count in if else')
-       console.log(index,'index in if else')
+    axios.get(`${API}expenditures/consumer`, {
+      params: {
+          user_id : userId,
+      }
+    }
+    ).then(res => {
+      let totaldata = [...res.data.data]
+      setTotal([...res.data.data])
+      setFirst(res.data.data[0].name)
+      setAddid(res.data.data[0].id)
+      setCount(1)
+      if(totaldata.length === 0) {
+        setModal(false)
+      }
       
-     } 
-     if(checkUser){
-       setModal(false)
-     }
-   }) 
-   let arr = i.slice(1)
-   console.log(arr,'arr')
-
+    }).catch(err => {
+    console.log(err)
+    })
+   }
+   setEmptyprice(false)
  }
 
 
 
 const handleOnchange = e => {
   setPrice(e.target.value)
+  setEmptyprice(false)
 }
 
 
@@ -227,7 +248,7 @@ const handleOnchange = e => {
   <div>
     <Button color="danger" onClick={toggle} style={{fontSize:"10px", marginTop:"5px"}}>به روز رسانی هزینه های مصرفی</Button>
     <Modal isOpen={modal} toggle={toggle} className={className}>
-      <ModalHeader toggle={toggle} close={closeBtn}> به روز رسانی هزینه</ModalHeader>
+      <ModalHeader style={{backgroundColor: "#07b0c3"}} toggle={toggle} close={closeBtn}> به روز رسانی هزینه</ModalHeader>
       <ModalBody className="bd_main">
         {/* <BodyModal firstData={first} getData={handleGetAmount} test={test}/> */}
      
@@ -236,10 +257,10 @@ const handleOnchange = e => {
              <Row>
                <div style={{float:"right", display:"block", marginBottom: "5px"}}> <span>نام : {first} </span> </div>
             </Row>
-            <Row><span style={{float:"right", marginTop: "5px"}}>قیمت :</span>
+            <Row><span className={ emptyprice ? "input_label_price_empty" : "input_label_price"}>قیمت :</span>
          
             <NumberFormat
-                className="input_number_fomat"
+                className={emptyprice?"input_number_format_empty" : "input_number_fomat"}
                 name="price"
                 value={price}
                 onChange={(e) => handleOnchange.call(this, e)}
