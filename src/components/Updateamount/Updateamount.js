@@ -17,20 +17,20 @@ const UpdateAmount = (props) => {
     className
   } = props;
 
-  const [modal, setModal] = useState(false);
-  const [total, setTotal] = useState('');
-  const [first, setFirst] = useState();
+  const [modal , setModal] = useState(false);
+  const [total , setTotal] = useState('');
+  const [first , setFirst] = useState();
   const [count , setCount] = useState(1);
   const [price , setPrice] = useState('');
   const [addid , setAddid] = useState('');
+  const [emptyprice , setEmptyprice] = useState(false);
   const [checkUser , setCheckUser] = useState('');
  
 
 
 
   useEffect(() => {  
-
-
+//recive get data and set first of that in state
     checkStorageId()
     let userId = checkStorageId()           
     axios.get(`${API}expenditures/consumer`,{
@@ -43,8 +43,7 @@ const UpdateAmount = (props) => {
          setFirst(res.data.data[0].name)
          setAddid(res.data.data[0].id)
       }).catch(err =>
-         console.log( 'updateamount' , err))
-
+         console.log( 'updateamount in useeffect in get method' , err))
 }, [setTotal] )
 
   const toggle = () => setModal(!modal);
@@ -64,11 +63,7 @@ const UpdateAmount = (props) => {
         console.log('kkkkkkkkkk')
       }
     })
-  
-
-
     setCount(count + 1)
-
     checkStorageId()
     let userId = checkStorageId() 
 
@@ -78,7 +73,8 @@ const UpdateAmount = (props) => {
       bodyFormData.append('id', addid );
       bodyFormData.append('userID', userId );
       bodyFormData.append('status', 2 );
-
+      
+     
       try {
         await axios({
         method: 'post',     //put
@@ -95,7 +91,7 @@ const UpdateAmount = (props) => {
         catch(err){
           console.log('errrr')
         }
-
+     
         await axios.get(`${API}expenditures/consumer`, {
           params: {
               user_id : userId,
@@ -113,9 +109,7 @@ const UpdateAmount = (props) => {
         })
       
     setPrice('')
-
-
-      
+  
   }
 
   const end = async () => {
@@ -192,12 +186,24 @@ const UpdateAmount = (props) => {
    i.map((el, index) => {
     //  console.log(el.name, index)
      if(index === count) {
-       console.log(index,count,el.name,'is ok')
-      return  setFirst(el.name)
-     }else {
-      setCheckUser(true)
+       console.log( index ,count,el.name,'is ok')
+      //  let test = [...i]
+      // let test2=  test.shift()
+      // console.log(test, test2, 'lllkkk')
+     setFirst(el.name)
+    
+     } else {
+       console.log(count,'count in if else')
+       console.log(index,'index in if else')
+      
+     } 
+     if(checkUser){
+       setModal(false)
      }
    }) 
+   let arr = i.slice(1)
+   console.log(arr,'arr')
+
  }
 
 
