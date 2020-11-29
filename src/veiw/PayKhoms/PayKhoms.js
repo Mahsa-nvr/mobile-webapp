@@ -94,6 +94,18 @@ class PayKhomse extends React.Component {
           )
       }
       catch(err) {console.log('errrrr in pay page', err) }
+    
+      await  axios.get(`${API}paykhoms/index`,{
+        params: {
+          user_id : userId
+      }
+      }).then(res => {
+        this.setState({
+          mustAmountPay : res.data.religion.religion
+        })
+      }).catch(err =>
+         console.log('update price khoms in khomspage' , err))
+    
     }
 
 
