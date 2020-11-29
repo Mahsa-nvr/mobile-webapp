@@ -303,7 +303,7 @@ class AssetList extends React.Component {
                             {li.description} <div className="credit_icon"><img src={iconn} alt=""/></div>
                         <span className="sale_modal">
                             <div>موجودی: 
-                            <NumberFormat value={this.state.test} displayType={'text'} thousandSeparator={true}  renderText={value => <div className="sale_modal">{value} ریال </div>}/>
+                            <NumberFormat value={li.amount} displayType={'text'} thousandSeparator={true}  renderText={value => <div className="sale_modal">{value} ریال </div>}/>
                             </div>
                         </span>
                         

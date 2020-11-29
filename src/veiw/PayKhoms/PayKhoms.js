@@ -5,7 +5,7 @@ import { ListGroup, ListGroupItem ,Button} from 'reactstrap';
 import NumberFormat from 'react-number-format';
 import { withRouter } from "react-router-dom";
 
-import { checkStorageId } from './../../share/Utility';
+import { checkStorageId , Icon} from './../../share/Utility';
 
 import Header from './../../components/Header/Header';
 import MainTable from './../../components/MainTable/MainTable';
@@ -23,7 +23,8 @@ class PayKhomse extends React.Component {
     this.state= {
       mustAmountPay: '',
       payAmount:'',
-      flag: true
+      flag: true , 
+      top: -100
     }
   }
 
@@ -78,10 +79,19 @@ class PayKhomse extends React.Component {
             'Content-Type':'multipart/form-data'
          },
          data: bodyFormData,
-        }).then(res =>  
-          console.log(res, 'response is ok to post paykhomse page') 
+        }).then((res) =>  
+          // console.log(res, 'response is ok to post paykhomse page') 
           //  window.location.href ='https://www.leader.ir/fa/monies'
-           )
+         this.setState({
+           top: 16
+         }, () => {
+           setTimeout(() => {
+              this.setState({
+                top: -100
+              })
+           }, 3000)
+         })
+          )
       }
       catch(err) {console.log('errrrr in pay page', err) }
     }
@@ -119,6 +129,17 @@ class PayKhomse extends React.Component {
       
                  </div>
               : null}
+
+           <div style={{
+                 backgroundColor:"#28A745",
+                 color: "white",
+                 padding: "16px",
+                 position: "absolute",
+                 top: `${this.state.top}px` ,
+                 right: "16px",
+                 zIndex: 100,
+                 transition: "top 0.5s ease"
+                         }} > <Icon icon={'bell'}/> پرداخت شما با موفقیت انجام شد </div>
                  
               <Footer />
            </div>

@@ -1,4 +1,5 @@
 
+import React from 'react';
 
 export function HandleChange(e) {
     
@@ -58,4 +59,12 @@ export const checkStorageId = () => {
        return null
     
     }
+}
+
+
+export const Icon = (props) => {
+    const {icon, className, ...other} = props;
+    return (
+        <i {...other} className={`fa fa-${icon} ${className}`}/>
+    )
 }
