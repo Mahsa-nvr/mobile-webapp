@@ -46,7 +46,7 @@ const ModalChat = (props) => {
                 <Button color="danger" onClick={toggle}>ثبت پرسش جدید</Button>
             </Form>
             <Modal isOpen={modal} toggle={toggle} className={className} unmountOnClose={unmountOnClose}>
-                <ModalHeader toggle={toggle}>ثبت پرسش جدید </ModalHeader>
+                <ModalHeader style={{backgroundColor:"#07b0c3"}} toggle={toggle}>ثبت پرسش جدید </ModalHeader>
                 <ModalBody>
                     <Input  type="textarea" value={inputValue} onChange={handleChange} rows={5} />
                 </ModalBody>

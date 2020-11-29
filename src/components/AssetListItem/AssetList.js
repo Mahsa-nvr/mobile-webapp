@@ -33,7 +33,8 @@ class AssetList extends React.Component {
             inputAmount:'',
             inputDate: '',
             inputAccountNum:'',
-            totalSum: 0
+            totalSum: 0,
+            test: 0
         }
     }
 
@@ -133,13 +134,16 @@ class AssetList extends React.Component {
 
     handleSendData = (data1, data2) => {
       const { onGetData } = this.props
-
+       console.log(data1, 'data1 in handle send')
      this.setState({
-      totalAsset: data1,
-      totalSum: data2
+      totalAsset:[...data1],
+      totalSum: data2,
+      test: this.state.totalAsset[0].amount
      })
+   
+     console.log(this.state.totalAsset[0].amount,'state in total')
      onGetData(this.state.totalSum)
-     
+  
     }
 
     
@@ -287,25 +291,20 @@ class AssetList extends React.Component {
             
 
                {this.state.totalAsset.map( li => { 
+                 console.log(li,'li in asset')
                         if(li.category_name === this.props.mainTitle )            
                       return <ListGroupItem key={li.id} className="asset_list_part">
                         {li.name}
                          {li.category_name === 'حساب بانکی' ?
-                         
+                       
                           
                         <span className="asset_list_part_amount">
-                          <div style={{display: 'inline-block'}}><Bankmodal /></div>
+                          {/* <div style={{display: 'inline-block'}}><Bankmodal /></div> */}
                             {li.description} <div className="credit_icon"><img src={iconn} alt=""/></div>
                         <span className="sale_modal">
                             <div>موجودی: 
-                            <NumberFormat value={li.amount} displayType={'text'} thousandSeparator={true}  renderText={value => <div className="sale_modal">{value} ریال </div>}/>
+                            <NumberFormat value={this.state.test} displayType={'text'} thousandSeparator={true}  renderText={value => <div className="sale_modal">{value} ریال </div>}/>
                             </div>
-                          {/* <Salemodal 
-                        mainId={li.id} 
-                        mainName={li.name}
-                        sendData={this.handleSendData}
-                        /> */}
-
                         </span>
                         
                          </span>                       

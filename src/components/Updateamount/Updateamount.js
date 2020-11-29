@@ -24,7 +24,7 @@ const UpdateAmount = (props) => {
   const [price , setPrice] = useState('');
   const [addid , setAddid] = useState('');
   const [emptyprice , setEmptyprice] = useState(false);
-  const [checkUser , setCheckUser] = useState('');
+
  
 
 
@@ -42,6 +42,7 @@ const UpdateAmount = (props) => {
          setTotal([...res.data.data])
          setFirst(res.data.data[0].name)
          setAddid(res.data.data[0].id)
+        
       }).catch(err =>
          console.log( 'updateamount in useeffect in get method' , err))
 }, [setTotal] )
@@ -228,6 +229,7 @@ const UpdateAmount = (props) => {
 
 
 
+
 const handleOnchange = e => {
   setPrice(e.target.value)
   setEmptyprice(false)
@@ -241,7 +243,6 @@ const handleOnchange = e => {
   
 
  
-  
 
   return (
       
@@ -272,7 +273,7 @@ const handleOnchange = e => {
 
    
        </div>
-     
+  
       </ModalBody>
       <ModalFooter>
         {/* <Button color="primary" onClick={toggle}>Do Something</Button>{' '}
