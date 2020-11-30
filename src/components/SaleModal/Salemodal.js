@@ -81,9 +81,6 @@ class Salemodal extends React.Component {
   }).catch(err => {
   console.log(err,'errrrr')
   })
-
-
-
     }
 
     this.setState({

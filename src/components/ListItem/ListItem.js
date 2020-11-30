@@ -29,7 +29,8 @@ class ListItem extends React.Component {
           isVisible : false,
           show: false,
           totalIncome: [],
-          totalAmount: '',         
+          totalAmount: '',
+          emptyPrice: false         
         };
        
       }
@@ -63,7 +64,8 @@ class ListItem extends React.Component {
       btnClick = () => {
           this.setState({ 
             isVisible: !this.state.isVisible,
-            show : !this.state.show
+            show : !this.state.show,
+            emptyPrice: false
           });
       }
 
@@ -77,7 +79,7 @@ class ListItem extends React.Component {
 
         const { onGetData } = this.props
      
-      
+      if(value) {
         var bodyFormData = new FormData();
         bodyFormData.append('amount', price);
         bodyFormData.append('name', this.state.inputName);
@@ -124,10 +126,23 @@ class ListItem extends React.Component {
           inputAmount: "",
           show: false
         })
+      }else{
+       this.setState({
+         emptyPrice: true
+       })
+      }
       }
 
       handleGetFormatDate = formatDate => {
         this.setState({inputDate:formatDate})
+      }
+
+      handleAmountChange = (e) => {
+        const {name, value } = e.target;
+        this.setState({
+            [name] : value,
+            emptyPrice : false
+        })
       }
   
       
@@ -191,7 +206,7 @@ class ListItem extends React.Component {
                                  </Col>
                                  <Col>
                                   
-                                     <FormGroup className="form_base_part">
+                                     {/* <FormGroup className="form_base_part">
                                        <AvForm onChange={(e) => handlePriceChange.call(this, e)}>
                                        
                                          <AvField 
@@ -209,9 +224,21 @@ class ListItem extends React.Component {
                                          
                                 
                                        </AvForm>                                   
-                                          </FormGroup>
-                                        
+                                          </FormGroup> */}
+                                          <div className={this.state.emptyPrice ? "empty_label_price" : "label_price"}>قیمت</div>
+                                        <NumberFormat
+                                           required
+                                           className={this.state.emptyPrice ? "input_number_format_emptyamount" : "input_number_format_amount"}
+                                           name="inputAmount"
+                                           value={this.state.inputAmount}
+                                           onChange={(e) => this.handleAmountChange.call(this, e)}
+                                           displayType="input" 
+                                           thousandSeparator={true}
+                                           allowEmptyFormatting 
+                                        />
+                                         <span className={this.state.emptyPrice ? "state_emptyAmount" : "state_amount"}>قیمت را وارد کنید</span>
                                    </Col>
+                                  
                                </Row>
                                <Row>
                                    <Col>
