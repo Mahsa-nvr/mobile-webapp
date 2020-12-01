@@ -225,7 +225,7 @@ class ListItem extends React.Component {
                                 
                                        </AvForm>                                   
                                           </FormGroup> */}
-                                          <div className={this.state.emptyPrice ? "empty_label_price" : "label_price"}>قیمت</div>
+                                          <div className={this.state.emptyPrice ? "empty_label_price" : "label_price"}> قیمت (ریال)</div>
                                         <NumberFormat
                                            required
                                            className={this.state.emptyPrice ? "input_number_format_emptyamount" : "input_number_format_amount"}

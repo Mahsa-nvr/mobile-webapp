@@ -34,7 +34,8 @@ class AssetList extends React.Component {
             inputDate: '',
             inputAccountNum:'',
             totalSum: 0,
-            test: 0
+            test: 0,
+            emptyPrice: false
         }
     }
 
@@ -63,7 +64,8 @@ class AssetList extends React.Component {
 
     btnClick = () => {
         this.setState({ 
-          show : !this.state.show
+          show : !this.state.show,
+          emptyPrice: false
         });
     }
 //post api in asset page and recive update get method immediatly
@@ -75,6 +77,7 @@ class AssetList extends React.Component {
       const value = this.state.inputAmount   
       const price = value.replace(/,/g, "");
     
+      if(price) {
       const { onGetData } = this.props
 
       var bodyFormData = new FormData();
@@ -124,7 +127,11 @@ class AssetList extends React.Component {
           inputAmount:'',
           inputAccountNum:''
         })
-
+      }else{
+        this.setState({
+          emptyPrice : true
+        })
+      }
     }
 
 
@@ -145,6 +152,15 @@ class AssetList extends React.Component {
      onGetData(this.state.totalSum)
   
     }
+
+    handleAmountChange = (e) => {
+      const {name, value } = e.target;
+      this.setState({
+          [name] : value,
+          emptyPrice : false
+      })
+    }
+
 
     
 
@@ -234,27 +250,22 @@ class AssetList extends React.Component {
                               
                                     </AvForm>                                   
                                        </FormGroup> : 
-                                       <FormGroup className="form_base_part">
-                                       <AvForm onChange={(e) => handlePriceChange.call(this, e)}>
-                                       
-                                        
-                                         <AvField 
-                                          name="inputAmount"
-                                          label="قیمت (ریال) "  
-                                          type="text" 
-                                          value={this.state.inputAmount}                                            
-                                          errorMessage="قیمت را وارد کنید" 
-                                          validate={{
-                                                    //  number: true,
-                                                     required: {value: true, errorMessage:"قیمت را وارد کنید"},
-                                                     pattern: {value: '^[\u06F0-\u06F90-9,]+$'},                                                
-                                                   }} /> 
-                                                 
-                                 
-                                       </AvForm>                                   
-                                          </FormGroup>
-                                       
-                                       
+
+                                    
+                                      <div>
+                                       <div className={this.state.emptyPrice ? "empty_label_price" : "label_price"}> قیمت (ریال)</div>
+                                      <NumberFormat
+                                         required
+                                         className={this.state.emptyPrice ? "input_number_format_emptyamount" : "input_number_format_amount"}
+                                         name="inputAmount"
+                                         value={this.state.inputAmount}
+                                         onChange={(e) => this.handleAmountChange.call(this, e)}
+                                         displayType="input" 
+                                         thousandSeparator={true}
+                                         allowEmptyFormatting 
+                                      />
+                                       <span className={this.state.emptyPrice ? "state_emptyAmount" : "state_amount"}>قیمت را وارد کنید</span>
+                                       </div>
                                        }
                                        
                                       

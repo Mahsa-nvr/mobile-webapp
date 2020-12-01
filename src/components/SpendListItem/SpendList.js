@@ -33,7 +33,8 @@ class SpendList extends React.Component {
             sumAmount: 0,
             show: false,
             emptyDrop: true,
-            showAmountdiv: false
+            showAmountdiv: false,
+            emptyPrice: false
         }
     }
 
@@ -66,7 +67,8 @@ class SpendList extends React.Component {
           show : !this.state.show,
           showAmountdiv : false,
           inputName: "",
-          inputAmount: ""
+          inputAmount: "",
+          emptyPrice: false
         });
     }
 
@@ -147,10 +149,19 @@ class SpendList extends React.Component {
       }else {
         this.setState({
           emptyDrop : false, 
+          emptyPrice: true
         })
       }
 
      
+    }
+
+    handleAmountChange = (e) => {
+      const {name, value } = e.target;
+      this.setState({
+          [name] : value,
+          emptyPrice : false
+      })
     }
 
     render() {
@@ -224,26 +235,20 @@ class SpendList extends React.Component {
                     </Col>
                     <Col>
                  
-                        <FormGroup className="form_base_part">
-                          <AvForm onChange={(e) => handlePriceChange.call(this, e)}>
-                          
-                            <AvField 
-                             name="inputAmount"
-                            
-                             label="قیمت (ریال) " 
-                             type="text"
-                             value={this.state.inputAmount}                                            
-                             errorMessage="قیمت را وارد کنید" 
-                             validate={{
-                                  
-                                        // number: true,
-                                        required: {value: true, errorMessage:"قیمت را وارد کنید"},
-                                        pattern: {value: '^[\u06F0-\u06F90-9,]+$'},                                                
-                                      }} />
-                            
-                   
-                          </AvForm>                                   
-                             </FormGroup>
+                      <div>
+                        <div className={this.state.emptyPrice ? "empty_label_price" : "label_price"}> قیمت (ریال)</div>
+                          <NumberFormat
+                            required
+                            className={this.state.emptyPrice ? "input_number_format_emptyamount" : "input_number_format_amount"}
+                            name="inputAmount"
+                            value={this.state.inputAmount}
+                            onChange={(e) => this.handleAmountChange.call(this, e)}
+                            displayType="input" 
+                            thousandSeparator={true}
+                            allowEmptyFormatting 
+                          />
+                         <span className={this.state.emptyPrice ? "state_emptyAmount" : "state_amount"}>قیمت را وارد کنید</span>
+                        </div>
                              
                       </Col>
                   </Row>
