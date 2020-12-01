@@ -1,8 +1,4 @@
 import React from 'react';
-
-
-
-
 import axios from 'axios';
 import  { API } from './../../Services/Config.js';
 import './../Register/Register.css';
@@ -21,7 +17,6 @@ class Signout extends React.Component {
             empty: false,
             phoneSignout: '',
             show: false
-
         }
     }
     handleChange=(event) => {

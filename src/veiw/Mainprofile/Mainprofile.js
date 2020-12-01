@@ -28,7 +28,9 @@ class Mainprofile extends React.Component {
             inputMonth:'',
             radioYear:'',
             radioMonth:'',
-            show: true
+            show: true,
+            test:'',
+            selectedOption:''
         }
     }
 
@@ -41,15 +43,31 @@ class Mainprofile extends React.Component {
          })
       }
 
+      onValueChange = (event) => {
+        this.setState({
+          selectedOption: event.target.value
+        });
+      }
+
       click = () => {
+      //  console.log(this.state.selectedOption, 'select radio')
+       let day;
+       switch(this.state.selectedOption){
+        case 'inputYear': 
+         day = 365
+         break;
+
+        case 'inputMonth':
+         day = 12
+          break;
+          
+          default:
+           return null;
+      }
+       
 
         checkStorageId()
         let userId = checkStorageId()  
-
-
-     
-
-
         if(this.state.inputName 
           && this.state.inputFamily
           && this.state.inputSource) {
@@ -60,6 +78,9 @@ class Mainprofile extends React.Component {
             bodyFormData.append('last_name', this.state.inputFamily);
             bodyFormData.append('leadership_legalID', this.state.inputSource.value );
             bodyFormData.append('user_id', userId );
+            bodyFormData.append('last_clearing_mounth', this.state.inputMonth );
+            bodyFormData.append('last_clearing_year', this.state.inputYear );
+            bodyFormData.append('clearing_paykhoms', day );
 
 
             axios({
@@ -87,6 +108,7 @@ class Mainprofile extends React.Component {
    
     
     render() {
+     
         return (
             <div className="profile_page">
             <Header />
@@ -194,8 +216,18 @@ class Mainprofile extends React.Component {
                                  <AvForm onChange={(e) => HandleChange.call(this, e)}>
                                   <AvRadioGroup inline name="radioExample2"  >
                                   <span className="title_partt"> پرداخت : </span>
-                                   <AvRadio  label="سال" value="radioYear"  />
-                                   <AvRadio label="ماه" value="radioMonth" />
+                                   <AvRadio 
+                                    label="سال" 
+                                    value="inputYear"
+                                    checked={this.state.selectedOption === "inputYear"}
+                                    onChange={this.onValueChange} 
+                                    />
+                                   <AvRadio 
+                                   label="ماه" 
+                                   value="inputMonth"
+                                   checked={this.state.selectedOption === "inputMonth"}
+                                   onChange={this.onValueChange} 
+                                   />
           
                                   </AvRadioGroup>
                                  </AvForm>
