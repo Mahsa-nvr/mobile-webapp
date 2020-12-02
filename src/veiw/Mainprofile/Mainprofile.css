@@ -53,5 +53,17 @@
 }
 
 .register_btn {
-    width: 100%
+    width: 100%;
+    height: 7%;
+    margin-bottom: 10%;
+}
+
+.state_khoms {
+    font-size: 10px;
+    color: #f5f6fa
+}
+.state_emptyKhoms {
+    font-size: 10px;
+    color:  #dc3545;
+    font-weight: bold;
 }

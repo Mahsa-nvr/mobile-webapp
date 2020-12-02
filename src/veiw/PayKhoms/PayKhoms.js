@@ -151,7 +151,7 @@ class PayKhomse extends React.Component {
                  right: "16px",
                  zIndex: 100,
                  transition: "top 0.5s ease"
-                         }} > <Icon icon={'bell'}/> پرداخت شما با موفقیت انجام شد </div>
+                         }} > <Icon icon={'bell'}/> پرداخت خمس شما به صورت شبیه سازی و غیر واقعی انجام شد</div>
                  
               <Footer />
            </div>

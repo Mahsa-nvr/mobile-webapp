@@ -7,13 +7,15 @@ import { HandleChange } from './../../share/Utility';
 import { checkStorageId } from './../../share/Utility';
 import axios from 'axios';
 import { withRouter } from "react-router-dom";
+import NumberFormat from 'react-number-format';
+
 
 import './Mainprofile.css';
 
 //components
 import Header from './../../components/Header/Header';
 import Footer from './../../components/Footer/Footer';
-import MainDate from './../../components/mainDatePicker/MainDate';
+// import MainDate from './../../components/mainDatePicker/MainDate';
 import Maindrop from './../../components/Maindrop/Maindrop';
 
 class Mainprofile extends React.Component {
@@ -29,7 +31,7 @@ class Mainprofile extends React.Component {
             radioYear:'',
             radioMonth:'',
             show: true,
-            test:'',
+            emptyKhoms:false,
             selectedOption:''
         }
     }
@@ -51,6 +53,11 @@ class Mainprofile extends React.Component {
 
       click = () => {
       //  console.log(this.state.selectedOption, 'select radio')
+      if(!this.state.inputYear) {
+        this.setState({
+          emptyKhoms: true
+        })
+      }
        let day;
        switch(this.state.selectedOption){
         case 'inputYear': 
@@ -58,7 +65,7 @@ class Mainprofile extends React.Component {
          break;
 
         case 'inputMonth':
-         day = 12
+         day = 30
           break;
           
           default:
@@ -70,7 +77,9 @@ class Mainprofile extends React.Component {
         let userId = checkStorageId()  
         if(this.state.inputName 
           && this.state.inputFamily
-          && this.state.inputSource) {
+          && this.state.inputSource
+          && this.state.inputYear
+          && day) {
             
             var bodyFormData = new FormData();
             
@@ -78,8 +87,8 @@ class Mainprofile extends React.Component {
             bodyFormData.append('last_name', this.state.inputFamily);
             bodyFormData.append('leadership_legalID', this.state.inputSource.value );
             bodyFormData.append('user_id', userId );
-            bodyFormData.append('last_clearing_mounth', this.state.inputMonth );
-            bodyFormData.append('last_clearing_year', this.state.inputYear );
+            // bodyFormData.append('last_clearing_mounth', this.state.inputMonth );
+            bodyFormData.append('date_khoms', this.state.inputYear );
             bodyFormData.append('clearing_paykhoms', day );
 
 
@@ -97,13 +106,27 @@ class Mainprofile extends React.Component {
 
              this.props.history.push('/Defaultpage')
               
+          }else{
+            console.log('empty khoms')
+            this.setState({
+              emptyKhoms: true
+            })
           }
 
         if(!this.state.inputSource) {
           this.setState({
-            show: false
+            show: false,
+            emptyKhoms: true
           })
         }
+        }
+
+        handleKhomsChange = (e) => {
+          const {name, value } = e.target;
+          this.setState({
+              [name] : value,
+              emptyKhoms : false
+          })
         }
    
     
@@ -169,45 +192,58 @@ class Mainprofile extends React.Component {
 
                         <Row>
                                 <Col>
-                                   
-                                  <FormGroup className="form_base_part">
+                                   <div>
+                                   <div className={this.state.emptyKhoms ? "empty_label_price" : "label_price"}> روز و ماه تسویه خمسی</div>
+                                   <NumberFormat 
+                                   className={this.state.emptyKhoms ? "input_number_format_emptyamount" : "input_number_format_amount"}
+                                   format="##/##" 
+                                   placeholder="10/31" 
+                                   mask="_"
+                                   name="inputYear"
+                                   value={this.state.inputYear}
+                                   onChange={(e) => this.handleKhomsChange.call(this, e)}
+                                   />
+                                   <span className={this.state.emptyKhoms ? "state_emptyKhoms" : "state_khoms"}>روز و ماه تسویه خمسی را وارد کنید</span>
+                                   </div>
+                                  {/* <FormGroup className="form_base_part">
                                     <AvForm  onChange={(e) => HandleChange.call(this, e)} >
                                       <AvField 
+                                       placeholder="10/31"
                                        name="inputYear"
-                                       label="سال" 
+                                       label="روز تسویه خمسی" 
                                        type="number" 
                                        value={this.state.inputYear}                                         
-                                       errorMessage="سال را وارد کنید" 
+                                       errorMessage="روز و ماه تسویه خمسی را وارد کنید" 
                                        validate={{
-                                                  required: {value: true},
-                                                  // pattern: {value: '^[A-Za-z0-9پچجحخهعغفقثصضشسیبلاتنمکگوئدذرزطظژؤإأءًٌٍَُِّs]+$'}, 
+                                                  required: {value: true,errorMessage:"روز و ماه تسویه خمسی را وارد کنید" },
+                                                  pattern: {value: '^([1-9]|[12][0-9]|3[01])$', errorMessage:"روز تسویه خمسی باید عددی بین 1 تا 31 باشد"}, 
                                                 }} />
                                     </AvForm>
-                                  </FormGroup>
+                                  </FormGroup> */}
                                    
                               </Col>
                               <Col>
                                 
                           
-                                  <FormGroup className="form_base_part">
+                                  {/* <FormGroup className="form_base_part">
                                     <AvForm onChange={(e) => HandleChange.call(this, e)}>
                                     
                                      
                                       <AvField 
                                        name="inputMonth"
-                                       label="ماه" 
+                                       label="روز" 
                                        type="number" 
                                        value={this.state.inputMonth}                                            
-                                       errorMessage="ماه را وارد کنید" 
+                                       errorMessage="روز را وارد کنید" 
                                        validate={{
                                                   number: true,
-                                                  required: {value: true, errorMessage:"شماره حساب را وارد کنید"},
+                                                  required: {value: true, errorMessage:" روز را وارد کنید"},
                                                   pattern: {value: '^[۱۲۳۴۵۶۷۸۹۰0-9]+$'},                                                
                                                 }} /> 
 
 
                                   </AvForm> 
-                                 </FormGroup>       
+                                 </FormGroup>        */}
                                  </Col>
 
                                 

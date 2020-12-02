@@ -88,10 +88,10 @@ class Profile extends React.Component {
                           <span className="title_partt">نام خانوادگی : </span><span>{this.state.totalprofile.last_name}</span>
                         </ListGroupItem>
                         <ListGroupItem className="profile_list_group_item ">
-                           <span className="title_partt">سال خمسی : </span><span>{this.state.totalprofile.date_khoms}</span>
+                           <span className="title_partt"> روز و ماه تسویه خمسی : </span><span>{this.state.totalprofile.date_khoms}</span>
                         </ListGroupItem>
                         <ListGroupItem className="profile_list_group_item even-child">
-                           <span className="title_partt">دوره خمسی (ماه) : </span><span>{this.state.totalprofile.last_clear_khoms}</span>
+                           <span className="title_partt">بازه تسویه خمسی : </span><span>{this.state.totalprofile.clearing_paykhoms}</span>
                         </ListGroupItem>
                         <ListGroupItem className="profile_list_group_item ">
                            <span className="title_partt">شماره موبایل : </span><span>{this.state.phoneNum}</span>
