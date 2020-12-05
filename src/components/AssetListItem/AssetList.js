@@ -70,14 +70,14 @@ class AssetList extends React.Component {
     }
 //post api in asset page and recive update get method immediatly
     send = async (props) => {
-
+  console.log('yesss')
       checkStorageId()
       let userId = checkStorageId() 
 
       const value = this.state.inputAmount   
       const price = value.replace(/,/g, "");
     
-      if(price) {
+      if(price || this.state.inputAccountNum) {
       const { onGetData } = this.props
 
       var bodyFormData = new FormData();
@@ -98,7 +98,7 @@ class AssetList extends React.Component {
         data: bodyFormData,
         }
         ).then(res => 
-            console.log(res));
+            console.log(res , 'post is ok'));
         }
         catch(err){
           console.log('errrr')
@@ -110,8 +110,7 @@ class AssetList extends React.Component {
               type: 2
           }
         }
-        ).then(res => {
-          
+        ).then(res => {        
           this.setState({ 
             totalAsset : [...res.data.data],
             totalSum : res.data.sum
@@ -145,7 +144,7 @@ class AssetList extends React.Component {
      this.setState({
       totalAsset:[...data1],
       totalSum: data2,
-      test: this.state.totalAsset[0].amount
+     
      })
    
      console.log(this.state.totalAsset[0].amount,'state in total')
