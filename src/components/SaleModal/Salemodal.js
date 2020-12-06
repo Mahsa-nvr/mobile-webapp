@@ -77,7 +77,7 @@ class Salemodal extends React.Component {
       totalData : [...res.data.data],
       totalSum : res.data.sum
   })
-  sendData(this.state.totalData,this.state.totalSum)
+  sendData(this.state.totalData,this.state.totalSum , this.state.inputPrice)
   }).catch(err => {
   console.log(err,'errrrr')
   })

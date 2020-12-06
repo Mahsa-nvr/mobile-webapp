@@ -35,7 +35,8 @@ class AssetList extends React.Component {
             inputAccountNum:'',
             totalSum: 0,
             test: 0,
-            emptyPrice: false
+            emptyPrice: false,
+            flag: ''
         }
     }
 
@@ -138,20 +139,27 @@ class AssetList extends React.Component {
       this.setState({inputDate:formatDate})
     }
 
-    handleSendData = (data1, data2) => {
+  
+
+   
+    handleSendData = (data1, data2, data3 ) => {
+     
       const { onGetData } = this.props
-       console.log(data1, 'data1 in handle send')
+      console.log(data3, 'data3 in handle send')
+     
      this.setState({
       totalAsset:[...data1],
       totalSum: data2,
-     
      })
-   
+     window.location.reload();
+     console.log(this.state.totalAsset, 'total asset in parent after recive data from child')
      console.log(this.state.totalAsset[0].amount,'state in total')
-     onGetData(this.state.totalSum)
-  
+     onGetData(this.state.totalSum)  
     }
 
+  
+
+ 
     handleAmountChange = (e) => {
       const {name, value } = e.target;
       this.setState({
@@ -164,6 +172,7 @@ class AssetList extends React.Component {
     
 
     render() {
+      let addPrice = this.state.flag
      let iconn = null;
      switch (this.props.catId) {
 
@@ -306,8 +315,7 @@ class AssetList extends React.Component {
                       return <ListGroupItem key={li.id} className="asset_list_part">
                         {li.name}
                          {li.category_name === 'حساب بانکی' ?
-                       
-                          
+ 
                         <span className="asset_list_part_amount">
                           {/* <div style={{display: 'inline-block'}}><Bankmodal /></div> */}
                             {li.description} <div className="credit_icon"><img src={iconn} alt=""/></div>
