@@ -34,12 +34,12 @@ class Footer extends React.Component {
         return (
             <div className="footer">
              
-                <div className="each_part" onClick={this.signOut}><FontAwesomeIcon icon={faSignOutAlt} /></div>
-                <div className="each_part" onClick={this.chat}><FontAwesomeIcon icon={faComment} /></div>
-                <div className="each_part" onClick={this.spend}><FontAwesomeIcon icon={faCoins} /></div>
-                <div className="each_part" onClick={this.income}><FontAwesomeIcon icon={faDollarSign} /></div>
-                <div className="each_part" onClick={this.default}><FontAwesomeIcon icon={faHome} /></div>
-                <div className="each_part" onClick={this.profile}><FontAwesomeIcon icon={faUser} /></div>
+                <div className="each_part" onClick={this.signOut}><span><FontAwesomeIcon icon={faSignOutAlt} /></span></div>
+                <div className="each_part" onClick={this.chat}><span><FontAwesomeIcon icon={faComment} /></span></div>
+                <div className="each_part" onClick={this.spend}><span><FontAwesomeIcon icon={faCoins} /></span></div>
+                <div className="each_part" onClick={this.income}><span><FontAwesomeIcon icon={faDollarSign} /></span></div>
+                <div className="each_part" onClick={this.default}><span><FontAwesomeIcon icon={faHome} /></span></div>
+                <div className="each_part" onClick={this.profile}><span><FontAwesomeIcon icon={faUser} /></span></div>
                 
             </div>
         )

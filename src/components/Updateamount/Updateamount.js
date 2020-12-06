@@ -39,15 +39,35 @@ const UpdateAmount = (props) => {
       }
       }).then(res => {
          console.log(res.data.data, 'header')
-         setTotal([...res.data.data])
+         if(res.data.data.length > 0) {
+         setTotal([...res.data.data])    
          setFirst(res.data.data[0].name)
-         setAddid(res.data.data[0].id)
-        
+         setAddid(res.data.data[0].id)  
+         }else {
+           setModal(false)
+         }
       }).catch(err =>
          console.log( 'updateamount in useeffect in get method' , err))
 }, [setTotal] )
 
-  const toggle = () => setModal(!modal);
+  const baseToggle = () => {
+    checkStorageId()
+    let userId = checkStorageId()           
+    axios.get(`${API}expenditures/consumer`,{
+        params: {
+          user_id : userId,    
+      }
+      }).then(res => {
+        if(res.data.type === 1) {
+          setModal(false)
+        }else {
+          setModal(!modal)
+        }
+      }).catch(err =>
+         console.log( 'updateamount in useeffect in get method' , err))
+
+  } 
+  const toggle = () => setModal(!modal)
 
 
   const add = async () => {
@@ -102,7 +122,7 @@ const UpdateAmount = (props) => {
         }
         ).then(res => {
           let totaldata = [...res.data.data]
-          console.log(totaldata.length, 'aaaaa')
+          console.log(totaldata.length, 'lenght of total in async fun')
           if(totaldata.length === 0) {
             setModal(false) 
             setFirst('')    
@@ -247,7 +267,7 @@ const handleOnchange = e => {
   return (
       
   <div>
-    <Button color="danger" onClick={toggle} style={{fontSize:"10px", marginTop:"5px"}}>به روز رسانی هزینه های مصرفی</Button>
+    <Button color="danger" onClick={baseToggle} style={{fontSize:"9px", marginTop:"5px"}}>به روز رسانی هزینه های مصرفی</Button>
     <Modal isOpen={modal} toggle={toggle} className={className}>
       <ModalHeader style={{backgroundColor: "#07b0c3"}} toggle={toggle} close={closeBtn}> به روز رسانی هزینه</ModalHeader>
       <ModalBody className="bd_main">

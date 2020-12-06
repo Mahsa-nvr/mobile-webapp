@@ -13,3 +13,7 @@
     padding: 10px;
     color:#07b0c3;
 }
+
+.each_part span {
+    cursor: pointer;
+}

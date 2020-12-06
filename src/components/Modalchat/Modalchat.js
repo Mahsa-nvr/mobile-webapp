@@ -43,7 +43,7 @@ const ModalChat = (props) => {
                     </Input> */}
                 </FormGroup>
                 {' '}
-                <Button color="danger" onClick={toggle}>ثبت پرسش جدید</Button>
+                <Button style={{marginBottom:"20%"}} color="danger" onClick={toggle}>ثبت پرسش جدید</Button>
             </Form>
             <Modal isOpen={modal} toggle={toggle} className={className} unmountOnClose={unmountOnClose}>
                 <ModalHeader style={{backgroundColor:"#07b0c3"}} toggle={toggle}>ثبت پرسش جدید </ModalHeader>

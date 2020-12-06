@@ -11,7 +11,8 @@ class Login extends React.Component {
     constructor(props){
         super();
         this.state={
-            mainInput:''
+            mainInput:'',
+            taeedInput: 1234
         }
     }
 
@@ -43,7 +44,7 @@ class Login extends React.Component {
                 </div>
 
                 <div  className="second_input d-flex justify-content-center ">
-                    <Input placeholder="کد تایید"/>
+                    <Input value={this.state.taeedInput}/>
                 </div>
 
                 <div  className="second_btn d-flex justify-content-center ">

@@ -120,7 +120,7 @@ class PayKhomse extends React.Component {
                  <div >
                    <ListGroup className="paykhoms_list_group">
                    <ListGroupItem className="paykhoms_list_group_item title"><img src={daramad} height={40} alt=""/>
-                   <span className="title_list">وجوهات شرعی</span>
+                   <span className="title_list_sharee">وجوهات شرعی</span>
                    <div className="title_update_amount"><UpdateAmount/></div>
                    </ListGroupItem>
                    </ListGroup>
