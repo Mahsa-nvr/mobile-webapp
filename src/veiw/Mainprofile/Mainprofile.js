@@ -191,9 +191,10 @@ class Mainprofile extends React.Component {
                         <span className="title_partt"> سال خمسی : </span>
 
                         <Row>
-                                <Col>
+                               
                                    <div>
                                    <div className={this.state.emptyKhoms ? "empty_label_price" : "label_price"}> روز و ماه تسویه خمسی</div>
+                                 
                                    <NumberFormat 
                                    className={this.state.emptyKhoms ? "input_number_format_emptyamount" : "input_number_format_amount"}
                                    format="##/##" 
@@ -203,6 +204,12 @@ class Mainprofile extends React.Component {
                                    value={this.state.inputYear}
                                    onChange={(e) => this.handleKhomsChange.call(this, e)}
                                    />
+                                  <span style={{display: "inline-block",
+                                               position: "absolute",
+                                               marginRight: "175px",
+                                               marginTop:"-30px",
+                                               color: "#7f8fa6"}}>(مثال: 05/23)</span>
+                               
                                    <span className={this.state.emptyKhoms ? "state_emptyKhoms" : "state_khoms"}>روز و ماه تسویه خمسی را وارد کنید</span>
                                    </div>
                                   {/* <FormGroup className="form_base_part">
@@ -221,8 +228,7 @@ class Mainprofile extends React.Component {
                                     </AvForm>
                                   </FormGroup> */}
                                    
-                              </Col>
-                              <Col>
+                            
                                 
                           
                                   {/* <FormGroup className="form_base_part">
@@ -244,7 +250,7 @@ class Mainprofile extends React.Component {
 
                                   </AvForm> 
                                  </FormGroup>        */}
-                                 </Col>
+                             
 
                                 
                                  </Row>
