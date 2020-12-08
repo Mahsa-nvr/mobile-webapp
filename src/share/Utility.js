@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 export function HandleChange(e) {
@@ -29,18 +28,6 @@ export function handlePriceChange(e) {
 
 }
 
-export function passData(data) {
-   return {data}
-}
-
-
-export function sumArray(arr) {
-    
-  const sum = arr.reduce((a,b) => {
-     return  a+b;
-  }, 0);
-  console.log(sum);
-}
 
 
 export const dateConvertFormat = (gitDate)=>{

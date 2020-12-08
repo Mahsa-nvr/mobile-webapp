@@ -3,9 +3,8 @@ import Loading from './../../components/Loading/Loading'
 
 class TestPage extends React.Component {
 
-
-
     render(){
+
         return (
         <div>   
           <Loading />
